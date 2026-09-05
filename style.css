@@ -872,3 +872,139 @@ body {
   .mission__video.reveal { transform: none; }
   .paths__figure { animation: none; }
 }
+
+/* ================================================
+   Testimonials section
+   ================================================ */
+.testimonials {
+  position: relative;
+  background: var(--navy-deep);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 110px 5vw;
+  overflow: hidden;
+}
+
+.testimonials__left {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.testimonials__collage {
+  position: relative;
+  height: 560px;
+  width: 100%;
+}
+
+/* Outer wrapper: absolute position + scroll-reveal only */
+.testimonials__photo {
+  position: absolute;
+  width: 170px;
+}
+
+/* Inner wrapper: the polaroid look + continuous float/rotate,
+   kept separate from the outer element's reveal transition so the
+   two animations don't fight over the transform property */
+.testimonials__photo-float {
+  background: var(--white);
+  padding: 8px 8px 8px;
+  border-radius: 14px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.4);
+  animation: photoFloat var(--dur, 6s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.testimonials__photo-float img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+@keyframes photoFloat {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-14px) rotate(var(--r, 0deg)); }
+}
+
+.testimonials__photo--1 { top: 0;    left: 4%;  width: 175px; z-index: 3; --r: -6deg; --dur: 6.5s; --delay: 0s; }
+.testimonials__photo--2 { top: 6%;   left: 40%; width: 145px; z-index: 2; --r: 9deg;  --dur: 5.5s; --delay: 0.4s; }
+.testimonials__photo--3 { top: 1%;   left: 68%; width: 160px; z-index: 4; --r: -5deg; --dur: 7s;   --delay: 0.8s; }
+.testimonials__photo--4 { top: 48%;  left: 1%;  width: 150px; z-index: 2; --r: 6deg;  --dur: 6s;   --delay: 1.2s; }
+.testimonials__photo--5 { top: 52%;  left: 35%; width: 190px; z-index: 5; --r: -9deg; --dur: 5.8s; --delay: 0.2s; }
+.testimonials__photo--6 { top: 45%;  left: 66%; width: 140px; z-index: 3; --r: 7deg;  --dur: 6.8s; --delay: 1s; }
+
+.testimonials__photo.reveal:nth-child(1) { transition-delay: 0s; }
+.testimonials__photo.reveal:nth-child(2) { transition-delay: 0.1s; }
+.testimonials__photo.reveal:nth-child(3) { transition-delay: 0.2s; }
+.testimonials__photo.reveal:nth-child(4) { transition-delay: 0.3s; }
+.testimonials__photo.reveal:nth-child(5) { transition-delay: 0.4s; }
+.testimonials__photo.reveal:nth-child(6) { transition-delay: 0.5s; }
+
+.testimonials__title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.testimonials__subtitle {
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: rgba(255,255,255,0.62);
+}
+
+.testimonials__quotes {
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials__photo-float { animation: none; }
+}
+
+/* ---------- Tablet: shrink the collage, keep it scattered ---------- */
+@media (max-width: 1024px) {
+  .testimonials { grid-template-columns: 1fr; }
+  .testimonials__collage { height: 440px; }
+  .testimonials__photo--1 { width: 140px; }
+  .testimonials__photo--2 { width: 116px; }
+  .testimonials__photo--3 { width: 128px; }
+  .testimonials__photo--4 { width: 120px; }
+  .testimonials__photo--5 { width: 152px; }
+  .testimonials__photo--6 { width: 112px; }
+}
+
+/* ---------- Mobile: scattered absolute layout gets unreadable at this
+   width, switch to a simple horizontal scroll strip instead ---------- */
+@media (max-width: 640px) {
+  .testimonials { padding: 72px 0 64px; }
+  .testimonials__left { padding: 0 6vw; gap: 32px; }
+
+  .testimonials__collage {
+    height: auto;
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding: 8px 6vw 12px;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .testimonials__photo {
+    position: static;
+    flex: 0 0 auto;
+    width: 130px !important;
+    scroll-snap-align: start;
+  }
+
+  .testimonials__photo-float {
+    animation: none;
+    transform: none !important;
+  }
+
+  .testimonials__intro { padding: 0 6vw; }
+}
