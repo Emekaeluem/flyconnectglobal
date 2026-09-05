@@ -207,6 +207,43 @@ body {
 .nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* ---------- Sound toggle ---------- */
+.sound-toggle {
+  position: absolute;
+  z-index: 3;
+  right: 5vw;
+  bottom: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(6,13,46,0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.sound-toggle:hover,
+.sound-toggle:focus-visible {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.sound-toggle svg { width: 19px; height: 19px; }
+
+.icon-unmuted { display: none; }
+.sound-toggle[aria-pressed="true"] .icon-muted { display: none; }
+.sound-toggle[aria-pressed="true"] .icon-unmuted { display: block; }
+
+@media (max-width: 640px) {
+  .sound-toggle { right: 6vw; bottom: 20px; width: 40px; height: 40px; }
+}
+
 /* ---------- Hero copy ---------- */
 .hero__center {
   flex: 1;
