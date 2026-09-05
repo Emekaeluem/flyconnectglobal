@@ -125,4 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeAllPaths();
   });
+
+  /* ---------- Mission video: always silent, no sound control at all ---------- */
+  const missionVideo = document.querySelector('.mission__video-el');
+  if (missionVideo) {
+    missionVideo.muted = true;
+    missionVideo.play().catch(() => {});
+  }
 });
