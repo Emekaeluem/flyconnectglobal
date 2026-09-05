@@ -113,4 +113,63 @@ document.addEventListener('DOMContentLoaded', () => {
       if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
     }
   });
+
+  /* ---------- Pathways: scroll-triggered reveal + count-up ---------- */
+  const revealTargets = document.querySelectorAll(
+    '.pathways__flank-text, .pathways__photo, .pathways__mini-icon, .pathways__featured-look'
+  );
+
+  const statNumber = document.querySelector('.pathways__stat-number');
+  let statAnimated = false;
+
+  const animateStat = () => {
+    if (statAnimated || !statNumber) return;
+    statAnimated = true;
+    const target = parseInt(statNumber.dataset.target, 10) || 0;
+    const duration = 1400;
+    const start = performance.now();
+
+    const tick = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      statNumber.textContent = Math.round(eased * target);
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  if ('IntersectionObserver' in window && revealTargets.length) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        if (el.classList.contains('pathways__mini-icon')) {
+          const siblings = Array.from(el.parentElement.children);
+          const index = siblings.indexOf(el);
+          el.style.transitionDelay = `${index * 90}ms`;
+        }
+        el.classList.add('is-visible');
+        revealObserver.unobserve(el);
+      });
+    }, { threshold: 0.25 });
+
+    revealTargets.forEach((el) => revealObserver.observe(el));
+  } else {
+    revealTargets.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  const statSection = document.querySelector('.pathways__panel-left');
+  if ('IntersectionObserver' in window && statSection) {
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateStat();
+          statObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    statObserver.observe(statSection);
+  } else {
+    animateStat();
+  }
 });
