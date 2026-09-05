@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
   /* ---------- Video + sound ---------- */
   // Tries to autoplay WITH sound immediately. Browsers only allow this
   // for visitors they already trust with that site (returning visitors,
@@ -9,24 +8,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // the page — no separate button, no visible prompt.
   const video = document.querySelector('.hero__video');
   const soundToggle = document.getElementById('soundToggle');
-
   const setSoundState = (muted) => {
     if (!video) return;
     video.muted = muted;
     if (soundToggle) soundToggle.setAttribute('aria-pressed', String(!muted));
   };
-
   const unmuteOnFirstInteraction = () => {
     setSoundState(false);
     video.play();
   };
-
   const armInteractionUnmute = () => {
     document.addEventListener('click', unmuteOnFirstInteraction, { once: true, capture: true });
     document.addEventListener('touchstart', unmuteOnFirstInteraction, { once: true, capture: true });
     document.addEventListener('keydown', unmuteOnFirstInteraction, { once: true, capture: true });
   };
-
   const attemptAutoplay = () => {
     setSoundState(false);
     const soundAttempt = video.play();
@@ -38,14 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   };
-
   if (video) {
     if (video.readyState >= 2) {
       attemptAutoplay();
     } else {
       video.addEventListener('loadeddata', attemptAutoplay, { once: true });
     }
-
     if (soundToggle) {
       soundToggle.addEventListener('click', () => {
         setSoundState(!video.muted);
@@ -54,9 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  /* ---------- Dropdown menus (desktop + mobile) ---------- */
+  /* ---------- Nav dropdown menus (desktop + mobile) ---------- */
   const navItems = document.querySelectorAll('.nav__item');
-
   const closeAllDropdowns = (except) => {
     navItems.forEach((item) => {
       if (item === except) return;
@@ -65,11 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btn) btn.setAttribute('aria-expanded', 'false');
     });
   };
-
   navItems.forEach((item) => {
     const trigger = item.querySelector('.nav__link[aria-haspopup]');
     if (!trigger) return;
-
     trigger.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = item.classList.contains('is-open');
@@ -78,9 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
       trigger.setAttribute('aria-expanded', String(!isOpen));
     });
   });
-
   document.addEventListener('click', () => closeAllDropdowns());
-
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeAllDropdowns();
   });
@@ -88,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- Mobile menu toggle ---------- */
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
-
   if (navToggle && navMenu) {
     navToggle.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -97,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
       navToggle.setAttribute('aria-expanded', String(!isOpen));
       if (isOpen) closeAllDropdowns();
     });
-
     document.addEventListener('click', (e) => {
       if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
         navMenu.classList.remove('is-open');
@@ -112,5 +98,31 @@ document.addEventListener('DOMContentLoaded', () => {
       navMenu.classList.remove('is-open');
       if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
     }
+  });
+
+  /* ---------- Choose Your Path tags (hover on desktop, tap on mobile) ---------- */
+  const pathItems = document.querySelectorAll('.paths__item');
+  const closeAllPaths = (except) => {
+    pathItems.forEach((item) => {
+      if (item === except) return;
+      item.classList.remove('is-open');
+      const btn = item.querySelector('.paths__tag');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+  };
+  pathItems.forEach((item) => {
+    const tag = item.querySelector('.paths__tag');
+    if (!tag) return;
+    tag.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = item.classList.contains('is-open');
+      closeAllPaths(item);
+      item.classList.toggle('is-open', !isOpen);
+      tag.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+  document.addEventListener('click', () => closeAllPaths());
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAllPaths();
   });
 });
