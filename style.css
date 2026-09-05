@@ -429,7 +429,7 @@ body {
 .paths__top {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) minmax(260px, 460px) minmax(240px, 1fr);
+  grid-template-columns: minmax(240px, 1fr) minmax(280px, 520px) minmax(240px, 1fr);
   align-items: center;
   gap: 8px 32px;
 }
@@ -456,6 +456,7 @@ body {
   position: relative;
   grid-column: 2;
   height: 620px;
+  margin-left: clamp(-140px, -8vw, -40px);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -654,7 +655,7 @@ body {
 
   .paths__kicker { text-align: center; }
   .paths__headline { max-width: 480px; }
-  .paths__visual { grid-column: 1; order: 2; height: 460px; }
+  .paths__visual { grid-column: 1; order: 2; height: 460px; margin-left: 0; }
   .paths__intro { order: 1; }
   .paths__statement { grid-column: 1; order: 3; text-align: center; }
   .paths__statement-lead,
