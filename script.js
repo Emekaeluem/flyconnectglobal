@@ -99,30 +99,4 @@ document.addEventListener('DOMContentLoaded', () => {
       if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
     }
   });
-
-  /* ---------- Choose Your Path tags (hover on desktop, tap on mobile) ---------- */
-  const pathItems = document.querySelectorAll('.paths__item');
-  const closeAllPaths = (except) => {
-    pathItems.forEach((item) => {
-      if (item === except) return;
-      item.classList.remove('is-open');
-      const btn = item.querySelector('.paths__tag');
-      if (btn) btn.setAttribute('aria-expanded', 'false');
-    });
-  };
-  pathItems.forEach((item) => {
-    const tag = item.querySelector('.paths__tag');
-    if (!tag) return;
-    tag.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = item.classList.contains('is-open');
-      closeAllPaths(item);
-      item.classList.toggle('is-open', !isOpen);
-      tag.setAttribute('aria-expanded', String(!isOpen));
-    });
-  });
-  document.addEventListener('click', () => closeAllPaths());
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeAllPaths();
-  });
 });
