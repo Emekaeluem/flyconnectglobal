@@ -530,6 +530,8 @@ body {
   display: block;
   filter: drop-shadow(0 34px 46px rgba(6,13,46,0.4));
   animation: float 6s ease-in-out infinite;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 62%, rgba(0,0,0,0) 94%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 62%, rgba(0,0,0,0) 94%);
 }
 
 @keyframes float {
