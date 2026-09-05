@@ -1,29 +1,61 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ---------- Force video autoplay ---------- */
+  /* ---------- Video autoplay, with sound when the browser allows it ---------- */
   const video = document.querySelector('.hero__video');
-  if (video) {
-    video.muted = true;
-    video.setAttribute('muted', '');
-    const tryPlay = () => {
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Autoplay blocked until first user interaction — retry then.
-          const resume = () => {
-            video.play();
-            document.removeEventListener('click', resume);
-            document.removeEventListener('touchstart', resume);
-          };
-          document.addEventListener('click', resume, { once: true });
-          document.addEventListener('touchstart', resume, { once: true });
+  const soundToggle = document.getElementById('soundToggle');
+
+  const setSoundState = (muted) => {
+    if (!video) return;
+    video.muted = muted;
+    if (soundToggle) soundToggle.setAttribute('aria-pressed', String(!muted));
+  };
+
+  const unmuteOnFirstInteraction = () => {
+    setSoundState(false);
+    video.play();
+  };
+
+  const armInteractionUnmute = () => {
+    document.addEventListener('click', unmuteOnFirstInteraction, { once: true });
+    document.addEventListener('touchstart', unmuteOnFirstInteraction, { once: true });
+    document.addEventListener('keydown', unmuteOnFirstInteraction, { once: true });
+  };
+
+  const attemptAutoplay = () => {
+    // First try: autoplay WITH sound. Browsers allow this only for
+    // returning visitors who've built up enough "media engagement"
+    // with the site — most first-time visitors will get blocked.
+    setSoundState(false);
+    const soundAttempt = video.play();
+    if (soundAttempt !== undefined) {
+      soundAttempt
+        .then(() => {
+          // Sound autoplay succeeded.
+        })
+        .catch(() => {
+          // Blocked — fall back to silent autoplay, then unmute the
+          // instant the visitor interacts with the page in any way.
+          setSoundState(true);
+          video.play().catch(() => {
+            video.addEventListener('loadeddata', () => video.play(), { once: true });
+          });
+          armInteractionUnmute();
         });
-      }
-    };
+    }
+  };
+
+  if (video) {
     if (video.readyState >= 2) {
-      tryPlay();
+      attemptAutoplay();
     } else {
-      video.addEventListener('loadeddata', tryPlay, { once: true });
+      video.addEventListener('loadeddata', attemptAutoplay, { once: true });
+    }
+
+    if (soundToggle) {
+      soundToggle.addEventListener('click', () => {
+        setSoundState(!video.muted);
+        if (!video.muted) video.play();
+      });
     }
   }
 
