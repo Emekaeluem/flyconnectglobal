@@ -878,133 +878,113 @@ body {
    ================================================ */
 .testimonials {
   position: relative;
-  background: var(--navy-deep);
+  background-color: #F7F6FB;
+  background-image: radial-gradient(rgba(11,27,86,0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+  align-items: center;
   padding: 110px 5vw;
   overflow: hidden;
 }
 
-.testimonials__left {
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
 
-.testimonials__collage {
-  position: relative;
-  height: 560px;
-  width: 100%;
+.testimonials__grid-item {
+  margin: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
 }
 
-/* Outer wrapper: absolute position + scroll-reveal only */
-.testimonials__photo {
-  position: absolute;
-  width: 170px;
+.testimonials__grid-item:nth-child(2),
+.testimonials__grid-item:nth-child(5) {
+  aspect-ratio: 3 / 3.4;
 }
 
-/* Inner wrapper: the polaroid look + continuous float/rotate,
-   kept separate from the outer element's reveal transition so the
-   two animations don't fight over the transform property */
-.testimonials__photo-float {
-  background: var(--white);
-  padding: 8px 8px 8px;
-  border-radius: 14px;
-  box-shadow: 0 20px 45px rgba(0,0,0,0.4);
-  animation: photoFloat var(--dur, 6s) ease-in-out infinite;
-  animation-delay: var(--delay, 0s);
-}
-
-.testimonials__photo-float img {
+.testimonials__grid-item img {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 100%;
   object-fit: cover;
-  border-radius: 8px;
+  filter: grayscale(1) contrast(1.08);
+  transition: filter 0.4s ease, transform 0.4s ease;
 }
 
-@keyframes photoFloat {
-  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
-  50% { transform: translateY(-14px) rotate(var(--r, 0deg)); }
+.testimonials__grid-item:hover img {
+  filter: grayscale(0) contrast(1.02);
+  transform: scale(1.04);
 }
 
-.testimonials__photo--1 { top: 0;    left: 4%;  width: 175px; z-index: 3; --r: -6deg; --dur: 6.5s; --delay: 0s; }
-.testimonials__photo--2 { top: 6%;   left: 40%; width: 145px; z-index: 2; --r: 9deg;  --dur: 5.5s; --delay: 0.4s; }
-.testimonials__photo--3 { top: 1%;   left: 68%; width: 160px; z-index: 4; --r: -5deg; --dur: 7s;   --delay: 0.8s; }
-.testimonials__photo--4 { top: 48%;  left: 1%;  width: 150px; z-index: 2; --r: 6deg;  --dur: 6s;   --delay: 1.2s; }
-.testimonials__photo--5 { top: 52%;  left: 35%; width: 190px; z-index: 5; --r: -9deg; --dur: 5.8s; --delay: 0.2s; }
-.testimonials__photo--6 { top: 45%;  left: 66%; width: 140px; z-index: 3; --r: 7deg;  --dur: 6.8s; --delay: 1s; }
+.testimonials__content {
+  display: flex;
+  flex-direction: column;
+}
 
-.testimonials__photo.reveal:nth-child(1) { transition-delay: 0s; }
-.testimonials__photo.reveal:nth-child(2) { transition-delay: 0.1s; }
-.testimonials__photo.reveal:nth-child(3) { transition-delay: 0.2s; }
-.testimonials__photo.reveal:nth-child(4) { transition-delay: 0.3s; }
-.testimonials__photo.reveal:nth-child(5) { transition-delay: 0.4s; }
-.testimonials__photo.reveal:nth-child(6) { transition-delay: 0.5s; }
+.testimonials__kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.testimonials__kicker-dash {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--gold);
+}
 
 .testimonials__title {
   font-family: var(--display);
   font-weight: 600;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-  line-height: 1.15;
-  color: var(--white);
-  margin-bottom: 12px;
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  line-height: 1.12;
+  color: var(--navy-deep);
+  margin-bottom: 18px;
 }
 
 .testimonials__subtitle {
   font-family: var(--sans);
-  font-size: 1rem;
-  color: rgba(255,255,255,0.62);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(6,13,46,0.62);
+  max-width: 380px;
 }
 
 .testimonials__quotes {
   position: relative;
+  margin-top: 32px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .testimonials__photo-float { animation: none; }
+.testimonials__grid-item.reveal:nth-child(1) { transition-delay: 0s; }
+.testimonials__grid-item.reveal:nth-child(2) { transition-delay: 0.08s; }
+.testimonials__grid-item.reveal:nth-child(3) { transition-delay: 0.16s; }
+.testimonials__grid-item.reveal:nth-child(4) { transition-delay: 0.24s; }
+.testimonials__grid-item.reveal:nth-child(5) { transition-delay: 0.32s; }
+.testimonials__grid-item.reveal:nth-child(6) { transition-delay: 0.4s; }
+
+@media (max-width: 900px) {
+  .testimonials {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .testimonials__content { order: -1; }
 }
 
-/* ---------- Tablet: shrink the collage, keep it scattered ---------- */
-@media (max-width: 1024px) {
-  .testimonials { grid-template-columns: 1fr; }
-  .testimonials__collage { height: 440px; }
-  .testimonials__photo--1 { width: 140px; }
-  .testimonials__photo--2 { width: 116px; }
-  .testimonials__photo--3 { width: 128px; }
-  .testimonials__photo--4 { width: 120px; }
-  .testimonials__photo--5 { width: 152px; }
-  .testimonials__photo--6 { width: 112px; }
-}
-
-/* ---------- Mobile: scattered absolute layout gets unreadable at this
-   width, switch to a simple horizontal scroll strip instead ---------- */
 @media (max-width: 640px) {
-  .testimonials { padding: 72px 0 64px; }
-  .testimonials__left { padding: 0 6vw; gap: 32px; }
-
-  .testimonials__collage {
-    height: auto;
-    display: flex;
-    gap: 14px;
-    overflow-x: auto;
-    padding: 8px 6vw 12px;
-    scroll-snap-type: x proximity;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .testimonials__photo {
-    position: static;
-    flex: 0 0 auto;
-    width: 130px !important;
-    scroll-snap-align: start;
-  }
-
-  .testimonials__photo-float {
-    animation: none;
-    transform: none !important;
-  }
-
-  .testimonials__intro { padding: 0 6vw; }
+  .testimonials { padding: 72px 6vw 64px; }
+  .testimonials__grid { gap: 12px; }
+  .testimonials__subtitle { max-width: none; }
 }
