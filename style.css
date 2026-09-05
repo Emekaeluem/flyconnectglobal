@@ -54,6 +54,7 @@ body {
 /* ---------- Nav ---------- */
 .nav {
   position: relative;
+  z-index: 6;
   display: flex;
   align-items: center;
   gap: 28px;
@@ -370,8 +371,17 @@ body {
     transform: translateY(0);
   }
 
-  .nav__link { width: 100%; justify-content: space-between; }
+  .nav__link { width: 100%; justify-content: space-between; padding: 14px 6px; border-radius: 0; }
   .nav__link--plain { justify-content: flex-start; }
+
+  .nav__menu > *:not(:last-child) {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .nav__link:hover,
+  .nav__link:focus-visible {
+    background-color: transparent;
+  }
 
   .nav__dropdown {
     position: static;
