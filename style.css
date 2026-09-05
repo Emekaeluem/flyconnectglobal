@@ -418,10 +418,7 @@ body {
    ================================================ */
 .paths {
   position: relative;
-  background:
-    radial-gradient(ellipse 60% 65% at 50% 34%, rgba(254,189,0,0.18) 0%, rgba(6,13,46,0) 62%),
-    radial-gradient(ellipse 90% 65% at 50% 100%, rgba(11,27,86,0.95) 0%, rgba(6,13,46,1) 68%),
-    var(--navy-deep);
+  background: var(--navy-deep);
   padding: 120px 5vw 72px;
   overflow: hidden;
 }
@@ -455,6 +452,7 @@ body {
 .paths__visual {
   position: relative;
   grid-column: 2;
+  z-index: 2;
   height: 620px;
   margin-left: clamp(-140px, -8vw, -40px);
   display: flex;
@@ -463,48 +461,12 @@ body {
   overflow: visible;
 }
 
-.paths__glow {
-  position: absolute;
-  inset: -40px -90px 0;
-  background: radial-gradient(closest-side, rgba(254,189,0,0.42) 0%, rgba(254,189,0,0) 70%);
-  filter: blur(10px);
-  z-index: 1;
-}
-
-.paths__figure-wrap {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-  isolation: isolate;
-}
-
 .paths__figure {
   position: relative;
-  z-index: 2;
   height: 100%;
   max-height: 640px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 30px 50px rgba(0,0,0,0.45));
-}
-
-.paths__figure-tint {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(200deg, rgba(254,189,0,0.68) 0%, rgba(11,27,86,0.32) 45%, rgba(6,13,46,0.8) 100%);
-  mix-blend-mode: color;
-  -webkit-mask-image: url('https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/lady.png');
-  mask-image: url('https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/lady.png');
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-position: bottom center;
-  mask-position: bottom center;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  z-index: 3;
-  pointer-events: none;
 }
 
 .paths__statement {
