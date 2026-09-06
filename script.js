@@ -344,4 +344,24 @@ document.addEventListener('DOMContentLoaded', () => {
     buildSet(false); // real, announced set
     buildSet(true);  // duplicate set, for a seamless loop, hidden from screen readers
   }
+
+  /* ---------- Services stack: play each card's video only while it's
+     the visible/active one in the sticky stack, pause the rest ---------- */
+  const serviceVideos = document.querySelectorAll('.services__card-video');
+  if ('IntersectionObserver' in window && serviceVideos.length) {
+    const serviceVideoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.6 });
+    serviceVideos.forEach((video) => serviceVideoObserver.observe(video));
+  } else {
+    // No IntersectionObserver support: fall back to just playing them all
+    serviceVideos.forEach((video) => video.play().catch(() => {}));
+  }
 });
