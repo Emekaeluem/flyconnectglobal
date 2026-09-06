@@ -951,7 +951,40 @@ body {
 .testimonials__content {
   display: flex;
   flex-direction: column;
+  padding-left: clamp(0px, 4vw, 56px);
 }
+
+.testimonials__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  margin-top: 32px;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--navy-deep);
+  background: var(--gold);
+  text-decoration: none;
+  padding: 14px 26px;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(254,189,0,0.28);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.testimonials__btn:hover,
+.testimonials__btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(254,189,0,0.38);
+}
+
+.testimonials__btn svg {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.22s ease;
+}
+
+.testimonials__btn:hover svg { transform: translateX(3px); }
 
 .testimonials__kicker {
   display: flex;
