@@ -319,6 +319,79 @@ document.addEventListener('DOMContentLoaded', () => {
     buildSet(true);  // duplicate set, for a seamless loop, hidden from screen readers
   }
 
+  /* ---------- Services stack: JS-driven pinning (not CSS position:sticky).
+     Sticky can silently fail to activate depending on browser/ancestor
+     quirks that are hard to diagnose from CSS alone. This computes the
+     same "pin, then get covered by the next card" effect by hand, using
+     real scroll measurements, so it doesn't depend on sticky support at all. ---------- */
+  const serviceWraps = Array.from(document.querySelectorAll('.services__card-wrap'));
+  if (serviceWraps.length) {
+    const PIN_TOP = 110;       // matches the card's intended pinned distance from viewport top
+    const MOBILE_BREAKPOINT = 700; // matches the CSS breakpoint that drops the effect on small screens
+    let ticking = false;
+
+    const clearStackStyles = () => {
+      serviceWraps.forEach((wrap) => {
+        const card = wrap.querySelector('.services__card');
+        if (!card) return;
+        card.style.position = '';
+        card.style.left = '';
+        card.style.width = '';
+        card.style.top = '';
+      });
+    };
+
+    const updateStack = () => {
+      ticking = false;
+
+      if (window.innerWidth <= MOBILE_BREAKPOINT) {
+        clearStackStyles(); // let the mobile CSS (position: static, normal flow) take over
+        return;
+      }
+
+      serviceWraps.forEach((wrap) => {
+        const card = wrap.querySelector('.services__card');
+        if (!card) return;
+
+        const wrapRect = wrap.getBoundingClientRect();
+        const cardHeight = card.offsetHeight;
+        const wrapHeight = wrap.offsetHeight;
+
+        if (wrapRect.top > PIN_TOP) {
+          // Not reached yet: sits at the top of its own (still lower) wrapper
+          card.style.position = 'absolute';
+          card.style.left = '0';
+          card.style.width = '100%';
+          card.style.top = '0px';
+        } else if (wrapRect.bottom <= PIN_TOP + cardHeight) {
+          // Its wrapper has fully scrolled past: stay pinned to the wrapper's bottom
+          // (this is the moment the next card takes over covering it)
+          card.style.position = 'absolute';
+          card.style.left = '0';
+          card.style.width = '100%';
+          card.style.top = Math.max(0, wrapHeight - cardHeight) + 'px';
+        } else {
+          // Actively in its pinned window: lock to the viewport
+          card.style.position = 'fixed';
+          card.style.left = wrapRect.left + 'px';
+          card.style.width = wrapRect.width + 'px';
+          card.style.top = PIN_TOP + 'px';
+        }
+      });
+    };
+
+    const onScrollOrResize = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateStack);
+      }
+    };
+
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize);
+    updateStack();
+  }
+
   /* ---------- Services stack: play each card's video only while it's
      the visible/active one in the sticky stack, pause the rest ---------- */
   const serviceVideos = document.querySelectorAll('.services__card-video');
