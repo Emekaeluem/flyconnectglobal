@@ -1330,7 +1330,7 @@ body {
   left: 0%;
   width: 30px;
   height: 27px;
-  transform: translate(-50%, -50%) scaleX(-1);
+  transform: translate(-50%, -50%);
   color: var(--gold);
   transition: left 0.5s cubic-bezier(0.65,0,0.35,1);
   filter: drop-shadow(0 4px 8px rgba(254,189,0,0.4));
