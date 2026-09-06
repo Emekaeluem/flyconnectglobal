@@ -1864,6 +1864,7 @@ body {
   grid-template-columns: 1fr 1fr;
   border-radius: 28px;
   overflow: hidden;
+  background: var(--navy-deep);
   box-shadow: 0 40px 80px rgba(11,27,86,0.22);
 }
 
