@@ -1661,20 +1661,69 @@ body {
    Our Partners section
    ================================================ */
 .partners {
-  background: var(--white);
+  position: relative;
+  /* Exact shade requested — a hair more vivid/pure than the site's
+     standard --gold (#FEBD00), used only in this section */
+  background-color: #FFBE00;
+  background-image:
+    repeating-linear-gradient(135deg, rgba(11,27,86,0.055) 0px, rgba(11,27,86,0.055) 2px, transparent 2px, transparent 26px),
+    radial-gradient(rgba(11,27,86,0.1) 1.5px, transparent 1.5px);
+  background-size: auto, 24px 24px;
   padding: 100px 5vw 110px;
+  overflow: hidden;
+}
+
+.partners::before,
+.partners::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.partners::before {
+  top: -18%;
+  right: -8%;
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, rgba(11,27,86,0.16) 0%, rgba(11,27,86,0) 70%);
+}
+
+.partners::after {
+  bottom: -22%;
+  left: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(11,27,86,0.13) 0%, rgba(11,27,86,0) 70%);
 }
 
 .partners__title {
+  position: relative;
+  z-index: 1;
   text-align: center;
   font-family: var(--display);
   font-weight: 600;
   font-size: clamp(1.8rem, 3.2vw, 2.4rem);
   color: var(--navy-deep);
-  margin-bottom: 56px;
+  margin-bottom: 0;
+}
+
+.partners__title-accent {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--navy-deep);
+  border-radius: 999px;
+  margin: 18px auto 56px;
 }
 
 .partners__grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 22px;
@@ -1688,16 +1737,16 @@ body {
   justify-content: center;
   height: 120px;
   padding: 20px;
-  background: #FAFAFD;
-  border: 1px solid rgba(11,27,86,0.08);
+  background: var(--white);
+  border: none;
   border-radius: 16px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 14px 32px rgba(11,27,86,0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .partners__item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(11,27,86,0.1);
-  border-color: rgba(11,27,86,0.14);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(11,27,86,0.24);
 }
 
 .partners__item img {
