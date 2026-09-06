@@ -1330,7 +1330,7 @@ body {
   left: 0%;
   width: 30px;
   height: 27px;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scaleX(-1);
   background-color: var(--gold);
   -webkit-mask-image: url('https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/plane-icon.png');
   mask-image: url('https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/plane-icon.png');
