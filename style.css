@@ -1561,54 +1561,46 @@ body {
 }
 
 /* ---------- The stack ---------- */
-.services__stack {
+/* ---------- Full-screen horizontal scroll-jack: normal vertical
+   scroll drives horizontal movement across 4 slides, then hands
+   back to normal vertical scrolling once the last slide is reached ---------- */
+.services__hscroll-spacer {
   position: relative;
-  max-width: 1100px;
-  margin: 0 auto;
+  height: 400vh; /* 4 slides worth of scroll runway */
 }
 
-.services__card-wrap {
-  position: relative;
-  height: 150vh;
-}
-
-.services__card-wrap:last-child {
-  height: 100vh;
-}
-
-.services__card {
-  /* Position/top/left/width are now set entirely by JS (see script.js) —
-     this default just prevents a flash of unstyled content before
-     the script's first run. */
+.services__hscroll {
+  /* position/top/left/width/height are set by JS each frame; these
+     are just sane defaults before the first script run */
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 560px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.services__hscroll-track {
+  display: flex;
+  width: 400vw;
+  height: 100%;
+  will-change: transform;
+}
+
+.services__slide {
+  flex: 0 0 100vw;
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border-radius: 28px;
-  overflow: hidden;
-  background: var(--navy-deep);
-  box-shadow: 0 40px 80px rgba(11,27,86,0.22);
 }
 
-@media (max-height: 760px) {
-  .services__card { height: 74vh; }
-}
-
-.services__card-wrap:nth-child(1) .services__card { z-index: 1; }
-.services__card-wrap:nth-child(2) .services__card { z-index: 2; }
-.services__card-wrap:nth-child(3) .services__card { z-index: 3; }
-.services__card-wrap:nth-child(4) .services__card { z-index: 4; }
-
-.services__card-media {
+.services__slide-media {
   position: relative;
   background: var(--navy);
   overflow: hidden;
 }
 
-.services__card-video {
+.services__slide-video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1616,69 +1608,69 @@ body {
   object-fit: cover;
 }
 
-.services__card-content {
+.services__slide-content {
   position: relative;
   background: var(--navy-deep);
   color: var(--white);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(28px, 4vw, 56px);
+  padding: clamp(32px, 5vw, 88px);
 }
 
-.services__card-num {
+.services__slide-num {
   font-family: var(--sans);
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--gold);
-  margin-bottom: 14px;
+  margin-bottom: 18px;
 }
 
-.services__card-title {
+.services__slide-title {
   font-family: var(--display);
   font-weight: 600;
-  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
-  margin-bottom: 14px;
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  margin-bottom: 18px;
 }
 
-.services__card-text {
+.services__slide-text {
   font-family: var(--sans);
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1.6;
   color: rgba(255,255,255,0.68);
-  max-width: 340px;
-  margin-bottom: 28px;
+  max-width: 420px;
+  margin-bottom: 32px;
 }
 
-.services__card-cta {
+.services__slide-cta {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   align-self: flex-start;
   font-family: var(--sans);
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-weight: 600;
   color: var(--navy-deep);
   background: var(--gold);
   text-decoration: none;
-  padding: 14px 26px;
+  padding: 15px 30px;
   border-radius: 999px;
   box-shadow: 0 10px 24px rgba(254,189,0,0.28);
   transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
-.services__card-cta:hover {
+.services__slide-cta:hover {
   transform: translateY(-2px);
   box-shadow: 0 14px 30px rgba(254,189,0,0.38);
 }
 
-.services__card-cta svg {
-  width: 15px;
-  height: 15px;
+.services__slide-cta svg {
+  width: 16px;
+  height: 16px;
   transition: transform 0.22s ease;
 }
 
-.services__card-cta:hover svg { transform: translateX(3px); }
+.services__slide-cta:hover svg { transform: translateX(3px); }
 
 /* ---------- The two plain text cards ---------- */
 .services__inline-grid {
@@ -1754,39 +1746,54 @@ body {
 
 .services__inline-cta:hover { gap: 12px; }
 
-/* ---------- Tablet: keep the stack, shrink the media/content split slightly ---------- */
+/* ---------- Tablet: the full-screen slides work fine as-is down to
+   tablet width, just keep the two inline cards single-column ---------- */
 @media (max-width: 900px) {
-  .services__card { height: min(620px, 80vh); }
   .services__inline-grid { grid-template-columns: 1fr; }
 }
 
-/* ---------- Mobile: sticky-stacking gets unreliable on short viewports —
-   drop it in favor of a plain scrolling list of cards ---------- */
+/* ---------- Mobile: horizontal scroll-jacking gets unreliable/uncomfortable
+   on small touch screens — drop it in favor of a plain scrolling list ---------- */
 @media (max-width: 700px) {
   .services { padding: 80px 6vw 0; }
   .services__intro { margin-bottom: 44px; }
 
-  .services__card-wrap {
+  .services__hscroll-spacer { height: auto; }
+
+  .services__hscroll {
+    position: static;
+    width: auto;
     height: auto;
-    margin-bottom: 24px;
+    overflow: visible;
   }
 
-  .services__card {
-    position: static;
+  .services__hscroll-track {
+    flex-direction: column;
+    width: auto;
+    transform: none;
+    gap: 24px;
+  }
+
+  .services__slide {
+    flex: 0 0 auto;
     height: auto;
     grid-template-columns: 1fr;
+    border-radius: 28px;
+    overflow: hidden;
     box-shadow: 0 20px 40px rgba(11,27,86,0.16);
   }
 
-  .services__card-media { height: 220px; }
-  .services__card-content { padding: 28px 24px; }
-  .services__card-text { max-width: none; }
+  .services__slide-media { height: 220px; }
+  .services__slide-content { padding: 28px 24px; }
+  .services__slide-text { max-width: none; }
 
   .services__inline-grid { padding: 16px 0 72px; gap: 18px; }
   .services__inline-card { padding: 32px 26px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .services__card { position: static; }
-  .services__card-wrap { height: auto; margin-bottom: 24px; }
+  .services__hscroll-spacer { height: auto; }
+  .services__hscroll { position: static; width: auto; height: auto; overflow: visible; }
+  .services__hscroll-track { flex-direction: column; width: auto; transform: none; gap: 24px; }
+  .services__slide { flex: 0 0 auto; height: auto; grid-template-columns: 1fr; }
 }
