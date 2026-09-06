@@ -193,4 +193,133 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     statNumbers.forEach((el) => animateCount(el));
   }
+
+  /* ---------- Route Planner: 13-step form ---------- */
+  const plannerForm = document.getElementById('plannerForm');
+  if (plannerForm) {
+    const TOTAL_STEPS = 13;
+    const steps = Array.from(plannerForm.querySelectorAll('.planner__step'));
+    const backBtn = document.getElementById('plannerBack');
+    const nextBtn = document.getElementById('plannerNext');
+    const stepNumEl = document.getElementById('plannerStepNum');
+    const phaseCurrentEl = document.getElementById('plannerPhaseCurrent');
+    const routeFill = document.getElementById('plannerRouteFill');
+    const plane = document.getElementById('plannerPlane');
+    const waypoints = Array.from(document.querySelectorAll('.planner__waypoint'));
+    const successEl = document.getElementById('plannerSuccess');
+    const cardEl = document.querySelector('.planner__card');
+
+    const phaseByStep = {
+      1: 'Contact point', 2: 'Contact point', 3: 'Contact point',
+      4: 'Goal mapping',
+      5: 'Location fit', 6: 'Location fit', 7: 'Location fit',
+      8: 'Readiness', 9: 'Readiness', 10: 'Readiness', 11: 'Readiness', 12: 'Readiness', 13: 'Readiness'
+    };
+
+    let currentStep = 1;
+    const answers = {};
+
+    // Single-select pill groups: clicking one deselects its siblings
+    plannerForm.querySelectorAll('.planner__pills').forEach((group) => {
+      group.addEventListener('click', (e) => {
+        const pill = e.target.closest('.planner__pill');
+        if (!pill) return;
+        group.querySelectorAll('.planner__pill').forEach((p) => p.classList.remove('is-selected'));
+        pill.classList.add('is-selected');
+        answers[group.dataset.group] = pill.textContent.trim();
+        updateNextState();
+      });
+    });
+
+    const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+
+    const canProceed = () => {
+      const stepEl = steps[currentStep - 1];
+      switch (currentStep) {
+        case 1:
+          return isValidEmail(document.getElementById('plannerEmail').value);
+        case 2:
+          return document.getElementById('plannerFirstName').value.trim().length > 0 &&
+                 document.getElementById('plannerLastName').value.trim().length > 0;
+        case 3:
+          return document.getElementById('plannerPhone').value.trim().length >= 7;
+        case 6:
+          return document.getElementById('plannerState').value.trim().length > 0;
+        case 12:
+          return true; // optional
+        case 13:
+          return document.getElementById('plannerConsent').checked;
+        default: {
+          // Pill-based steps: 4, 5, 7, 8, 9, 10, 11
+          const pillsGroup = stepEl.querySelector('.planner__pills');
+          if (!pillsGroup) return true;
+          return !!pillsGroup.querySelector('.is-selected');
+        }
+      }
+    };
+
+    const updateNextState = () => {
+      nextBtn.disabled = !canProceed();
+    };
+
+    const updateProgressVisual = () => {
+      const percent = ((currentStep - 1) / (TOTAL_STEPS - 1)) * 100;
+      routeFill.style.width = percent + '%';
+      plane.style.left = percent + '%';
+
+      waypoints.forEach((wp) => {
+        const wpPercent = parseFloat(wp.style.left);
+        wp.classList.toggle('is-passed', percent >= wpPercent);
+      });
+
+      stepNumEl.textContent = currentStep;
+      phaseCurrentEl.textContent = phaseByStep[currentStep];
+    };
+
+    const showStep = (stepNumber) => {
+      steps.forEach((s) => s.classList.remove('is-active'));
+      steps[stepNumber - 1].classList.add('is-active');
+      backBtn.disabled = stepNumber === 1;
+      nextBtn.textContent = stepNumber === TOTAL_STEPS ? 'Submit' : 'Next';
+      updateProgressVisual();
+      updateNextState();
+    };
+
+    // Re-check button state as the person types/checks, for instant feedback
+    plannerForm.addEventListener('input', updateNextState);
+    plannerForm.addEventListener('change', updateNextState);
+
+    // Enter key advances on single-line fields (not the textarea)
+    plannerForm.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        if (!nextBtn.disabled) nextBtn.click();
+      }
+    });
+
+    backBtn.addEventListener('click', () => {
+      if (currentStep > 1) {
+        currentStep -= 1;
+        showStep(currentStep);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (nextBtn.disabled) return;
+
+      if (currentStep === TOTAL_STEPS) {
+        // Final submit: no backend wired up yet, so just show the confirmation screen
+        cardEl.querySelectorAll('.planner__progress, .planner__form, .planner__nav').forEach((el) => {
+          el.style.display = 'none';
+        });
+        successEl.hidden = false;
+        return;
+      }
+
+      currentStep += 1;
+      showStep(currentStep);
+    });
+
+    showStep(currentStep);
+  }
 });
