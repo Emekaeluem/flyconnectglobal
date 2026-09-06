@@ -1262,7 +1262,7 @@ body {
 .planner__route {
   position: relative;
   height: 8px;
-  margin: 0 6px 52px;
+  margin: 0 6px 34px;
 }
 
 .planner__route-line {
@@ -1318,12 +1318,6 @@ body {
   letter-spacing: 0.02em;
   color: rgba(6,13,46,0.4);
   transition: color 0.4s ease;
-}
-
-/* Stagger alternating labels onto a second row so adjacent phases
-   with close waypoints (Goal mapping / Location fit) don't collide */
-.planner__waypoint:nth-child(2n) .planner__waypoint-label {
-  top: 36px;
 }
 
 .planner__waypoint.is-passed .planner__waypoint-label {
