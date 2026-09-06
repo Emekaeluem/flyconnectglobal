@@ -337,6 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let ticking = false;
     let activeIndex = -1;
+    let mobileVideoObserver = null;
 
     const clearHScrollStyles = () => {
       hscroll.style.position = '';
@@ -360,15 +361,40 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
 
+    // Mobile/reduced-motion: each video only starts once it actually
+    // scrolls into view, instead of all 4 loading and playing at once
+    const ensureMobileVideoObserver = () => {
+      if (mobileVideoObserver || !('IntersectionObserver' in window)) return;
+      mobileVideoObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      }, { threshold: 0.4 });
+      slideVideos.forEach((video) => { if (video) mobileVideoObserver.observe(video); });
+    };
+
+    const disconnectMobileVideoObserver = () => {
+      if (mobileVideoObserver) {
+        mobileVideoObserver.disconnect();
+        mobileVideoObserver = null;
+      }
+    };
+
     const update = () => {
       ticking = false;
 
       if (window.innerWidth <= MOBILE_BREAKPOINT || prefersReducedMotion) {
         clearHScrollStyles();
-        // Let every slide's video just play normally in the mobile list
-        slideVideos.forEach((video) => { if (video) video.play().catch(() => {}); });
+        ensureMobileVideoObserver();
         return;
       }
+
+      disconnectMobileVideoObserver();
 
       const spacerRect = hscrollSpacer.getBoundingClientRect();
       const scrollableDistance = hscrollSpacer.offsetHeight - window.innerHeight;
