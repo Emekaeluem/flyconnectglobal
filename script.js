@@ -268,8 +268,8 @@ document.addEventListener('DOMContentLoaded', () => {
       plane.style.left = percent + '%';
 
       waypoints.forEach((wp) => {
-        const wpPercent = parseFloat(wp.style.left);
-        wp.classList.toggle('is-passed', percent >= wpPercent);
+        const phaseStep = parseInt(wp.dataset.phaseStep, 10);
+        wp.classList.toggle('is-passed', currentStep >= phaseStep);
       });
 
       stepNumEl.textContent = currentStep;
