@@ -322,4 +322,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     showStep(currentStep);
   }
+
+  /* ---------- Partners mobile marquee: built from the existing grid,
+     so the logo list only has to be maintained in one place ---------- */
+  const marqueeTrack = document.getElementById('partnersMarqueeTrack');
+  if (marqueeTrack) {
+    const gridImages = document.querySelectorAll('.partners__grid .partners__item img');
+    const buildSet = (hidden) => {
+      gridImages.forEach((img) => {
+        const item = document.createElement('div');
+        item.className = 'partners__marquee-item';
+        if (hidden) item.setAttribute('aria-hidden', 'true');
+        const clone = document.createElement('img');
+        clone.src = img.src;
+        clone.alt = hidden ? '' : img.alt;
+        clone.loading = 'lazy';
+        item.appendChild(clone);
+        marqueeTrack.appendChild(item);
+      });
+    };
+    buildSet(false); // real, announced set
+    buildSet(true);  // duplicate set, for a seamless loop, hidden from screen readers
+  }
 });
