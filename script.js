@@ -319,96 +319,101 @@ document.addEventListener('DOMContentLoaded', () => {
     buildSet(true);  // duplicate set, for a seamless loop, hidden from screen readers
   }
 
-  /* ---------- Services stack: JS-driven pinning (not CSS position:sticky).
-     Sticky can silently fail to activate depending on browser/ancestor
-     quirks that are hard to diagnose from CSS alone. This computes the
-     same "pin, then get covered by the next card" effect by hand, using
-     real scroll measurements, so it doesn't depend on sticky support at all. ---------- */
-  const serviceWraps = Array.from(document.querySelectorAll('.services__card-wrap'));
-  if (serviceWraps.length) {
-    const PIN_TOP = 110;       // matches the card's intended pinned distance from viewport top
-    const MOBILE_BREAKPOINT = 700; // matches the CSS breakpoint that drops the effect on small screens
+  /* ---------- Services: full-screen horizontal scroll-jack.
+     Normal vertical scroll through a tall spacer drives horizontal
+     translateX across 4 full-screen slides; once the last slide is
+     reached, normal vertical scrolling continues into the next section.
+     Disabled on mobile and for reduced-motion, where CSS shows a plain
+     vertical list instead (untouched, as requested). ---------- */
+  const hscrollSpacer = document.getElementById('servicesHScrollSpacer');
+  const hscroll = document.getElementById('servicesHScroll');
+  const hscrollTrack = document.getElementById('servicesHScrollTrack');
+
+  if (hscrollSpacer && hscroll && hscrollTrack) {
+    const MOBILE_BREAKPOINT = 700;
+    const slideEls = Array.from(hscrollTrack.children);
+    const slideCount = slideEls.length;
+    const slideVideos = slideEls.map((slide) => slide.querySelector('.services__slide-video'));
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let ticking = false;
+    let activeIndex = -1;
 
-    const clearStackStyles = () => {
-      serviceWraps.forEach((wrap) => {
-        const card = wrap.querySelector('.services__card');
-        if (!card) return;
-        card.style.position = '';
-        card.style.left = '';
-        card.style.width = '';
-        card.style.top = '';
-      });
+    const clearHScrollStyles = () => {
+      hscroll.style.position = '';
+      hscroll.style.top = '';
+      hscroll.style.left = '';
+      hscroll.style.width = '';
+      hscroll.style.height = '';
+      hscrollTrack.style.transform = '';
     };
 
-    const updateStack = () => {
-      ticking = false;
-
-      if (window.innerWidth <= MOBILE_BREAKPOINT) {
-        clearStackStyles(); // let the mobile CSS (position: static, normal flow) take over
-        return;
-      }
-
-      serviceWraps.forEach((wrap) => {
-        const card = wrap.querySelector('.services__card');
-        if (!card) return;
-
-        const wrapRect = wrap.getBoundingClientRect();
-        const cardHeight = card.offsetHeight;
-        const wrapHeight = wrap.offsetHeight;
-
-        if (wrapRect.top > PIN_TOP) {
-          // Not reached yet: sits at the top of its own (still lower) wrapper
-          card.style.position = 'absolute';
-          card.style.left = '0';
-          card.style.width = '100%';
-          card.style.top = '0px';
-        } else if (wrapRect.bottom <= PIN_TOP + cardHeight) {
-          // Its wrapper has fully scrolled past: stay pinned to the wrapper's bottom
-          // (this is the moment the next card takes over covering it)
-          card.style.position = 'absolute';
-          card.style.left = '0';
-          card.style.width = '100%';
-          card.style.top = Math.max(0, wrapHeight - cardHeight) + 'px';
-        } else {
-          // Actively in its pinned window: lock to the viewport
-          card.style.position = 'fixed';
-          card.style.left = wrapRect.left + 'px';
-          card.style.width = wrapRect.width + 'px';
-          card.style.top = PIN_TOP + 'px';
-        }
-      });
-    };
-
-    const onScrollOrResize = () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(updateStack);
-      }
-    };
-
-    window.addEventListener('scroll', onScrollOrResize, { passive: true });
-    window.addEventListener('resize', onScrollOrResize);
-    updateStack();
-  }
-
-  /* ---------- Services stack: play each card's video only while it's
-     the visible/active one in the sticky stack, pause the rest ---------- */
-  const serviceVideos = document.querySelectorAll('.services__card-video');
-  if ('IntersectionObserver' in window && serviceVideos.length) {
-    const serviceVideoObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const video = entry.target;
-        if (entry.isIntersecting) {
+    const setActiveSlide = (index) => {
+      if (index === activeIndex) return;
+      activeIndex = index;
+      slideVideos.forEach((video, i) => {
+        if (!video) return;
+        if (i === index) {
           video.play().catch(() => {});
         } else {
           video.pause();
         }
       });
-    }, { threshold: 0.6 });
-    serviceVideos.forEach((video) => serviceVideoObserver.observe(video));
-  } else {
-    // No IntersectionObserver support: fall back to just playing them all
-    serviceVideos.forEach((video) => video.play().catch(() => {}));
+    };
+
+    const update = () => {
+      ticking = false;
+
+      if (window.innerWidth <= MOBILE_BREAKPOINT || prefersReducedMotion) {
+        clearHScrollStyles();
+        // Let every slide's video just play normally in the mobile list
+        slideVideos.forEach((video) => { if (video) video.play().catch(() => {}); });
+        return;
+      }
+
+      const spacerRect = hscrollSpacer.getBoundingClientRect();
+      const scrollableDistance = hscrollSpacer.offsetHeight - window.innerHeight;
+      let progress;
+
+      if (spacerRect.top > 0) {
+        // Not reached yet
+        hscroll.style.position = 'absolute';
+        hscroll.style.top = '0px';
+        hscroll.style.left = '0px';
+        hscroll.style.width = '100vw';
+        hscroll.style.height = '100vh';
+        progress = 0;
+      } else if (spacerRect.bottom <= window.innerHeight) {
+        // Fully scrolled past: park at the bottom of the spacer, fully progressed
+        hscroll.style.position = 'absolute';
+        hscroll.style.top = Math.max(0, hscrollSpacer.offsetHeight - window.innerHeight) + 'px';
+        hscroll.style.left = '0px';
+        hscroll.style.width = '100vw';
+        hscroll.style.height = '100vh';
+        progress = 1;
+      } else {
+        // Actively pinned: drive horizontal progress from vertical scroll
+        hscroll.style.position = 'fixed';
+        hscroll.style.top = '0px';
+        hscroll.style.left = '0px';
+        hscroll.style.width = '100vw';
+        hscroll.style.height = '100vh';
+        progress = scrollableDistance > 0 ? Math.min(1, Math.max(0, -spacerRect.top / scrollableDistance)) : 0;
+      }
+
+      const translateX = progress * (slideCount - 1) * 100;
+      hscrollTrack.style.transform = `translateX(-${translateX}vw)`;
+      setActiveSlide(Math.round(progress * (slideCount - 1)));
+    };
+
+    const onScrollOrResize = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize);
+    update();
   }
 });
