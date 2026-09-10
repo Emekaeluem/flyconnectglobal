@@ -3227,3 +3227,129 @@ body {
   .how-we-work__ghost { font-size: 3.4rem; }
   .how-we-work__step-title { font-size: 1.15rem; }
 }
+
+/* ================================================
+   Partnership page — Where Partnerships Can Fit
+   ================================================ */
+.partner-fit {
+  background: #FAFAFD;
+  padding: 120px 0 130px;
+  width: 100%;
+}
+
+.partner-fit__intro {
+  max-width: 640px;
+  margin: 0 auto 60px;
+  padding: 0 5vw;
+  text-align: center;
+}
+
+.partner-fit__title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 3.2vw, 2.5rem);
+  color: var(--navy-deep);
+  margin-bottom: 14px;
+}
+
+.partner-fit__subtitle {
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: rgba(6,13,46,0.6);
+}
+
+.partner-fit__rows {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 5vw;
+}
+
+.partner-fit__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  align-items: center;
+  gap: 28px;
+  padding: 36px 20px;
+  text-decoration: none;
+  border-top: 1px solid rgba(11,27,86,0.1);
+  transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.partner-fit__rows a:last-child {
+  border-bottom: 1px solid rgba(11,27,86,0.1);
+}
+
+.partner-fit__row:hover {
+  background: var(--white);
+  padding-left: 32px;
+  padding-right: 8px;
+}
+
+.partner-fit__num {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 2.2rem;
+  color: rgba(254,189,0,0.4);
+  transition: color 0.3s ease;
+}
+
+.partner-fit__row:hover .partner-fit__num {
+  color: var(--gold);
+}
+
+.partner-fit__row-title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--navy-deep);
+  margin-bottom: 8px;
+}
+
+.partner-fit__row-text {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(6,13,46,0.58);
+  max-width: 460px;
+}
+
+.partner-fit__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(11,27,86,0.45);
+  white-space: nowrap;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.partner-fit__row:hover .partner-fit__cta {
+  color: var(--navy-deep);
+  transform: translateX(4px);
+}
+
+.partner-fit__cta svg {
+  width: 15px;
+  height: 15px;
+  transition: transform 0.3s ease;
+}
+
+.partner-fit__row:hover .partner-fit__cta svg {
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 640px) {
+  .partner-fit { padding: 88px 0 96px; }
+  .partner-fit__intro { margin-bottom: 44px; }
+  .partner-fit__row {
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    padding: 26px 6px;
+  }
+  .partner-fit__row:hover { padding-left: 12px; padding-right: 6px; }
+  .partner-fit__num { font-size: 1.5rem; }
+  .partner-fit__cta { grid-column: 2; margin-top: 12px; }
+}
