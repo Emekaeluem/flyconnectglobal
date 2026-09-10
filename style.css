@@ -2281,3 +2281,122 @@ body {
   .whatwedo__badge { width: 84px; height: 84px; }
   .whatwedo__badge-icon { width: 32px; height: 32px; }
 }
+
+/* ================================================
+   About page — Our Approach section
+   ================================================ */
+.approach {
+  background: var(--white);
+  padding: 120px 5vw 130px;
+}
+
+.approach__intro {
+  max-width: 620px;
+  margin: 0 auto 80px;
+  text-align: center;
+}
+
+.approach__kicker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.approach__kicker-dash {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.approach__title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  line-height: 1.25;
+  color: var(--navy-deep);
+}
+
+.approach__steps {
+  list-style: none;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.approach__step {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 32px;
+  align-items: baseline;
+  padding: 38px 4px;
+  border-bottom: 1px solid rgba(11,27,86,0.08);
+  transition: border-color 0.3s ease;
+}
+
+.approach__step:first-child {
+  padding-top: 0;
+}
+
+.approach__step:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.approach__step:hover {
+  border-color: rgba(254,189,0,0.4);
+}
+
+.approach__num {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 2.5rem;
+  line-height: 1;
+  color: rgba(254,189,0,0.4);
+  transition: color 0.3s ease;
+}
+
+.approach__step:hover .approach__num {
+  color: var(--gold);
+}
+
+.approach__step-title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--navy-deep);
+  margin-bottom: 10px;
+}
+
+.approach__step-text {
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: rgba(6,13,46,0.6);
+  max-width: 460px;
+}
+
+.approach__step.reveal:nth-child(1) { transition-delay: 0s; }
+.approach__step.reveal:nth-child(2) { transition-delay: 0.08s; }
+.approach__step.reveal:nth-child(3) { transition-delay: 0.16s; }
+.approach__step.reveal:nth-child(4) { transition-delay: 0.24s; }
+.approach__step.reveal:nth-child(5) { transition-delay: 0.32s; }
+
+@media (max-width: 640px) {
+  .approach { padding: 88px 6vw 96px; }
+  .approach__intro { margin-bottom: 56px; }
+  .approach__step {
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    padding: 28px 2px;
+  }
+  .approach__num { font-size: 1.8rem; }
+  .approach__step-title { font-size: 1.08rem; }
+}
