@@ -415,4 +415,141 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', onScrollOrResize);
     update();
   }
+
+  /* ---------- Partnership page: Your Next Step form (12-step version
+     of the homepage Route Planner — same visual system, different
+     fields, so it needs its own validation/step logic) ---------- */
+  const ppForm = document.getElementById('ppForm');
+  if (ppForm) {
+    const TOTAL_STEPS = 12;
+    const steps = Array.from(ppForm.querySelectorAll('.planner__step'));
+    const backBtn = document.getElementById('ppBack');
+    const nextBtn = document.getElementById('ppNext');
+    const stepNumEl = document.getElementById('ppStepNum');
+    const phaseCurrentEl = document.getElementById('ppPhaseCurrent');
+    const routeFill = document.getElementById('ppRouteFill');
+    const plane = document.getElementById('ppPlane');
+    const waypoints = Array.from(document.querySelectorAll('#partner-form .planner__waypoint'));
+    const successEl = document.getElementById('ppSuccess');
+    const cardEl = document.querySelector('#partner-form .planner__card');
+
+    const phaseByStep = {
+      1: 'Your details', 2: 'Your details', 3: 'Your details', 4: 'Your details',
+      5: 'Your organisation', 6: 'Your organisation', 7: 'Your organisation',
+      8: 'The partnership', 9: 'The partnership', 10: 'The partnership',
+      11: 'Final step', 12: 'Final step'
+    };
+
+    let currentStep = 1;
+    const answers = {};
+
+    ppForm.querySelectorAll('.planner__pills').forEach((group) => {
+      group.addEventListener('click', (e) => {
+        const pill = e.target.closest('.planner__pill');
+        if (!pill) return;
+        group.querySelectorAll('.planner__pill').forEach((p) => p.classList.remove('is-selected'));
+        pill.classList.add('is-selected');
+        answers[group.dataset.group] = pill.textContent.trim();
+        updateNextState();
+      });
+    });
+
+    const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+
+    const canProceed = () => {
+      const stepEl = steps[currentStep - 1];
+      switch (currentStep) {
+        case 1:
+          return document.getElementById('ppOrg').value.trim().length > 0;
+        case 2:
+          return document.getElementById('ppFirstName').value.trim().length > 0 &&
+                 document.getElementById('ppLastName').value.trim().length > 0;
+        case 3:
+          return isValidEmail(document.getElementById('ppEmail').value);
+        case 4:
+          return document.getElementById('ppWhatsapp').value.trim().length >= 7;
+        case 5:
+          return true; // website/social link is optional
+        case 6:
+          return document.getElementById('ppLocation').value.trim().length > 0;
+        case 7: {
+          const pillsGroup = stepEl.querySelector('.planner__pills');
+          return !!pillsGroup.querySelector('.is-selected');
+        }
+        case 8:
+          return document.getElementById('ppPartnerOn').value.trim().length > 0;
+        case 9:
+          return true; // licences/accreditations optional
+        case 10:
+          return document.getElementById('ppMarkets').value.trim().length > 0;
+        case 11:
+          return true; // notes optional
+        case 12:
+          return document.getElementById('ppConsent').checked;
+        default:
+          return true;
+      }
+    };
+
+    const updateNextState = () => {
+      nextBtn.disabled = !canProceed();
+    };
+
+    const updateProgressVisual = () => {
+      const percent = ((currentStep - 1) / (TOTAL_STEPS - 1)) * 100;
+      routeFill.style.width = percent + '%';
+      plane.style.left = percent + '%';
+
+      waypoints.forEach((wp) => {
+        const phaseStep = parseInt(wp.dataset.phaseStep, 10);
+        wp.classList.toggle('is-passed', currentStep >= phaseStep);
+      });
+
+      stepNumEl.textContent = currentStep;
+      phaseCurrentEl.textContent = phaseByStep[currentStep];
+    };
+
+    const showStep = (stepNumber) => {
+      steps.forEach((s) => s.classList.remove('is-active'));
+      steps[stepNumber - 1].classList.add('is-active');
+      backBtn.disabled = stepNumber === 1;
+      nextBtn.textContent = stepNumber === TOTAL_STEPS ? 'Submit' : 'Next';
+      updateProgressVisual();
+      updateNextState();
+    };
+
+    ppForm.addEventListener('input', updateNextState);
+    ppForm.addEventListener('change', updateNextState);
+
+    ppForm.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        if (!nextBtn.disabled) nextBtn.click();
+      }
+    });
+
+    backBtn.addEventListener('click', () => {
+      if (currentStep > 1) {
+        currentStep -= 1;
+        showStep(currentStep);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (nextBtn.disabled) return;
+
+      if (currentStep === TOTAL_STEPS) {
+        cardEl.querySelectorAll('.planner__progress, .planner__form, .planner__nav').forEach((el) => {
+          el.style.display = 'none';
+        });
+        successEl.hidden = false;
+        return;
+      }
+
+      currentStep += 1;
+      showStep(currentStep);
+    });
+
+    showStep(currentStep);
+  }
 });
