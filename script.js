@@ -47,32 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  /* ---------- Nav dropdown menus (desktop + mobile) ---------- */
-  const navItems = document.querySelectorAll('.nav__item');
-  const closeAllDropdowns = (except) => {
-    navItems.forEach((item) => {
-      if (item === except) return;
-      item.classList.remove('is-open');
-      const btn = item.querySelector('.nav__link[aria-haspopup]');
-      if (btn) btn.setAttribute('aria-expanded', 'false');
-    });
-  };
-  navItems.forEach((item) => {
-    const trigger = item.querySelector('.nav__link[aria-haspopup]');
-    if (!trigger) return;
-    trigger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = item.classList.contains('is-open');
-      closeAllDropdowns(item);
-      item.classList.toggle('is-open', !isOpen);
-      trigger.setAttribute('aria-expanded', String(!isOpen));
-    });
-  });
-  document.addEventListener('click', () => closeAllDropdowns());
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeAllDropdowns();
-  });
-
   /* ---------- Mobile menu toggle ---------- */
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
@@ -82,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const isOpen = navMenu.classList.contains('is-open');
       navMenu.classList.toggle('is-open', !isOpen);
       navToggle.setAttribute('aria-expanded', String(!isOpen));
-      if (isOpen) closeAllDropdowns();
     });
     document.addEventListener('click', (e) => {
       if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
