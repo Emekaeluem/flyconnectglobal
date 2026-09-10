@@ -2328,18 +2328,22 @@ body {
 .approach__steps {
   position: relative;
   display: flex;
+  align-items: flex-start;
   gap: 24px;
   max-width: 1200px;
   margin: 0 auto;
+  padding-top: 50px;
 }
 
 .approach__rail {
   position: absolute;
-  top: 40px;
+  top: 0;
   left: 40px;
   right: 40px;
-  height: 1.5px;
-  background: rgba(11,27,86,0.12);
+  height: 120px;
+  stroke: rgba(11,27,86,0.2);
+  stroke-width: 1.2;
+  stroke-dasharray: 5 6;
   z-index: 0;
 }
 
@@ -2354,47 +2358,63 @@ body {
   padding: 0 6px;
 }
 
+/* The staggered, "handy process" zigzag rhythm */
+.approach__step:nth-child(even) {
+  margin-top: 68px;
+}
+
 .approach__icon {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 82px;
+  height: 82px;
   border-radius: 50%;
   background: var(--white);
-  border: 1.5px solid rgba(254,189,0,0.35);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
   color: var(--gold);
-  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 30px 45px -10px rgba(11,27,86,0.14), 0 10px 20px -6px rgba(11,27,86,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* A soft, diffuse ambient halo behind each icon — the "glow" that
+   makes the reference feel soft instead of using a hard drop shadow */
+.approach__icon::before {
+  content: "";
+  position: absolute;
+  inset: -22px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(11,27,86,0.07) 0%, rgba(11,27,86,0) 72%);
+  z-index: -1;
 }
 
 .approach__step:hover .approach__icon {
-  transform: translateY(-4px);
-  border-color: var(--gold);
-  background: rgba(254,189,0,0.08);
+  transform: translateY(-5px);
+  box-shadow: 0 36px 55px -10px rgba(11,27,86,0.2), 0 14px 24px -6px rgba(11,27,86,0.1);
 }
 
 .approach__icon svg {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
 }
 
 .approach__num {
   position: absolute;
-  top: -6px;
-  right: -6px;
-  width: 26px;
-  height: 26px;
+  top: -4px;
+  right: -4px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: var(--navy-deep);
   color: var(--white);
   font-family: var(--sans);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 10px rgba(11,27,86,0.25);
 }
 
 .approach__step-title {
@@ -2408,8 +2428,17 @@ body {
 .approach__step-text {
   font-family: var(--sans);
   font-size: 0.88rem;
-  line-height: 1.55;
-  color: rgba(6,13,46,0.58);
+  line-height: 1.6;
+  color: rgba(6,13,46,0.55);
+}
+
+.approach__divider {
+  display: block;
+  width: 60%;
+  max-width: 90px;
+  height: 1px;
+  background: rgba(11,27,86,0.1);
+  margin-top: 22px;
 }
 
 .approach__step.reveal:nth-child(2) { transition-delay: 0.08s; }
@@ -2422,6 +2451,7 @@ body {
   .approach__steps {
     overflow-x: auto;
     padding-bottom: 14px;
+    padding-top: 30px;
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
   }
@@ -2430,6 +2460,7 @@ body {
     flex: 0 0 200px;
     scroll-snap-align: start;
   }
+  .approach__step:nth-child(even) { margin-top: 0; }
 }
 
 @media (max-width: 640px) {
