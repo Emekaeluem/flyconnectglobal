@@ -2809,7 +2809,6 @@ body {
   border-radius: 16px;
   display: block;
   object-fit: cover;
-  filter: grayscale(1) sepia(0.55) hue-rotate(195deg) saturate(2.6) brightness(0.95) contrast(1.05);
 }
 
 @keyframes partnerCollageUp {
@@ -3005,6 +3004,7 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
+  filter: grayscale(1) sepia(0.55) hue-rotate(195deg) saturate(2.6) brightness(0.95) contrast(1.05);
 }
 
 .partner-expect__content {
@@ -3098,4 +3098,132 @@ body {
   .partner-expect__content { padding: 56px 6vw 72px; }
   .partner-expect__item { gap: 12px; padding: 16px 2px; }
   .partner-expect__text { font-size: 0.92rem; }
+}
+
+/* ================================================
+   Partnership page — How We Work
+   ================================================ */
+.how-we-work {
+  position: relative;
+  background: var(--navy-deep);
+  padding: 120px 5vw 130px;
+  overflow: hidden;
+}
+
+.how-we-work__glow {
+  position: absolute;
+  top: -22%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 760px;
+  height: 520px;
+  background: radial-gradient(ellipse, rgba(254,189,0,0.14) 0%, rgba(254,189,0,0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.how-we-work__intro {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto 84px;
+  text-align: center;
+}
+
+.how-we-work__kicker {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+
+.how-we-work__title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.3;
+  color: var(--white);
+}
+
+.how-we-work__steps {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.how-we-work__step {
+  position: relative;
+  flex: 1 1 0;
+  padding: 6px;
+  transition: transform 0.3s ease;
+}
+
+.how-we-work__step:hover {
+  transform: translateY(-6px);
+}
+
+.how-we-work__ghost {
+  display: block;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(4rem, 6vw, 6.5rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(254,189,0,0.35);
+  margin-bottom: -6px;
+  transition: -webkit-text-stroke-color 0.3s ease, color 0.3s ease;
+}
+
+.how-we-work__step:hover .how-we-work__ghost {
+  -webkit-text-stroke-color: rgba(254,189,0,0.75);
+}
+
+.how-we-work__step-title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+
+.how-we-work__step-text {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.6);
+  max-width: 300px;
+}
+
+.how-we-work__arrow {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  color: rgba(254,189,0,0.5);
+  margin-top: 40px;
+}
+
+@media (max-width: 900px) {
+  .how-we-work__steps {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 48px;
+  }
+  .how-we-work__step-text { max-width: 380px; margin: 0 auto; }
+  .how-we-work__arrow { transform: rotate(90deg); margin-top: 0; }
+}
+
+@media (max-width: 640px) {
+  .how-we-work { padding: 88px 6vw 96px; }
+  .how-we-work__intro { margin-bottom: 56px; }
+  .how-we-work__ghost { font-size: 3.4rem; }
+  .how-we-work__step-title { font-size: 1.15rem; }
 }
