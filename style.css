@@ -53,12 +53,21 @@ body {
 
 /* ---------- Nav ---------- */
 .nav {
-  position: relative;
-  z-index: 6;
+  position: fixed;
+  z-index: 50;
+  top: 14px;
+  left: 3vw;
+  right: 3vw;
   display: flex;
   align-items: center;
   gap: 28px;
-  padding: 26px 5vw 0;
+  padding: 13px 2vw;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 18px;
+  background: rgba(11,27,86,0.68);
+  box-shadow: 0 10px 35px rgba(6,13,46,0.14);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .nav__logo img {
@@ -1867,46 +1876,57 @@ body {
    Footer
    ================================================ */
 .footer {
-  background: var(--navy-deep);
-  padding: 28px 5vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
+  margin: 0;
+  background: #f3f5fb;
+  color: var(--navy-deep);
 }
 
-.footer__copyright {
-  font-family: var(--sans);
-  font-size: 0.88rem;
-  color: rgba(255,255,255,0.6);
+.footer__main {
+  display: grid;
+  grid-template-columns: 1.35fr repeat(4, 1fr);
+  gap: clamp(32px, 5vw, 80px);
+  padding: 76px 5vw 70px;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(254,189,0,0.08), transparent 28%),
+    linear-gradient(135deg, rgba(11,27,86,0.035), rgba(11,27,86,0.075));
 }
 
-.footer__links {
-  display: flex;
-  gap: 28px;
+.footer__logo { display: inline-block; margin-bottom: 28px; }
+.footer__logo img { display: block; width: min(220px, 100%); height: auto; filter: brightness(0) saturate(100%) invert(13%) sepia(39%) saturate(2920%) hue-rotate(210deg) brightness(83%); }
+.footer__brand p { margin: 0 0 18px; color: rgba(6,13,46,0.65); font-size: 0.94rem; line-height: 1.75; }
+.footer__brand strong { color: var(--navy); font-weight: 600; }
+
+.footer__column { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.footer__column h3 { margin: 0 0 10px; font-family: var(--display); font-size: 1.05rem; font-weight: 600; color: var(--navy-deep); }
+.footer__column a,
+.footer__legal a { color: rgba(6,13,46,0.68); text-decoration: none; font-size: 0.94rem; line-height: 1.4; transition: color .2s ease, transform .2s ease; }
+.footer__column a:hover,
+.footer__legal a:hover { color: var(--navy); transform: translateX(2px); }
+
+.footer__socials { display: flex; align-items: center; gap: 12px; margin-top: 28px; }
+.footer__socials a { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: rgba(11,27,86,0.09); color: var(--navy); font-weight: 700; font-size: 0.86rem; text-decoration: none; transition: background .2s ease, color .2s ease, transform .2s ease; }
+.footer__socials a:hover { background: var(--navy); color: var(--white); transform: translateY(-3px); }
+
+.footer__bottom { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 25px 5vw; background: rgba(11,27,86,0.11); color: var(--navy); }
+.footer__bottom p { margin: 0; font-size: 0.9rem; }
+.footer__legal { display: flex; gap: 34px; }
+
+@media (max-width: 1050px) {
+  .footer__main { grid-template-columns: 1.4fr repeat(2, 1fr); }
+  .footer__brand { grid-row: span 2; }
 }
 
-.footer__link {
-  font-family: var(--sans);
-  font-size: 0.88rem;
-  color: rgba(255,255,255,0.6);
-  text-decoration: none;
-  transition: color 0.2s ease;
+@media (max-width: 760px) {
+  .nav { top: 10px; left: 4vw; right: 4vw; padding: 10px 14px; border-radius: 15px; }
+  .footer__main { grid-template-columns: repeat(2, 1fr); gap: 42px 28px; padding: 58px 6vw 54px; }
+  .footer__brand { grid-column: 1 / -1; grid-row: auto; }
+  .footer__bottom { align-items: flex-start; flex-direction: column; padding: 24px 6vw; }
 }
 
-.footer__link:hover {
-  color: var(--gold);
-}
-
-@media (max-width: 640px) {
-  .footer {
-    flex-direction: column;
-    text-align: center;
-    padding: 24px 6vw;
-    gap: 12px;
-  }
-  .footer__links { gap: 20px; }
+@media (max-width: 460px) {
+  .footer__main { grid-template-columns: 1fr; }
+  .footer__brand { grid-column: auto; }
+  .footer__legal { flex-direction: column; gap: 10px; }
 }
 
 /* ================================================
