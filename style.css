@@ -53,21 +53,12 @@ body {
 
 /* ---------- Nav ---------- */
 .nav {
-  position: fixed;
-  z-index: 50;
-  top: 14px;
-  left: 3vw;
-  right: 3vw;
+  position: relative;
+  z-index: 6;
   display: flex;
   align-items: center;
   gap: 28px;
-  padding: 13px 2vw;
-  border: 1px solid rgba(255,255,255,0.16);
-  border-radius: 18px;
-  background: rgba(11,27,86,0.68);
-  box-shadow: 0 10px 35px rgba(6,13,46,0.14);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  padding: 26px 5vw 0;
 }
 
 .nav__logo img {
@@ -1917,7 +1908,6 @@ body {
 }
 
 @media (max-width: 760px) {
-  .nav { top: 10px; left: 4vw; right: 4vw; padding: 10px 14px; border-radius: 15px; }
   .footer__main { grid-template-columns: repeat(2, 1fr); gap: 42px 28px; padding: 58px 6vw 54px; }
   .footer__brand { grid-column: 1 / -1; grid-row: auto; }
   .footer__bottom { align-items: flex-start; flex-direction: column; padding: 24px 6vw; }
