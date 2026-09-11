@@ -553,31 +553,61 @@ document.addEventListener('DOMContentLoaded', () => {
     showStep(currentStep);
   }
 
-  /* ---------- Partnership page: "Where Partnerships Can Fit" carousel ---------- */
+  /* ---------- Partnership page: "Where Partnerships Can Fit" carousel.
+     Shows 3 cards per row on desktop, 2 on tablet, 1 on mobile — the
+     valid stopping positions and dot count are recalculated for
+     whichever is currently true, so it stays correct at every width. ---------- */
   const fitTrack = document.getElementById('fitTrack');
   if (fitTrack) {
     const slides = fitTrack.querySelectorAll('.partner-fit__slide');
     const slideCount = slides.length;
     const prevBtn = document.getElementById('fitPrev');
     const nextBtn = document.getElementById('fitNext');
-    const dots = Array.from(document.querySelectorAll('#fitDots .partner-fit__dot'));
+    const dotsContainer = document.getElementById('fitDots');
     const viewport = document.querySelector('.partner-fit__viewport');
     let currentIndex = 0;
     let autoTimer = null;
 
+    const getVisibleCount = () => {
+      if (window.innerWidth <= 640) return 1;
+      if (window.innerWidth <= 900) return 2;
+      return 3;
+    };
+
+    const getMaxIndex = () => Math.max(0, slideCount - getVisibleCount());
+
+    const buildDots = () => {
+      const maxIndex = getMaxIndex();
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i <= maxIndex; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'partner-fit__dot' + (i === currentIndex ? ' is-active' : '');
+        dot.dataset.index = String(i);
+        dot.setAttribute('aria-label', `Go to page ${i + 1}`);
+        dot.addEventListener('click', () => { goTo(i); startAuto(); });
+        dotsContainer.appendChild(dot);
+      }
+    };
+
     const updateCarousel = () => {
       fitTrack.style.transform = `translateX(-${currentIndex * (100 / slideCount)}%)`;
-      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === currentIndex));
+      Array.from(dotsContainer.children).forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === currentIndex);
+      });
     };
 
     const goTo = (index) => {
-      currentIndex = (index + slideCount) % slideCount;
+      const maxIndex = getMaxIndex();
+      currentIndex = Math.min(Math.max(index, 0), maxIndex);
       updateCarousel();
     };
 
     const startAuto = () => {
       stopAuto();
-      autoTimer = setInterval(() => goTo(currentIndex + 1), 6000);
+      autoTimer = setInterval(() => {
+        const maxIndex = getMaxIndex();
+        goTo(currentIndex >= maxIndex ? 0 : currentIndex + 1);
+      }, 6000);
     };
 
     const stopAuto = () => {
@@ -586,15 +616,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (prevBtn) prevBtn.addEventListener('click', () => { goTo(currentIndex - 1); startAuto(); });
     if (nextBtn) nextBtn.addEventListener('click', () => { goTo(currentIndex + 1); startAuto(); });
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => { goTo(i); startAuto(); });
-    });
 
     if (viewport) {
       viewport.addEventListener('mouseenter', stopAuto);
       viewport.addEventListener('mouseleave', startAuto);
     }
 
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        currentIndex = Math.min(currentIndex, getMaxIndex());
+        buildDots();
+        updateCarousel();
+      }, 150);
+    });
+
+    buildDots();
     updateCarousel();
     startAuto();
   }
