@@ -552,4 +552,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     showStep(currentStep);
   }
+
+  /* ---------- Partnership page: "Where Partnerships Can Fit" carousel ---------- */
+  const fitTrack = document.getElementById('fitTrack');
+  if (fitTrack) {
+    const slides = fitTrack.querySelectorAll('.partner-fit__slide');
+    const slideCount = slides.length;
+    const prevBtn = document.getElementById('fitPrev');
+    const nextBtn = document.getElementById('fitNext');
+    const dots = Array.from(document.querySelectorAll('#fitDots .partner-fit__dot'));
+    const viewport = document.querySelector('.partner-fit__viewport');
+    let currentIndex = 0;
+    let autoTimer = null;
+
+    const updateCarousel = () => {
+      fitTrack.style.transform = `translateX(-${currentIndex * (100 / slideCount)}%)`;
+      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === currentIndex));
+    };
+
+    const goTo = (index) => {
+      currentIndex = (index + slideCount) % slideCount;
+      updateCarousel();
+    };
+
+    const startAuto = () => {
+      stopAuto();
+      autoTimer = setInterval(() => goTo(currentIndex + 1), 6000);
+    };
+
+    const stopAuto = () => {
+      if (autoTimer) clearInterval(autoTimer);
+    };
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { goTo(currentIndex - 1); startAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { goTo(currentIndex + 1); startAuto(); });
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => { goTo(i); startAuto(); });
+    });
+
+    if (viewport) {
+      viewport.addEventListener('mouseenter', stopAuto);
+      viewport.addEventListener('mouseleave', startAuto);
+    }
+
+    updateCarousel();
+    startAuto();
+  }
 });
