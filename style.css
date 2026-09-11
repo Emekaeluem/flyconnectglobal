@@ -3672,3 +3672,19 @@ body {
   .find-route__side { flex-direction: column; }
   .find-route__media { min-height: 320px; }
 }
+
+/* ================================================
+   Find My Route page — compact header bar (no video hero needed)
+   ================================================ */
+.page-header {
+  background: var(--navy-deep);
+  padding-bottom: 2px;
+}
+
+.page-header .nav {
+  padding: 26px 5vw;
+}
+
+@media (max-width: 640px) {
+  .page-header .nav { padding: 22px 6vw; }
+}
