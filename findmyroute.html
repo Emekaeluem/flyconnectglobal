@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Your Route — Fly Connect Global</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-header">
+  <nav class="nav">
+    <a href="/" class="nav__logo">
+      <img src="https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/lightlogo.png" alt="Fly Connect Global">
+    </a>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav__menu" id="navMenu">
+      <a href="/" class="nav__link nav__link--plain">Home</a>
+      <a href="/#services" class="nav__link nav__link--plain">Services</a>
+      <a href="/about" class="nav__link nav__link--plain">About</a>
+      <a href="/contact" class="nav__link nav__link--plain">Contact</a>
+      <a href="/partner" class="nav__link nav__link--plain">Partner</a>
+
+      <a href="#planner" class="nav__cta nav__cta--mobile">Find My Route</a>
+    </div>
+
+    <a href="#planner" class="nav__cta">Find My Route</a>
+  </nav>
+</div>
+
+<section class="planner" id="planner">
+  <div class="planner__intro reveal">
+    <div class="planner__kicker"><span class="planner__kicker-dash"></span>Route Planner</div>
+    <h2 class="planner__title">Find The Right Route</h2>
+    <p class="planner__subtitle">Answer a few focused questions so our team can point you toward the right next step.</p>
+  </div>
+
+  <div class="planner__card reveal">
+    <div class="planner__progress">
+      <div class="planner__route">
+        <div class="planner__route-line"></div>
+        <div class="planner__route-fill" id="plannerRouteFill"></div>
+        <div class="planner__waypoint" data-phase-step="1" style="left:0%"><span class="planner__waypoint-dot"></span><span class="planner__waypoint-label">Contact point</span></div>
+        <div class="planner__waypoint" data-phase-step="4" style="left:33.33%"><span class="planner__waypoint-dot"></span><span class="planner__waypoint-label">Goal mapping</span></div>
+        <div class="planner__waypoint" data-phase-step="5" style="left:66.66%"><span class="planner__waypoint-dot"></span><span class="planner__waypoint-label">Location fit</span></div>
+        <div class="planner__waypoint" data-phase-step="8" style="left:100%"><span class="planner__waypoint-dot"></span><span class="planner__waypoint-label">Readiness</span></div>
+        <div class="planner__plane" id="plannerPlane">
+          <svg viewBox="0 0 183.27 164.96" fill="currentColor">
+            <path d="M572 1638 c-7 -7 -12 -22 -12 -33 0 -12 40 -147 90 -300 49 -153 92 -290 95 -305 l6 -27 -113 -7 c-62 -4 -173 -14 -246 -22 -74 -8 -144 -14 -155 -13 -15 0 -49 31 -102 94 l-80 93 -28 -15 c-22 -11 -28 -20 -24 -36 3 -12 13 -68 23 -125 17 -102 17 -103 -6 -233 l-24 -131 25 -19 24 -19 35 38 c19 20 58 63 87 95 l51 59 261 -25 c144 -13 264 -26 266 -29 3 -2 -38 -132 -91 -289 -53 -156 -100 -298 -104 -316 -11 -47 10 -73 62 -73 55 0 83 20 153 109 57 71 63 76 95 73 18 -2 53 2 77 8 41 12 43 14 43 51 0 34 -3 39 -35 49 -34 11 -34 12 -20 38 7 15 25 40 38 56 22 27 29 29 95 30 39 1 75 6 80 11 5 6 13 27 16 47 6 35 5 38 -21 44 -68 15 -67 11 -22 74 61 87 66 90 155 95 451 26 488 31 539 82 55 55 15 115 -99 148 -42 12 -409 45 -500 45 -18 0 -35 17 -76 76 -29 41 -50 76 -49 78 2 1 22 8 44 14 40 11 40 12 37 51 -4 35 -8 41 -35 47 -18 4 -54 6 -82 5 -50 -1 -50 -1 -89 55 -21 30 -36 56 -35 58 2 1 19 8 37 15 28 12 32 18 32 52 0 36 -2 38 -37 45 -21 5 -56 8 -78 8 -44 0 -44 0 -107 93 -23 33 -54 68 -69 77 -32 19 -110 21 -127 4z" transform="translate(0.36,164.96) scale(0.1,-0.1)"/>
+          </svg>
+        </div>
+      </div>
+      <div class="planner__meta">
+        <span class="planner__step-count">Question <span id="plannerStepNum">1</span> of 13</span>
+        <span class="planner__phase-current" id="plannerPhaseCurrent">Contact point</span>
+      </div>
+    </div>
+
+    <form class="planner__form" id="plannerForm" novalidate>
+      <div class="planner__step is-active" data-step="1">
+        <label class="planner__label" for="plannerEmail">Enter your email</label>
+        <input class="planner__input" type="email" id="plannerEmail" name="email" placeholder="you@example.com" autocomplete="email">
+      </div>
+
+      <div class="planner__step" data-step="2">
+        <label class="planner__label">Enter your name</label>
+        <div class="planner__row">
+          <input class="planner__input" type="text" id="plannerFirstName" name="firstName" placeholder="First name" autocomplete="given-name">
+          <input class="planner__input" type="text" id="plannerLastName" name="lastName" placeholder="Last name" autocomplete="family-name">
+        </div>
+      </div>
+
+      <div class="planner__step" data-step="3">
+        <label class="planner__label" for="plannerPhone">Phone number <span class="planner__label-hint">— WhatsApp preferred</span></label>
+        <input class="planner__input" type="tel" id="plannerPhone" name="phone" placeholder="+234 800 000 0000" autocomplete="tel">
+      </div>
+
+      <div class="planner__step" data-step="4">
+        <label class="planner__label">What are you interested in?</label>
+        <div class="planner__pills" data-group="interest">
+          <button type="button" class="planner__pill">Study abroad</button>
+          <button type="button" class="planner__pill">Work abroad</button>
+          <button type="button" class="planner__pill">Visit another country</button>
+          <button type="button" class="planner__pill">Relocate long term</button>
+          <button type="button" class="planner__pill">Travel or tour</button>
+          <button type="button" class="planner__pill">Visit or tour Africa</button>
+          <button type="button" class="planner__pill">Explore business opportunities</button>
+          <button type="button" class="planner__pill">Help me choose</button>
+        </div>
+      </div>
+
+      <div class="planner__step" data-step="5">
+        <label class="planner__label">Where are you starting from?</label>
+        <div class="planner__pills" data-group="startingFrom">
+          <button type="button" class="planner__pill">Nigeria</button>
+          <button type="button" class="planner__pill">Ghana</button>
+          <button type="button" class="planner__pill">United Kingdom</button>
+          <button type="button" class="planner__pill">United States</button>
+          <button type="button" class="planner__pill">Canada</button>
+          <button type="button" class="planner__pill">UAE</button>
+          <button type="button" class="planner__pill">Other</button>
+        </div>
+      </div>
+
+      <div class="planner__step" data-step="6">
+        <label class="planner__label" for="plannerState">What state are you in?</label>
+        <input class="planner__input" type="text" id="plannerState" name="state" placeholder="e.g. Lagos">
+      </div>
+
+      <div class="planner__step" data-step="7">
+        <div class="planner__step-heading">Choose your direction</div>
+        <p class="planner__step-note">A destination signal helps us compare the right route earlier.</p>
+        <label class="planner__label">Where are you planning to go?</label>
+        <div class="planner__pills" data-group="destination">
+          <button type="button" class="planner__pill">Canada</button>
+          <button type="button" class="planner__pill">United Kingdom</button>
+          <button type="button" class="planner__pill">United States</button>
+          <button type="button" class="planner__pill">Australia</button>
+          <button type="button" class="planner__pill">Europe / Schengen</button>
+          <button type="button" class="planner__pill">Africa</button>
+          <button type="button" class="planner__pill">UAE</button>
+          <button type="button" class="planner__pill">Still deciding</button>
+          <button type="button" class="planner__pill">Other</button>
+        </div>
+      </div>
+
+      <div class="planner__step" data-step="8">
+        <label class="planner__label">When are you hoping to start?</label>
+        <div class="planner__pills" data-group="timing">
+          <button type="button" class="planner__pill">As soon as possible</button>
+          <button type="button" class="planner__pill">This month</button>
+          <button type="button" class="planner__pill">In 1-3 months</button>
+          <button type="button" class="planner__pill">In 3-6 months</button>
+          <button type="button" class="planner__pill">Later this year</button>
+          <button type="button" class="planner__pill">I'm still researching</button>
+        </div>
+      </div>
+
+      <div class="planner__step" data-step="9">
+        <label class="planner__label">What are you most unsure about?</label>
+        <div class="planner__pills" data-group="unsure">
+          <button type="button" class="planner__pill">Choosing the right route</button>
+          <button type="button" class="planner__pill">Budget or proof of funds</button>
+          <button type="button" class="planner__pill">Documents</button>
+          <button type="button" class="planner__pill">Visa refusal risk</button>
+          <button type="button" class="planner__pill">School or admission</button>
+          <button type="button" class="planner__pill">Work route or employer requirements</button>
+          <button type="button" class="planner__pill">Travel purpose or itinerary</button>
+          <button type="button" class="planner__pill">Business invitation or meetings</button>
+          <button type="button" class="planner__pill">Timeline</button>
+          <button type="button" class="planner__pill">I'm not sure</button>
+        </div>
+      </div>
+
+      <div class="planner__step" data-step="10">
+        <label class="planner__label">What support would be most helpful?</label>
+        <div class="planner__pills" data-group="support">
+          <button type="button" class="planner__pill">Route review</button>
+          <button type="button" class="planner__pill">Document checklist</button>
+          <button type="button" class="planner__pill">Study guidance</button>
+          <button type="button" class="planner__pill">Work route guidance</button>
+          <button type="button" class="planner__pill">Visit visa planning</button>
+          <button type="button" class="planner__pill">Tourism or itinerary design</button>
+          <button type="button" class="planner__pill">Business travel planning</button>
+          <button type="button" class="planner__pill">Relocation planning</button>
+          <button type="button" class="planner__pill">Consultation</button>
+        </div>
+      </div>
+
+      <div class="planner__step" data-step="11">
+        <label class="planner__label">What is your estimated budget range?</label>
+        <div class="planner__pills" data-group="budget">
+          <button type="button" class="planner__pill">Below $2,000</button>
+          <button type="button" class="planner__pill">$2,000-$5,000</button>
+          <button type="button" class="planner__pill">$5,000-$10,000</button>
+          <button type="button" class="planner__pill">$10,000-$20,000</button>
+          <button type="button" class="planner__pill">$20,000+</button>
+          <button type="button" class="planner__pill">Need guidance</button>
+        </div>
+      </div>
+
+      <div class="planner__step" data-step="12">
+        <label class="planner__label" for="plannerAdditional">What should we know before we review your details?</label>
+        <textarea class="planner__input planner__textarea" id="plannerAdditional" name="additionalInfo" placeholder="Optional — anything that helps us understand your situation" rows="4"></textarea>
+      </div>
+
+      <div class="planner__step" data-step="13">
+        <label class="planner__checkbox">
+          <input type="checkbox" id="plannerConsent" name="consent">
+          <span class="planner__checkbox-box" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"></path></svg>
+          </span>
+          <span class="planner__checkbox-text">I consent to Fly Connect Global contacting me about this enquiry by email, phone, or WhatsApp. I understand this route check is advisory support and does not guarantee visa approval, admission, funding, jobs, sponsorship, PR, booking availability, relocation, or immigration outcomes.</span>
+        </label>
+      </div>
+    </form>
+
+    <div class="planner__nav">
+      <button type="button" class="planner__back" id="plannerBack">Back</button>
+      <button type="button" class="planner__next" id="plannerNext" disabled>Next</button>
+    </div>
+
+    <div class="planner__success" id="plannerSuccess" hidden>
+      <div class="planner__success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"></path></svg>
+      </div>
+      <h3 class="planner__success-title">We'll Be In Touch</h3>
+      <p class="planner__success-text">Thanks — your route details are with our team. We'll reach out on the best contact you gave us.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p class="footer__copyright">All rights reserved. Fly Connect Global &copy; 2026</p>
+  <div class="footer__links">
+    <a href="/privacy" class="footer__link">Privacy Policy</a>
+    <a href="/terms" class="footer__link">Terms and Conditions</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
