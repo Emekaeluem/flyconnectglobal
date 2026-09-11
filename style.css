@@ -3550,28 +3550,18 @@ body {
   box-shadow: 0 16px 32px rgba(254,189,0,0.36);
 }
 
-/* ---------- Middle: guy.png sized larger than the navy "bg-shape" behind
-   it, so his crossed arms visibly extend past its edges ---------- */
+/* ---------- Middle: one single full-bleed rounded frame — the gradient,
+   rings, and photo are all part of the same box, exactly like the
+   reference (not a separate smaller shape behind him) ---------- */
 .find-route__media {
   position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  min-height: 420px;
-  overflow: visible;
-}
-
-.find-route__bg-shape {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 72%;
-  height: 80%;
   border-radius: 28px;
   overflow: hidden;
   background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
-  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 460px;
 }
 
 .find-route__rings {
@@ -3591,9 +3581,9 @@ body {
 .find-route__photo {
   position: relative;
   z-index: 1;
-  height: 100%;
+  height: 98%;
   width: auto;
-  max-width: 130%;
+  max-width: 100%;
   object-fit: contain;
 }
 
