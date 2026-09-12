@@ -1867,7 +1867,7 @@ body {
    Footer
    ================================================ */
 .site-footer {
-  background: #FAFAFD;
+  background: #EEF0F7;
   width: 100%;
 }
 
@@ -1954,7 +1954,7 @@ body {
 }
 
 .site-footer__bottom {
-  background: #FAFAFD;
+  background: #E5E8F2;
   border-top: 1px solid rgba(11,27,86,0.08);
   padding: 16px 5vw;
   display: flex;
