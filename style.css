@@ -68,9 +68,12 @@ body {
 }
 
 .nav--scrolled {
-  background: var(--navy-deep);
+  background: rgba(11, 27, 86, 0.55);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   padding: 14px 5vw;
-  box-shadow: 0 6px 24px rgba(6,13,46,0.18);
+  box-shadow: 0 8px 32px rgba(6,13,46,0.16);
 }
 
 .nav__logo img {
