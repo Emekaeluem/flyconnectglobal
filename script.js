@@ -636,4 +636,14 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCarousel();
     startAuto();
   }
+
+  /* ---------- Sticky nav: solid background once scrolled, on every page ---------- */
+  const navEl = document.querySelector('.nav');
+  if (navEl) {
+    const applyScrollState = () => {
+      navEl.classList.toggle('nav--scrolled', window.scrollY > 30);
+    };
+    window.addEventListener('scroll', applyScrollState, { passive: true });
+    applyScrollState();
+  }
 });
