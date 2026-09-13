@@ -646,4 +646,78 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', applyScrollState, { passive: true });
     applyScrollState();
   }
+
+  /* ---------- About page: Our Way of Doing Things — arrow-driven
+     card cycling. The left panel (badge/headline/arrows) never
+     changes; only the right-hand card's content swaps. ---------- */
+  const wayCard = document.querySelector('.way-carousel__card');
+  if (wayCard) {
+    const steps = [
+      {
+        label: 'Step 01',
+        title: 'We Listen',
+        text: 'We understand your goals and circumstances.',
+        icon: '<path d="M12 21s7-4.4 7-11a7 7 0 1 0-14 0c0 6.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/>'
+      },
+      {
+        label: 'Step 02',
+        title: 'We Find Your Pathway',
+        text: 'We assess your profile and explain the options available to you.',
+        icon: '<circle cx="12" cy="12" r="9"/><polygon points="15.5 8.5 13.2 13.2 8.5 15.5 10.8 10.8 15.5 8.5"/>'
+      },
+      {
+        label: 'Step 03',
+        title: 'We Prepare With You',
+        text: 'We guide you through the documents, requirements and application process.',
+        icon: '<path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.5.4.9 1 1 1.8v.5h6v-.5c.1-.8.5-1.4 1-1.8A7 7 0 0 0 12 2z"/>'
+      },
+      {
+        label: 'Step 04',
+        title: 'We Help You Move Forward',
+        text: 'We keep you informed and prepare you for the next chapter.',
+        icon: '<path d="M5 12h14M13 6l6 6-6 6"/>'
+      }
+    ];
+
+    const stepIcon = document.getElementById('wayStepIcon');
+    const stepLabel = document.getElementById('wayStepLabel');
+    const stepTitle = document.getElementById('wayStepTitle');
+    const stepText = document.getElementById('wayStepText');
+    const prevBtn = document.getElementById('wayPrev');
+    const nextBtn = document.getElementById('wayNext');
+
+    let wayIndex = 0;
+
+    const renderStep = (index) => {
+      const step = steps[index];
+      stepIcon.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${step.icon}</svg>`;
+      stepLabel.textContent = step.label;
+      stepTitle.textContent = step.title;
+      stepText.textContent = step.text;
+    };
+
+    const goToStep = (index, direction) => {
+      wayIndex = (index + steps.length) % steps.length;
+      wayCard.classList.add('is-swapping');
+      setTimeout(() => {
+        renderStep(wayIndex);
+        wayCard.classList.remove('is-swapping');
+      }, 150);
+
+      // The active/highlighted arrow follows whichever direction was
+      // last used, matching the reference's single-highlighted-arrow look
+      if (direction === 'next') {
+        nextBtn.classList.add('way-carousel__arrow--active');
+        prevBtn.classList.remove('way-carousel__arrow--active');
+      } else if (direction === 'prev') {
+        prevBtn.classList.add('way-carousel__arrow--active');
+        nextBtn.classList.remove('way-carousel__arrow--active');
+      }
+    };
+
+    if (prevBtn) prevBtn.addEventListener('click', () => goToStep(wayIndex - 1, 'prev'));
+    if (nextBtn) nextBtn.addEventListener('click', () => goToStep(wayIndex + 1, 'next'));
+
+    renderStep(0);
+  }
 });
