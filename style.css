@@ -4211,3 +4211,164 @@ body {
   .our-values__feature { padding: 28px 22px; }
   .our-values__feature-title { font-size: 1.5rem; }
 }
+
+/* ================================================
+   About page — Meet Our Team (glassmorphism cards)
+   ================================================ */
+.our-team {
+  background: #fcfcfe;
+  padding: 80px 5vw 96px;
+}
+
+.our-team__intro {
+  max-width: 640px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.our-team__kicker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+
+.our-team__kicker-dash {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.our-team__title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  line-height: 1.2;
+  color: var(--navy-deep);
+  margin-bottom: 16px;
+}
+
+.our-team__text {
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(6,13,46,0.6);
+}
+
+.our-team__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.our-team__card {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  background: var(--navy-deep);
+  box-shadow: 0 20px 44px rgba(11,27,86,0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.our-team__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 54px rgba(11,27,86,0.18);
+}
+
+.our-team__card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* The "filter" — a dark gradient fade so name/role stay legible
+   over any photo, regardless of its own background color */
+.our-team__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6,13,46,0.92) 0%, rgba(6,13,46,0.55) 32%, rgba(6,13,46,0.05) 60%, transparent 75%);
+}
+
+.our-team__badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 2;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.22);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.our-team__info {
+  position: absolute;
+  z-index: 2;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.our-team__name {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.our-team__role {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.our-team__card--placeholder .our-team__initials {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 3.4rem;
+  color: rgba(255,255,255,0.16);
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+}
+
+.our-team__card.reveal:nth-child(1) { transition-delay: 0s; }
+.our-team__card.reveal:nth-child(2) { transition-delay: 0.08s; }
+.our-team__card.reveal:nth-child(3) { transition-delay: 0.16s; }
+.our-team__card.reveal:nth-child(4) { transition-delay: 0.24s; }
+
+@media (max-width: 1000px) {
+  .our-team__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .our-team { padding: 60px 6vw 72px; }
+  .our-team__intro { margin-bottom: 32px; }
+  .our-team__grid { grid-template-columns: 1fr; gap: 18px; }
+  .our-team__card { aspect-ratio: 4 / 5; }
+}
