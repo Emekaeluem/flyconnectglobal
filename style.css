@@ -5066,7 +5066,7 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 28px;
-  aspect-ratio: 3 / 4;
+  height: 460px;
   background: var(--navy-deep);
 }
 
@@ -5196,8 +5196,7 @@ body {
    visible at once, each split image-half / text-half ---------- */
 .live-products__scroll {
   position: relative;
-  height: 100%;
-  min-height: 460px;
+  height: 460px;
   overflow: hidden;
   -webkit-mask-image: linear-gradient(to bottom, transparent, black 6%, black 94%, transparent);
   mask-image: linear-gradient(to bottom, transparent, black 6%, black 94%, transparent);
@@ -5308,8 +5307,8 @@ body {
 
 @media (max-width: 900px) {
   .live-products__layout { grid-template-columns: 1fr; }
-  .live-products__spotlight { aspect-ratio: 4 / 3; }
-  .live-products__scroll { min-height: 380px; }
+  .live-products__spotlight { height: 420px; }
+  .live-products__scroll { height: 460px; }
 }
 
 @media (max-width: 640px) {
