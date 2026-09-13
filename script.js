@@ -812,4 +812,42 @@ document.addEventListener('DOMContentLoaded', () => {
     updateDots(0);
     startAutoAdvance();
   }
+
+  /* ---------- Homepage: Live Products vertical track — auto-advances
+     between showing items 1-2 and items 2-3 (exactly 3 items total,
+     2 visible at a time, no duplication needed). ---------- */
+  const lpTrack = document.getElementById('lpTrack');
+  if (lpTrack) {
+    const trackItems = lpTrack.querySelectorAll('.live-products__item');
+    const itemHeight = 219;
+    const gap = 22;
+    const step = itemHeight + gap;
+    const maxTrackIndex = Math.max(0, trackItems.length - 2);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let trackIndex = 0;
+    let trackTimer = null;
+
+    const goToTrackIndex = (index) => {
+      trackIndex = Math.min(Math.max(index, 0), maxTrackIndex);
+      lpTrack.style.transform = `translateY(-${trackIndex * step}px)`;
+    };
+
+    const startTrackAdvance = () => {
+      stopTrackAdvance();
+      if (reducedMotion || maxTrackIndex === 0) return;
+      trackTimer = setInterval(() => {
+        goToTrackIndex(trackIndex >= maxTrackIndex ? 0 : trackIndex + 1);
+      }, 3800);
+    };
+
+    const stopTrackAdvance = () => {
+      if (trackTimer) clearInterval(trackTimer);
+    };
+
+    lpTrack.addEventListener('mouseenter', stopTrackAdvance);
+    lpTrack.addEventListener('mouseleave', startTrackAdvance);
+
+    goToTrackIndex(0);
+    startTrackAdvance();
+  }
 });
