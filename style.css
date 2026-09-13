@@ -4221,7 +4221,7 @@ body {
 }
 
 .our-team__intro {
-  max-width: 640px;
+  max-width: 780px;
   margin: 0 auto 48px;
   text-align: center;
 }
@@ -4250,10 +4250,11 @@ body {
 .our-team__title {
   font-family: var(--display);
   font-weight: 600;
-  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  font-size: clamp(1.5rem, 3.2vw, 2.6rem);
   line-height: 1.2;
   color: var(--navy-deep);
   margin-bottom: 16px;
+  white-space: nowrap;
 }
 
 .our-team__text {
@@ -4367,6 +4368,7 @@ body {
 @media (max-width: 640px) {
   .our-team { padding: 60px 6vw 72px; }
   .our-team__intro { margin-bottom: 32px; }
+  .our-team__title { white-space: normal; font-size: 1.6rem; }
   .our-team__grid { grid-template-columns: 1fr; gap: 18px; }
   .our-team__card { aspect-ratio: 4 / 5; }
 }
