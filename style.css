@@ -4469,3 +4469,153 @@ body {
   .way-carousel__right { width: calc(100% - 40px); margin: -200px 20px 20px; }
   .way-carousel__card { padding: 26px 22px; border-radius: 20px; }
 }
+
+/* ================================================
+   About page — closing CTA (navy/gold adaptation of the
+   dark-gradient reference, not a literal purple/cyan copy)
+   ================================================ */
+.final-cta {
+  background: #fcfcfe;
+  padding: 60px 5vw 80px;
+}
+
+.final-cta__card {
+  position: relative;
+  max-width: 1300px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 32px;
+  background: linear-gradient(135deg, #04081c 0%, var(--navy-deep) 35%, var(--navy) 68%, #4a5a9e 100%);
+  padding: clamp(56px, 8vw, 96px) 6vw;
+  text-align: center;
+}
+
+.final-cta__dots {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image: radial-gradient(rgba(255,255,255,0.35) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+.final-cta__ring {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  pointer-events: none;
+}
+
+.final-cta__ring::before {
+  content: "";
+  position: absolute;
+  inset: 30px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.1);
+}
+
+.final-cta__badge {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+
+.final-cta__badge span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.final-cta__title {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35em;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  line-height: 1.15;
+  color: var(--white);
+  max-width: 900px;
+  margin: 0 auto 24px;
+}
+
+.final-cta__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(34px, 4vw, 48px);
+  height: clamp(34px, 4vw, 48px);
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--navy-deep);
+  flex-shrink: 0;
+}
+
+.final-cta__icon svg {
+  width: 45%;
+  height: 45%;
+}
+
+.final-cta__text {
+  position: relative;
+  z-index: 1;
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.75);
+  max-width: 620px;
+  margin: 0 auto 40px;
+}
+
+.final-cta__btn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--navy-deep);
+  background: var(--white);
+  text-decoration: none;
+  padding: 17px 34px;
+  border-radius: 999px;
+  box-shadow: 0 14px 34px rgba(0,0,0,0.25);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.final-cta__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 640px) {
+  .final-cta { padding: 48px 6vw 64px; }
+  .final-cta__card { border-radius: 26px; padding: 48px 6vw; }
+  .final-cta__title { font-size: 1.7rem; gap: 0.3em; }
+  .final-cta__icon { width: 30px; height: 30px; }
+  .final-cta__text { font-size: 0.95rem; }
+}
