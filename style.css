@@ -2662,8 +2662,7 @@ body {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: clamp(24px, 4vh, 44px) 0;
+  padding: clamp(20px, 3vh, 32px) 0;
   background: #fcfcfe;
   overflow: hidden;
 }
@@ -2707,11 +2706,14 @@ body {
 .approach__frame {
   position: relative;
   width: 100%;
+  flex: 1;
+  min-height: 0;
+  display: flex;
 }
 
 .approach__image {
   width: 100%;
-  height: clamp(260px, 34vh, 440px);
+  height: 100%;
   object-fit: cover;
   display: block;
 }
@@ -2775,6 +2777,8 @@ body {
 
 @media (max-width: 900px) {
   .approach { min-height: 0; height: auto; padding: 72px 0 60px; }
+  .approach__frame { flex: none; }
+  .approach__image { height: 380px; }
   .approach__steps-bar {
     flex-direction: column;
     gap: 24px;
