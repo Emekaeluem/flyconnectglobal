@@ -720,4 +720,82 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderStep(0);
   }
+
+  /* ---------- Homepage: Live Products / Current Packages carousel.
+     PLACEHOLDER CONTENT — edit the `products` array below whenever a
+     package is added, changed, or removed; nothing else needs to
+     change. Same arrow-driven pattern as the About page carousel. ---------- */
+  const lpCard = document.querySelector('.live-products__card');
+  if (lpCard) {
+    const products = [
+      {
+        image: 'https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/pimage1.jpg',
+        badge: 'Package 01',
+        name: 'Package Name Here',
+        desc: "Add a short description of what this package includes, who it's for, and what makes it worth choosing — this whole card is placeholder content, ready to be swapped for a real, current offer.",
+        ctaText: 'Enquire About This Package',
+        ctaLink: '/find-my-route'
+      },
+      {
+        image: 'https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/pimage8.jpg',
+        badge: 'Package 02',
+        name: 'Second Package Name',
+        desc: 'Replace this with the real details of your second live package — pricing, inclusions, and who it suits best.',
+        ctaText: 'Enquire About This Package',
+        ctaLink: '/find-my-route'
+      },
+      {
+        image: 'https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/pimage15.jpg',
+        badge: 'Package 03',
+        name: 'Third Package Name',
+        desc: 'Replace this with the real details of your third live package. Add or remove entries from the products array in script.js as your offers change.',
+        ctaText: 'Enquire About This Package',
+        ctaLink: '/find-my-route'
+      }
+    ];
+
+    const lpImage = document.getElementById('lpImage');
+    const lpBadge = document.getElementById('lpBadge');
+    const lpName = document.getElementById('lpName');
+    const lpDesc = document.getElementById('lpDesc');
+    const lpCta = document.getElementById('lpCta');
+    const lpCount = document.getElementById('lpCount');
+    const lpPrev = document.getElementById('lpPrev');
+    const lpNext = document.getElementById('lpNext');
+
+    let lpIndex = 0;
+
+    const renderProduct = (index) => {
+      const p = products[index];
+      lpImage.src = p.image;
+      lpBadge.textContent = p.badge;
+      lpName.textContent = p.name;
+      lpDesc.textContent = p.desc;
+      lpCta.textContent = p.ctaText;
+      lpCta.href = p.ctaLink;
+      lpCount.textContent = `${index + 1} / ${products.length}`;
+    };
+
+    const goToProduct = (index, direction) => {
+      lpIndex = (index + products.length) % products.length;
+      lpCard.classList.add('is-swapping');
+      setTimeout(() => {
+        renderProduct(lpIndex);
+        lpCard.classList.remove('is-swapping');
+      }, 150);
+
+      if (direction === 'next') {
+        lpNext.classList.add('live-products__arrow--active');
+        lpPrev.classList.remove('live-products__arrow--active');
+      } else if (direction === 'prev') {
+        lpPrev.classList.add('live-products__arrow--active');
+        lpNext.classList.remove('live-products__arrow--active');
+      }
+    };
+
+    if (lpPrev) lpPrev.addEventListener('click', () => goToProduct(lpIndex - 1, 'prev'));
+    if (lpNext) lpNext.addEventListener('click', () => goToProduct(lpIndex + 1, 'next'));
+
+    renderProduct(0);
+  }
 });
