@@ -2655,9 +2655,10 @@ body {
 }
 
 /* ================================================
-   About page — Our Approach section (image + connected steps)
+   About page — Our Approach (fresh rebuild: landmark.jpeg,
+   dark moody image treatment, connected steps bar)
    ================================================ */
-.approach {
+.journey-steps {
   position: relative;
   min-height: 100svh;
   display: flex;
@@ -2667,14 +2668,14 @@ body {
   overflow: hidden;
 }
 
-.approach__intro {
+.journey-steps__intro {
   max-width: 640px;
   margin: 0 auto clamp(18px, 2.6vh, 32px);
   padding: 0 5vw;
   text-align: center;
 }
 
-.approach__kicker {
+.journey-steps__kicker {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2688,14 +2689,14 @@ body {
   margin-bottom: 14px;
 }
 
-.approach__kicker-dash {
+.journey-steps__kicker-dash {
   display: block;
   width: 28px;
   height: 2px;
   background: var(--gold);
 }
 
-.approach__title {
+.journey-steps__title {
   font-family: var(--display);
   font-weight: 600;
   font-size: clamp(1.6rem, 3vw, 2.3rem);
@@ -2703,7 +2704,7 @@ body {
   color: var(--navy-deep);
 }
 
-.approach__frame {
+.journey-steps__frame {
   position: relative;
   width: calc(100% - 10vw);
   margin: 0 auto;
@@ -2714,7 +2715,7 @@ body {
   overflow: hidden;
 }
 
-.approach__image {
+.journey-steps__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -2722,7 +2723,7 @@ body {
   filter: brightness(0.82) saturate(1.05);
 }
 
-.approach__image-overlay {
+.journey-steps__image-overlay {
   position: absolute;
   inset: 0;
   background:
@@ -2731,7 +2732,7 @@ body {
   pointer-events: none;
 }
 
-.approach__steps-bar {
+.journey-steps__bar {
   position: relative;
   margin: -48px 3vw 0;
   background: linear-gradient(135deg, #ffffff 0%, #f4f5f9 100%);
@@ -2742,13 +2743,13 @@ body {
   align-items: flex-start;
 }
 
-.approach__step {
+.journey-steps__step {
   flex: 1;
   padding: 0 16px;
   min-width: 0;
 }
 
-.approach__num {
+.journey-steps__num {
   display: block;
   font-family: var(--display);
   font-weight: 700;
@@ -2757,7 +2758,7 @@ body {
   margin-bottom: 10px;
 }
 
-.approach__step-title {
+.journey-steps__step-title {
   font-family: var(--display);
   font-weight: 600;
   font-size: 1.02rem;
@@ -2766,14 +2767,14 @@ body {
   margin-bottom: 8px;
 }
 
-.approach__step-text {
+.journey-steps__step-text {
   font-family: var(--sans);
   font-size: 0.84rem;
   line-height: 1.5;
   color: rgba(6,13,46,0.58);
 }
 
-.approach__connector {
+.journey-steps__connector {
   flex-shrink: 0;
   width: 30px;
   padding-top: 5px;
@@ -2783,34 +2784,34 @@ body {
   color: rgba(11,27,86,0.22);
 }
 
-.approach__connector svg {
+.journey-steps__connector svg {
   width: 18px;
   height: 18px;
 }
 
 @media (max-width: 900px) {
-  .approach { min-height: 0; height: auto; padding: 72px 0 60px; }
-  .approach__frame { flex: none; }
-  .approach__image { height: 380px; }
-  .approach__steps-bar {
+  .journey-steps { min-height: 0; height: auto; padding: 72px 0 60px; }
+  .journey-steps__frame { flex: none; }
+  .journey-steps__image { height: 380px; }
+  .journey-steps__bar {
     flex-direction: column;
     gap: 24px;
     margin-top: -40px;
     padding: 28px 26px;
   }
-  .approach__connector { display: none; }
-  .approach__step { padding: 0; }
-  .approach__step:not(:last-child) {
+  .journey-steps__connector { display: none; }
+  .journey-steps__step { padding: 0; }
+  .journey-steps__step:not(:last-child) {
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(11,27,86,0.08);
   }
 }
 
 @media (max-width: 640px) {
-  .approach { padding: 56px 0 56px; }
-  .approach__intro { margin-bottom: 28px; }
-  .approach__image { height: 240px; }
-  .approach__steps-bar { margin: -32px 5vw 0; padding: 24px 20px; border-radius: 18px; }
+  .journey-steps { padding: 56px 0 56px; }
+  .journey-steps__intro { margin-bottom: 28px; }
+  .journey-steps__image { height: 240px; }
+  .journey-steps__bar { margin: -32px 5vw 0; padding: 24px 20px; border-radius: 18px; }
 }
 
 /* ================================================
