@@ -4691,7 +4691,7 @@ body {
 /* ---------- Form ---------- */
 .contact-form {
   background: #f4f5f9;
-  border-radius: 24px;
+  border-radius: 28px;
   padding: clamp(24px, 3vw, 40px);
 }
 
@@ -4801,7 +4801,7 @@ body {
 /* ---------- Media ---------- */
 .contact-hero__media {
   position: relative;
-  border-radius: 24px;
+  border-radius: 28px;
   overflow: hidden;
   min-height: 380px;
 }
@@ -4875,14 +4875,18 @@ body {
 /* ---------- Office directory ---------- */
 .offices {
   background: #fcfcfe;
-  padding: 0 5vw 90px;
+  padding: 0 0 90px;
+}
+
+.offices__inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 5vw;
 }
 
 .offices__card {
-  max-width: 1300px;
-  margin: 0 auto;
   background: #f4f5f9;
-  border-radius: 32px;
+  border-radius: 28px;
   padding: clamp(40px, 5vw, 64px);
 }
 
@@ -4914,7 +4918,7 @@ body {
 
 .offices__item {
   background: var(--white);
-  border-radius: 20px;
+  border-radius: 28px;
   padding: 28px 24px;
   box-shadow: 0 16px 32px rgba(11,27,86,0.06);
 }
