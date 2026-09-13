@@ -4392,24 +4392,26 @@ body {
 }
 
 /* ================================================
-   About page — Our Way Of Doing Things
-   (second, separate section using the same connected-steps
-   treatment as Our Approach, per explicit request)
+   About page — Our Way Of Doing Things (as one self-contained card,
+   not a full-bleed image with an overlapping bar)
    ================================================ */
 .way-of-doing {
-  position: relative;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  padding: clamp(20px, 3vh, 32px) 0;
   background: #fcfcfe;
-  overflow: hidden;
+  padding: 80px 5vw 96px;
+}
+
+.way-of-doing__card {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(11,27,86,0.1), 0 8px 20px rgba(11,27,86,0.05);
+  padding: clamp(28px, 4vw, 48px);
 }
 
 .way-of-doing__intro {
   max-width: 640px;
-  margin: 0 auto clamp(18px, 2.6vh, 32px);
-  padding: 0 5vw;
+  margin: 0 auto 32px;
   text-align: center;
 }
 
@@ -4437,20 +4439,18 @@ body {
 .way-of-doing__title {
   font-family: var(--display);
   font-weight: 600;
-  font-size: clamp(1.6rem, 3vw, 2.3rem);
-  line-height: 1.2;
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  line-height: 1.25;
   color: var(--navy-deep);
 }
 
-.way-of-doing__frame {
+.way-of-doing__image-wrap {
   position: relative;
-  width: calc(100% - 10vw);
-  margin: 0 auto;
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  border-radius: 28px;
+  width: 100%;
+  height: clamp(240px, 32vw, 380px);
+  border-radius: 20px;
   overflow: hidden;
+  margin-bottom: 32px;
 }
 
 .way-of-doing__image {
@@ -4458,25 +4458,19 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: brightness(0.82) saturate(1.05);
+  filter: brightness(0.85) saturate(1.05);
 }
 
 .way-of-doing__image-overlay {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 75% 65%, rgba(254,189,0,0.16) 0%, transparent 42%),
-    linear-gradient(to top, rgba(6,13,46,0.55) 0%, rgba(6,13,46,0.15) 30%, rgba(6,13,46,0.35) 100%);
+    radial-gradient(circle at 75% 65%, rgba(254,189,0,0.14) 0%, transparent 42%),
+    linear-gradient(to top, rgba(6,13,46,0.35) 0%, transparent 40%);
   pointer-events: none;
 }
 
 .way-of-doing__bar {
-  position: relative;
-  margin: -48px 3vw 0;
-  background: linear-gradient(135deg, #ffffff 0%, #f4f5f9 100%);
-  border-radius: 22px;
-  box-shadow: 0 30px 60px rgba(11,27,86,0.14), 0 10px 24px rgba(11,27,86,0.06);
-  padding: 24px 28px;
   display: flex;
   align-items: flex-start;
 }
@@ -4528,15 +4522,7 @@ body {
 }
 
 @media (max-width: 900px) {
-  .way-of-doing { min-height: 0; height: auto; padding: 72px 0 60px; }
-  .way-of-doing__frame { flex: none; }
-  .way-of-doing__image { height: 380px; }
-  .way-of-doing__bar {
-    flex-direction: column;
-    gap: 24px;
-    margin-top: -40px;
-    padding: 28px 26px;
-  }
+  .way-of-doing__bar { flex-direction: column; gap: 24px; }
   .way-of-doing__connector { display: none; }
   .way-of-doing__step { padding: 0; }
   .way-of-doing__step:not(:last-child) {
@@ -4546,8 +4532,7 @@ body {
 }
 
 @media (max-width: 640px) {
-  .way-of-doing { padding: 56px 0 56px; }
-  .way-of-doing__intro { margin-bottom: 28px; }
-  .way-of-doing__image { height: 240px; }
-  .way-of-doing__bar { margin: -32px 5vw 0; padding: 24px 20px; border-radius: 18px; }
+  .way-of-doing { padding: 56px 6vw 64px; }
+  .way-of-doing__card { padding: 24px 20px; border-radius: 22px; }
+  .way-of-doing__image-wrap { height: 220px; margin-bottom: 24px; }
 }
