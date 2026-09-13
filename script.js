@@ -731,18 +731,21 @@ document.addEventListener('DOMContentLoaded', () => {
   if (lpSpotlight) {
     const products = [
       {
+        image: 'https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/pimage1.jpg',
         badge: 'Package 01',
         name: 'Package Name Here',
         desc: "Add a short description of what this package includes, who it's for, and what makes it worth choosing — this whole card is placeholder content, ready to be swapped for a real, current offer.",
         ctaLink: '/find-my-route'
       },
       {
+        image: 'https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/pimage9.jpg',
         badge: 'Package 02',
         name: 'Second Package Name',
         desc: 'Replace this with the real details of your second live package — pricing, inclusions, and who it suits best.',
         ctaLink: '/find-my-route'
       },
       {
+        image: 'https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/pimage6.jpg',
         badge: 'Package 03',
         name: 'Third Package Name',
         desc: 'Replace this with the real details of your third live package.',
@@ -750,6 +753,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     ];
 
+    const lpImage = document.getElementById('lpImage');
     const lpBadge = document.getElementById('lpBadge');
     const lpName = document.getElementById('lpName');
     const lpDesc = document.getElementById('lpDesc');
@@ -763,6 +767,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const renderSpotlight = (index) => {
       const p = products[index];
+      lpImage.src = p.image;
       lpBadge.textContent = p.badge;
       lpName.textContent = p.name;
       lpDesc.textContent = p.desc;
