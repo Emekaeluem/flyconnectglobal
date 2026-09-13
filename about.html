@@ -3,25 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>About Us — Fly Connect Global</title>
-
 <link rel="preconnect" href="https://api.fontshare.com">
-
-<link
-  rel="stylesheet"
-  href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600&display=swap"
->
-
-<!-- The version forces the browser to load the latest CSS -->
-<link rel="stylesheet" href="style.css?v=20260913-2">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600&display=swap">
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- HEADER VIDEO -->
 <section class="hero">
-
   <video
     class="hero__video"
     src="https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/flyvideo1.mp4"
@@ -31,63 +20,21 @@
     playsinline
     preload="auto"
   ></video>
-
   <div class="hero__overlay"></div>
 
-  <button
-    class="sound-toggle"
-    id="soundToggle"
-    aria-label="Unmute video"
-    aria-pressed="false"
-  >
-    <svg
-      class="icon-muted"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <path d="M11 5 6 9H2v6h4l5 4V5Z"/>
-      <path d="M22 9 16 15M16 9l6 6"/>
-    </svg>
-
-    <svg
-      class="icon-unmuted"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <path d="M11 5 6 9H2v6h4l5 4V5Z"/>
-      <path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 6a9 9 0 0 1 0 12"/>
-    </svg>
+  <button class="sound-toggle" id="soundToggle" aria-label="Unmute video" aria-pressed="false">
+    <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M22 9 16 15M16 9l6 6"/></svg>
+    <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 6a9 9 0 0 1 0 12"/></svg>
   </button>
 
   <div class="hero__content">
-
     <nav class="nav">
-
       <a href="/" class="nav__logo">
-        <img
-          src="https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/lightlogo.png"
-          alt="Fly Connect Global"
-        >
+        <img src="https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/lightlogo.png" alt="Fly Connect Global">
       </a>
 
-      <button
-        class="nav__toggle"
-        id="navToggle"
-        aria-label="Open menu"
-        aria-expanded="false"
-        aria-controls="navMenu"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
       </button>
 
       <div class="nav__menu" id="navMenu">
@@ -97,141 +44,58 @@
         <a href="/contact" class="nav__link nav__link--plain">Contact</a>
         <a href="/partner" class="nav__link nav__link--plain">Partner</a>
 
-        <a href="/find-my-route" class="nav__cta nav__cta--mobile">
-          Find My Route
-        </a>
+        <a href="/find-my-route" class="nav__cta nav__cta--mobile">Find My Route</a>
       </div>
 
-      <a href="/find-my-route" class="nav__cta">
-        Find My Route
-      </a>
-
+      <a href="/find-my-route" class="nav__cta">Find My Route</a>
     </nav>
 
     <div class="hero__center">
-
-      <h1 class="hero__headline">
-        Connecting Ambition To Global Opportunity.
-      </h1>
-
+      <h1 class="hero__headline">Connecting Ambition To Global Opportunity.</h1>
       <div class="hero__actions">
-
         <a href="/find-my-route" class="btn-primary">
           Plan your next move
-
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.4"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M5 12h14M13 6l6 6-6 6"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-
-        <a href="#what-we-believe" class="btn-secondary">
-          See how we work
-        </a>
-
+        <a href="#what-we-believe" class="btn-secondary">See how we work</a>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- SECOND SECTION: WHO WE ARE -->
 <section class="about-story" id="who-we-are">
+  <div class="about-story__label reveal"><span aria-hidden="true"></span>Who We Are</div>
 
-  <div class="about-story__label reveal">
-    <span aria-hidden="true"></span>
-    Who We Are
-  </div>
-
-  <h2 class="about-story__headline reveal">
-    Connecting ambition to global opportunity.
-  </h2>
+  <h2 class="about-story__headline reveal">Connecting ambition to global opportunity.</h2>
 
   <div class="about-story__layout">
-
     <div class="about-story__copy reveal">
-
-      <p>
-        Fly Connect Global is an international education, immigration and
-        travel consultancy helping individuals, families and businesses
-        access opportunities across the world.
-      </p>
-
-      <p>
-        Since 2019, we have helped people successfully move abroad to study,
-        work, reunite with family and begin new chapters. With our global
-        headquarters in the United States and offices in Lagos and Abeokuta,
-        we combine international reach with the personal support of a team
-        that understands your journey.
-      </p>
-
-      <p class="about-story__closing">
-        Your dream is personal. Our role is to help you find a clear and
-        practical path towards it.
-      </p>
-
+      <p>Fly Connect Global is an international education, immigration and travel consultancy helping individuals, families and businesses access opportunities across the world.</p>
+      <p>Since 2019, we have helped people successfully move abroad to study, work, reunite with family and begin new chapters. With our global headquarters in the United States and offices in Lagos and Abeokuta, we combine international reach with the personal support of a team that understands your journey.</p>
+      <p class="about-story__closing">Your dream is personal. Our role is to help you find a clear and practical path towards it.</p>
     </div>
 
     <div class="about-story__visual reveal">
+      <img src="https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/people.jpeg" alt="Fly Connect Global team supporting clients with their international journey" loading="lazy">
 
-      <img
-        src="https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/people.jpeg"
-        alt="Fly Connect Global team supporting clients with their international journey"
-        loading="lazy"
-      >
-
-      <!-- FIRST GLASS CARD -->
       <div class="about-story__card about-story__card--pathways">
-
         <span class="about-story__card-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="9"/>
-            <path d="M3.6 9h16.8M3.6 15h16.8M12 3c2.2 2.4 3.4 5.4 3.4 9S14.2 18.6 12 21c-2.2-2.4-3.4-5.4-3.4-9S9.8 5.4 12 3Z"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3c2.2 2.4 3.4 5.4 3.4 9S14.2 18.6 12 21c-2.2-2.4-3.4-5.4-3.4-9S9.8 5.4 12 3Z"/></svg>
         </span>
-
         <span class="about-story__card-copy">
           <small>Global Pathways</small>
           <strong>Study, work &amp; travel</strong>
         </span>
-
       </div>
 
-      <!-- SECOND GLASS CARD -->
       <div class="about-story__card about-story__card--guidance">
-
         <span class="about-story__card-icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M12 21s7-4.4 7-11a7 7 0 1 0-14 0c0 6.6 7 11 7 11Z"/>
-            <circle cx="12" cy="10" r="2.5"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-4.4 7-11a7 7 0 1 0-14 0c0 6.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
         </span>
-
         <span class="about-story__card-copy">
           <small>Personal Guidance</small>
           <strong>From planning to arrival</strong>
         </span>
-
       </div>
     </div>
   </div>
@@ -240,554 +104,188 @@
     <strong>Since 2019</strong>
     <span>Connecting dreams to destinations</span>
   </div>
-
 </section>
 
-
-<!-- THIRD SECTION: WHAT WE BELIEVE -->
 <section class="believe" id="what-we-believe">
-
   <div class="believe__intro reveal">
-
-    <div class="believe__kicker">
-      <span class="believe__kicker-dash"></span>
-      What we believe
-    </div>
-
-    <h2 class="believe__title">
-      Clarity Improves Every Decision That Follows.
-    </h2>
-
-    <p class="believe__text">
-      When the route is clear, it becomes easier to prepare the right
-      evidence, spend in the right order, and know what still needs review.
-    </p>
-
+    <div class="believe__kicker"><span class="believe__kicker-dash"></span>What we believe</div>
+    <h2 class="believe__title">Clarity Improves Every Decision That Follows.</h2>
+    <p class="believe__text">When the route is clear, it becomes easier to prepare the right evidence, spend in the right order, and know what still needs review.</p>
   </div>
 
   <ul class="believe__values">
-
     <li class="believe__value reveal">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.6"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M5 12l5 5L19 7"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>
       Route clarity
     </li>
-
     <li class="believe__value reveal">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.6"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M5 12l5 5L19 7"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>
       Document readiness
     </li>
-
     <li class="believe__value reveal">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.6"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M5 12l5 5L19 7"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>
       Honest expectations
     </li>
-
     <li class="believe__value reveal">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.6"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M5 12l5 5L19 7"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>
       Travel planning
     </li>
-
     <li class="believe__value reveal">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.6"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M5 12l5 5L19 7"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>
       Timely follow-up
     </li>
-
     <li class="believe__value reveal">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.6"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M5 12l5 5L19 7"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>
       Ethical communication
     </li>
-
     <li class="believe__value reveal">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.6"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M5 12l5 5L19 7"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>
       Service-specific support
     </li>
-
   </ul>
 </section>
 
-
-<!-- WHAT WE DO -->
 <section class="whatwedo" id="what-we-do">
-
-  <div
-    class="whatwedo__dots whatwedo__dots--tr"
-    aria-hidden="true"
-  ></div>
-
-  <div
-    class="whatwedo__dots whatwedo__dots--bl"
-    aria-hidden="true"
-  ></div>
+  <div class="whatwedo__dots whatwedo__dots--tr" aria-hidden="true"></div>
+  <div class="whatwedo__dots whatwedo__dots--bl" aria-hidden="true"></div>
 
   <div class="whatwedo__text reveal">
-
-    <div class="whatwedo__kicker">
-      <span class="whatwedo__kicker-dash"></span>
-      What we do
-    </div>
-
-    <h2 class="whatwedo__title">
-      One Team For The Decisions Around Global Mobility.
-    </h2>
+    <div class="whatwedo__kicker"><span class="whatwedo__kicker-dash"></span>What we do</div>
+    <h2 class="whatwedo__title">One Team For The Decisions Around Global Mobility.</h2>
 
     <ul class="whatwedo__list">
-
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12l5 5L19 7"/>
-        </svg>
-        Study abroad and admissions support
-      </li>
-
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12l5 5L19 7"/>
-        </svg>
-        Study visa and proof-of-finance advisory
-      </li>
-
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12l5 5L19 7"/>
-        </svg>
-        UK study loan/funding guidance where available
-      </li>
-
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12l5 5L19 7"/>
-        </svg>
-        Work route, healthcare route, and Global Talent advisory
-      </li>
-
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12l5 5L19 7"/>
-        </svg>
-        Visitor visa and tourist visa support
-      </li>
-
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12l5 5L19 7"/>
-        </svg>
-        Family relocation planning through study/work-related routes
-      </li>
-
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12l5 5L19 7"/>
-        </svg>
-        Flight booking and hotel reservations
-      </li>
-
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12l5 5L19 7"/>
-        </svg>
-        Tour packages and Africa experiences
-      </li>
-
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12l5 5L19 7"/>
-        </svg>
-        Corporate ticketing and business travel
-      </li>
-
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12l5 5L19 7"/>
-        </svg>
-        Partnerships and institutional mobility support
-      </li>
-
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>Study abroad and admissions support</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>Study visa and proof-of-finance advisory</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>UK study loan/funding guidance where available</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>Work route, healthcare route, and Global Talent advisory</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>Visitor visa and tourist visa support</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>Family relocation planning through study/work-related routes</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>Flight booking and hotel reservations</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>Tour packages and Africa experiences</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>Corporate ticketing and business travel</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg>Partnerships and institutional mobility support</li>
     </ul>
 
     <div class="whatwedo__actions">
-
       <a href="/find-my-route" class="whatwedo__btn-primary">
         Explore More
-
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.4"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="M5 12h14M13 6l6 6-6 6"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-
-      <a href="/#services" class="whatwedo__btn-secondary">
-        View All Services
-      </a>
-
+      <a href="/#services" class="whatwedo__btn-secondary">View All Services</a>
     </div>
   </div>
 
   <div class="whatwedo__collage reveal">
-
-    <span
-      class="whatwedo__sparkle whatwedo__sparkle--1"
-      aria-hidden="true"
-    >
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 0c0 5-2 9-5 12 3 3 5 7 5 12 0-5 2-9 5-12-3-3-5-7-5-12z"/>
-      </svg>
+    <span class="whatwedo__sparkle whatwedo__sparkle--1" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c0 5-2 9-5 12 3 3 5 7 5 12 0-5 2-9 5-12-3-3-5-7-5-12z"/></svg>
+    </span>
+    <span class="whatwedo__sparkle whatwedo__sparkle--2" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c0 5-2 9-5 12 3 3 5 7 5 12 0-5 2-9 5-12-3-3-5-7-5-12z"/></svg>
     </span>
 
-    <span
-      class="whatwedo__sparkle whatwedo__sparkle--2"
-      aria-hidden="true"
-    >
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 0c0 5-2 9-5 12 3 3 5 7 5 12 0-5 2-9 5-12-3-3-5-7-5-12z"/>
-      </svg>
-    </span>
-
-    <img
-      class="whatwedo__photo whatwedo__photo--main"
-      src="https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/Holding_passport_with_Canada_lan%E2%80%A6_2K_20260910084130.jpeg"
-      alt="Family celebrating their approved Canada visa"
-      loading="lazy"
-    >
-
-    <img
-      class="whatwedo__photo whatwedo__photo--secondary"
-      src="https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/Woman_holding_visa_in_graduation%E2%80%A6_2K_20260910083620.jpeg"
-      alt="Graduate celebrating her approved study visa"
-      loading="lazy"
-    >
+    <img class="whatwedo__photo whatwedo__photo--main" src="https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/Holding_passport_with_Canada_lan%E2%80%A6_2K_20260910084130.jpeg" alt="Family celebrating their approved Canada visa" loading="lazy">
+    <img class="whatwedo__photo whatwedo__photo--secondary" src="https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/Woman_holding_visa_in_graduation%E2%80%A6_2K_20260910083620.jpeg" alt="Graduate celebrating her approved study visa" loading="lazy">
 
     <div class="whatwedo__badge" aria-hidden="true">
-
       <svg class="whatwedo__badge-ring" viewBox="0 0 100 100">
-
-        <path
-          id="whatwedoBadgeCircle"
-          fill="none"
-          d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-        />
-
-        <text
-          font-size="8.3"
-          font-weight="600"
-          letter-spacing="2.5"
-        >
-          <textPath
-            xlink:href="#whatwedoBadgeCircle"
-            href="#whatwedoBadgeCircle"
-            startOffset="0%"
-          >
-            TALK TO US • TALK TO US •
-          </textPath>
+        <path id="whatwedoBadgeCircle" fill="none" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/>
+        <text font-size="8.3" font-weight="600" letter-spacing="2.5">
+          <textPath xlink:href="#whatwedoBadgeCircle" href="#whatwedoBadgeCircle" startOffset="0%">TALK TO US • TALK TO US •</textPath>
         </text>
-
       </svg>
-
       <span class="whatwedo__badge-icon">
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.4"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="M5 12h14M13 6l6 6-6 6"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </span>
-
     </div>
   </div>
 </section>
 
-
-<!-- OUR APPROACH -->
 <section class="approach" id="our-approach">
-
   <div class="approach__intro reveal">
-
-    <div class="approach__kicker">
-      <span class="approach__kicker-dash"></span>
-      Our Approach
-    </div>
-
-    <h2 class="approach__title">
-      A Good Route Should Become Clearer At Every Step.
-    </h2>
-
+    <div class="approach__kicker"><span class="approach__kicker-dash"></span>Our Approach</div>
+    <h2 class="approach__title">A Good Route Should Become Clearer At Every Step.</h2>
   </div>
 
   <div class="approach__steps">
-
-    <svg
-      class="approach__rail"
-      viewBox="0 0 100 70"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M10,8 C20,8 20,62 30,62 C40,62 40,8 50,8 C60,8 60,62 70,62 C80,62 80,8 90,8"
-        fill="none"
-        stroke-linecap="round"
-      />
+    <svg class="approach__rail" viewBox="0 0 100 70" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M10,8 C20,8 20,62 30,62 C40,62 40,8 50,8 C60,8 60,62 70,62 C80,62 80,8 90,8" fill="none" stroke-linecap="round"/>
     </svg>
 
     <div class="approach__step reveal">
-
       <div class="approach__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 22V4"/>
-          <path d="M4 5h13l-2 3.5L17 12H4"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4"/><path d="M4 5h13l-2 3.5L17 12H4"/></svg>
         <span class="approach__num">01</span>
       </div>
-
-      <h3 class="approach__step-title">
-        Start With The Goal
-      </h3>
-
-      <p class="approach__step-text">
-        We begin with where you are and what you want to do.
-      </p>
-
+      <h3 class="approach__step-title">Start With The Goal</h3>
+      <p class="approach__step-text">We begin with where you are and what you want to do.</p>
       <span class="approach__divider" aria-hidden="true"></span>
-
     </div>
 
     <div class="approach__step reveal">
-
       <div class="approach__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="9"/>
-          <polygon points="15.5 8.5 13.2 13.2 8.5 15.5 10.8 10.8 15.5 8.5"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="15.5 8.5 13.2 13.2 8.5 15.5 10.8 10.8 15.5 8.5"/></svg>
         <span class="approach__num">02</span>
       </div>
-
-      <h3 class="approach__step-title">
-        Check Route Fit
-      </h3>
-
-      <p class="approach__step-text">
-        We compare the route against profile, budget, documents, timing,
-        and purpose.
-      </p>
-
+      <h3 class="approach__step-title">Check Route Fit</h3>
+      <p class="approach__step-text">We compare the route against profile, budget, documents, timing, and purpose.</p>
       <span class="approach__divider" aria-hidden="true"></span>
-
     </div>
 
     <div class="approach__step reveal">
-
       <div class="approach__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 18h6"/>
-          <path d="M10 22h4"/>
-          <path d="M12 2a7 7 0 0 0-4 12.7c.5.4.9 1 1 1.8v.5h6v-.5c.1-.8.5-1.4 1-1.8A7 7 0 0 0 12 2z"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.5.4.9 1 1 1.8v.5h6v-.5c.1-.8.5-1.4 1-1.8A7 7 0 0 0 12 2z"/></svg>
         <span class="approach__num">03</span>
       </div>
-
-      <h3 class="approach__step-title">
-        Explain The Gaps
-      </h3>
-
-      <p class="approach__step-text">
-        We surface what needs attention before the next payment or
-        application step.
-      </p>
-
+      <h3 class="approach__step-title">Explain The Gaps</h3>
+      <p class="approach__step-text">We surface what needs attention before the next payment or application step.</p>
       <span class="approach__divider" aria-hidden="true"></span>
-
     </div>
 
     <div class="approach__step reveal">
-
       <div class="approach__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14M13 6l6 6-6 6"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         <span class="approach__num">04</span>
       </div>
-
-      <h3 class="approach__step-title">
-        Support The Next Step
-      </h3>
-
-      <p class="approach__step-text">
-        We support the practical action that fits the route.
-      </p>
-
+      <h3 class="approach__step-title">Support The Next Step</h3>
+      <p class="approach__step-text">We support the practical action that fits the route.</p>
       <span class="approach__divider" aria-hidden="true"></span>
-
     </div>
 
     <div class="approach__step reveal">
-
       <div class="approach__icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 21s7.5-3.5 7.5-9V6l-7.5-3-7.5 3v6c0 5.5 7.5 9 7.5 9Z"/>
-          <path d="M9 12.2l2.1 2.1L15.5 10"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7.5-3.5 7.5-9V6l-7.5-3-7.5 3v6c0 5.5 7.5 9 7.5 9Z"/><path d="M9 12.2l2.1 2.1L15.5 10"/></svg>
         <span class="approach__num">05</span>
       </div>
-
-      <h3 class="approach__step-title">
-        Avoid False Guarantees
-      </h3>
-
-      <p class="approach__step-text">
-        We keep final decisions where they belong: with authorities,
-        schools, employers, airlines and partners.
-      </p>
-
+      <h3 class="approach__step-title">Avoid False Guarantees</h3>
+      <p class="approach__step-text">We keep final decisions where they belong: with authorities, schools, employers, airlines, and partners.</p>
       <span class="approach__divider" aria-hidden="true"></span>
-
     </div>
   </div>
 </section>
 
-
-<!-- FOOTER -->
 <footer class="site-footer">
-
   <div class="site-footer__main">
-
     <div class="site-footer__brand">
-
-      <img
-        src="https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/darklogo.png"
-        alt="Fly Connect Global"
-        class="site-footer__logo"
-      >
-
-      <p class="site-footer__location">
-        Lagos, Nigeria
-      </p>
-
+      <img src="https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/darklogo.png" alt="Fly Connect Global" class="site-footer__logo">
+      <p class="site-footer__location">Lagos, Nigeria</p>
       <div class="site-footer__social">
-
-        <a
-          href="#"
-          class="site-footer__social-link"
-          aria-label="LinkedIn"
-        >
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56z"/>
-          </svg>
+        <a href="#" class="site-footer__social-link" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56z"/></svg>
         </a>
-
-        <a
-          href="#"
-          class="site-footer__social-link"
-          aria-label="Instagram"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.8"
-          >
-            <rect x="3" y="3" width="18" height="18" rx="5"/>
-            <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.5" cy="6.5" r="1"/>
-          </svg>
+        <a href="#" class="site-footer__social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
         </a>
-
-        <a
-          href="#"
-          class="site-footer__social-link"
-          aria-label="Facebook"
-        >
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.55-1.5H16.7V3.7C16.4 3.66 15.4 3.58 14.24 3.58c-2.4 0-4.05 1.47-4.05 4.16V9.9H7.5V13h2.69v8z"/>
-          </svg>
+        <a href="#" class="site-footer__social-link" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.55-1.5H16.7V3.7C16.4 3.66 15.4 3.58 14.24 3.58c-2.4 0-4.05 1.47-4.05 4.16V9.9H7.5V13h2.69v8z"/></svg>
         </a>
-
-        <a
-          href="#"
-          class="site-footer__social-link"
-          aria-label="TikTok"
-        >
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M16.6 5.82c-.9-.85-1.4-2.04-1.4-3.32h-3.2v13.6c0 1.36-1.1 2.46-2.46 2.46a2.46 2.46 0 0 1-2.46-2.46 2.46 2.46 0 0 1 2.46-2.46c.27 0 .53.04.77.12V10.5a5.7 5.7 0 0 0-.77-.05A5.7 5.7 0 0 0 4 16.15 5.7 5.7 0 0 0 9.54 21.8a5.7 5.7 0 0 0 5.7-5.7V9.3a8.5 8.5 0 0 0 4.76 1.45V7.55c-1.1 0-2.12-.35-2.94-.94a5.2 5.2 0 0 1-.46-.79z"/>
-          </svg>
+        <a href="#" class="site-footer__social-link" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82c-.9-.85-1.4-2.04-1.4-3.32h-3.2v13.6c0 1.36-1.1 2.46-2.46 2.46a2.46 2.46 0 0 1-2.46-2.46 2.46 2.46 0 0 1 2.46-2.46c.27 0 .53.04.77.12V10.5a5.7 5.7 0 0 0-.77-.05A5.7 5.7 0 0 0 4 16.15 5.7 5.7 0 0 0 9.54 21.8a5.7 5.7 0 0 0 5.7-5.7V9.3a8.5 8.5 0 0 0 4.76 1.45V7.55c-1.1 0-2.12-.35-2.94-.94a5.2 5.2 0 0 1-.46-.79z"/></svg>
         </a>
-
       </div>
     </div>
 
     <div class="site-footer__col">
       <h3 class="site-footer__heading">Services</h3>
-
       <a href="/#services" class="site-footer__link">Study Abroad</a>
       <a href="/#services" class="site-footer__link">Work &amp; Relocate</a>
       <a href="/#services" class="site-footer__link">Visit &amp; Tourism</a>
@@ -798,7 +296,6 @@
 
     <div class="site-footer__col">
       <h3 class="site-footer__heading">Company</h3>
-
       <a href="/about" class="site-footer__link">About</a>
       <a href="/partner" class="site-footer__link">Partner</a>
       <a href="/contact" class="site-footer__link">Contact</a>
@@ -806,34 +303,19 @@
 
     <div class="site-footer__col">
       <h3 class="site-footer__heading">Get Started</h3>
-
-      <a href="/find-my-route" class="site-footer__link">
-        Find My Route
-      </a>
+      <a href="/find-my-route" class="site-footer__link">Find My Route</a>
     </div>
-
   </div>
 
   <div class="site-footer__bottom">
-
-    <p class="site-footer__copyright">
-      All Rights Reserved. Fly Connect Global &copy; 2026
-    </p>
-
+    <p class="site-footer__copyright">All Rights Reserved. Fly Connect Global &copy; 2026</p>
     <div class="site-footer__bottom-links">
-      <a href="/privacy" class="site-footer__bottom-link">
-        Privacy Policy
-      </a>
-
-      <a href="/terms" class="site-footer__bottom-link">
-        Legal
-      </a>
+      <a href="/privacy" class="site-footer__bottom-link">Privacy Policy</a>
+      <a href="/terms" class="site-footer__bottom-link">Legal</a>
     </div>
-
   </div>
 </footer>
 
 <script src="script.js"></script>
-
 </body>
 </html>
