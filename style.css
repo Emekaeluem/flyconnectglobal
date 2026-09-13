@@ -3786,23 +3786,23 @@ body {
   position: relative;
   background: var(--navy-deep);
   border-radius: 24px;
-  padding: 28px 22px;
-  flex: 1;
+  padding: 22px 20px;
+  flex: 0.75;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .find-route__stat-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
   background: rgba(255,255,255,0.12);
   color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 .find-route__stat-icon svg {
@@ -3830,7 +3830,7 @@ body {
   border-radius: 24px;
   overflow: hidden;
   min-height: 200px;
-  flex: 1;
+  flex: 1.5;
 }
 
 .find-route__thumb img {
