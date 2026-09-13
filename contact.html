@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — Fly Connect Global</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-header">
+  <nav class="nav">
+    <a href="/" class="nav__logo">
+      <img src="https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/lightlogo.png" alt="Fly Connect Global">
+    </a>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav__menu" id="navMenu">
+      <a href="/" class="nav__link nav__link--plain">Home</a>
+      <a href="/#services" class="nav__link nav__link--plain">Services</a>
+      <a href="/about" class="nav__link nav__link--plain">About</a>
+      <a href="/contact" class="nav__link nav__link--plain">Contact</a>
+      <a href="/partner" class="nav__link nav__link--plain">Partner</a>
+
+      <a href="/find-my-route" class="nav__cta nav__cta--mobile">Find My Route</a>
+    </div>
+
+    <a href="/find-my-route" class="nav__cta">Find My Route</a>
+  </nav>
+</div>
+
+<section class="contact-hero">
+  <div class="contact-hero__inner">
+    <span class="contact-hero__badge">Get In Touch</span>
+
+    <div class="contact-hero__row">
+      <h1 class="contact-hero__title">Contact Us</h1>
+      <p class="contact-hero__subtitle">Tell us about your goals and where you&rsquo;d like to go, and we&rsquo;ll respond with clear next steps within 24 hours.</p>
+    </div>
+
+    <div class="contact-hero__grid">
+      <form class="contact-form">
+        <div class="contact-form__row">
+          <div class="contact-form__field">
+            <label for="cfName">Name</label>
+            <input type="text" id="cfName" name="name" placeholder="Your full name">
+          </div>
+          <div class="contact-form__field">
+            <label for="cfEmail">Email</label>
+            <input type="email" id="cfEmail" name="email" placeholder="you@example.com">
+          </div>
+        </div>
+
+        <div class="contact-form__row">
+          <div class="contact-form__field">
+            <label for="cfPhone">Phone / WhatsApp Number</label>
+            <input type="tel" id="cfPhone" name="phone" placeholder="+234 800 000 0000">
+          </div>
+          <div class="contact-form__field">
+            <label for="cfService">Select Your Service</label>
+            <select id="cfService" name="service">
+              <option value="" selected disabled>Choose a service&hellip;</option>
+              <option>Study Abroad</option>
+              <option>Work Visa</option>
+              <option>Tourist Visa</option>
+              <option>Business Travel</option>
+              <option>Partnership Enquiry</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="contact-form__row">
+          <div class="contact-form__field">
+            <label for="cfDate">Preferred Consultation Date</label>
+            <input type="date" id="cfDate" name="date">
+          </div>
+          <div class="contact-form__field">
+            <label for="cfApplicants">Number of Applicants</label>
+            <input type="text" id="cfApplicants" name="applicants" placeholder="e.g. 1 adult, 2 children">
+          </div>
+        </div>
+
+        <div class="contact-form__field contact-form__field--full">
+          <label for="cfMessage">Message / Additional Details</label>
+          <textarea id="cfMessage" name="message" rows="4" placeholder="Anything else we should know?"></textarea>
+        </div>
+
+        <div class="contact-form__actions">
+          <button type="submit" class="contact-form__submit">Send Enquiry</button>
+          <button type="submit" class="contact-form__submit-icon" aria-label="Send enquiry">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </button>
+        </div>
+      </form>
+
+      <div class="contact-hero__media">
+        <img src="https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/landmark.jpeg" alt="Traveller starting their journey" loading="lazy">
+        <span class="contact-hero__media-badge">Your Journey</span>
+      </div>
+    </div>
+
+    <div class="contact-info">
+      <div class="contact-info__item">
+        <span class="contact-info__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </span>
+        <h3>Call &amp; WhatsApp</h3>
+        <p>+234 000 000 0000<br>Add your second line here</p>
+      </div>
+
+      <div class="contact-info__item">
+        <span class="contact-info__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </span>
+        <h3>Working Hours</h3>
+        <p>Mon&ndash;Fri: 9am&ndash;5pm<br>Weekends: Closed</p>
+      </div>
+
+      <div class="contact-info__item">
+        <span class="contact-info__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+        </span>
+        <h3>Write to Us</h3>
+        <p>info@flyconnectglobal.com<br>booking@flyconnectglobal.com</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="offices">
+  <div class="offices__card">
+    <span class="offices__badge">Our Offices</span>
+    <h2 class="offices__title">Where To Find Us.</h2>
+
+    <div class="offices__grid">
+      <div class="offices__item">
+        <span class="offices__label">Global Headquarters</span>
+        <h3 class="offices__city">United States</h3>
+        <p class="offices__address">8 The Green, Suite A, Dover, Delaware 19901, United States of America</p>
+      </div>
+
+      <div class="offices__item">
+        <span class="offices__label">Nigeria Head Office</span>
+        <h3 class="offices__city">Lagos</h3>
+        <p class="offices__address">10 Ayanboye Street, Off Faramobi Street, Anthony Village, Lagos State, Nigeria</p>
+      </div>
+
+      <div class="offices__item">
+        <span class="offices__label">Branch Office</span>
+        <h3 class="offices__city">Abeokuta</h3>
+        <p class="offices__address">Olatunde House, Sapon-Omida Road, opposite St. Anne&rsquo;s Catholic Church, Beside Airtel Office, Ijeja Junction, Abeokuta, Ogun State, Nigeria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="site-footer__main">
+    <div class="site-footer__brand">
+      <img src="https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/darklogo.png" alt="Fly Connect Global" class="site-footer__logo">
+      <p class="site-footer__location">Lagos, Nigeria</p>
+      <div class="site-footer__social">
+        <a href="#" class="site-footer__social-link" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56z"/></svg>
+        </a>
+        <a href="#" class="site-footer__social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+        <a href="#" class="site-footer__social-link" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.55-1.5H16.7V3.7C16.4 3.66 15.4 3.58 14.24 3.58c-2.4 0-4.05 1.47-4.05 4.16V9.9H7.5V13h2.69v8z"/></svg>
+        </a>
+        <a href="#" class="site-footer__social-link" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82c-.9-.85-1.4-2.04-1.4-3.32h-3.2v13.6c0 1.36-1.1 2.46-2.46 2.46a2.46 2.46 0 0 1-2.46-2.46 2.46 2.46 0 0 1 2.46-2.46c.27 0 .53.04.77.12V10.5a5.7 5.7 0 0 0-.77-.05A5.7 5.7 0 0 0 4 16.15 5.7 5.7 0 0 0 9.54 21.8a5.7 5.7 0 0 0 5.7-5.7V9.3a8.5 8.5 0 0 0 4.76 1.45V7.55c-1.1 0-2.12-.35-2.94-.94a5.2 5.2 0 0 1-.46-.79z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="site-footer__col">
+      <h3 class="site-footer__heading">Services</h3>
+      <a href="/#services" class="site-footer__link">Study Abroad</a>
+      <a href="/#services" class="site-footer__link">Work &amp; Relocate</a>
+      <a href="/#services" class="site-footer__link">Visit &amp; Tourism</a>
+      <a href="/#services" class="site-footer__link">Book A Flight</a>
+      <a href="/#services" class="site-footer__link">Business &amp; Investment</a>
+      <a href="/#services" class="site-footer__link">Leadership &amp; Exchange</a>
+    </div>
+
+    <div class="site-footer__col">
+      <h3 class="site-footer__heading">Company</h3>
+      <a href="/about" class="site-footer__link">About</a>
+      <a href="/partner" class="site-footer__link">Partner</a>
+      <a href="/contact" class="site-footer__link">Contact</a>
+    </div>
+
+    <div class="site-footer__col">
+      <h3 class="site-footer__heading">Get Started</h3>
+      <a href="/find-my-route" class="site-footer__link">Find My Route</a>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">
+    <p class="site-footer__copyright">All Rights Reserved. Fly Connect Global &copy; 2026</p>
+    <div class="site-footer__bottom-links">
+      <a href="/privacy" class="site-footer__bottom-link">Privacy Policy</a>
+      <a href="/terms" class="site-footer__bottom-link">Legal</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
