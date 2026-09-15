@@ -4163,6 +4163,10 @@ body {
   display: block;
 }
 
+.our-team__photo--flip {
+  transform: scaleX(-1);
+}
+
 .our-team__overlay {
   position: absolute;
   inset: 0;
