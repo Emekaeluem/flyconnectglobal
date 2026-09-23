@@ -3654,7 +3654,7 @@ body {
 
 .find-route__inner {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr 0.5fr;
+  grid-template-columns: 1fr 1fr;
   gap: 28px;
   align-items: stretch;
   max-width: 1080px;
@@ -3769,12 +3769,13 @@ body {
 }
 
 .find-route__photo {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 1;
-  height: 98%;
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* ---------- Right: stat card + small photo, stacked ---------- */
