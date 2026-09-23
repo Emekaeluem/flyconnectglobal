@@ -384,8 +384,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 24px;
-  padding: 56px 6vw;
+  gap: 16px;
+  padding: 36px 6vw;
 }
 
 .mission__card {
@@ -393,7 +393,7 @@ body {
   z-index: 1;
   background: #FAFBFE;
   border-radius: 20px;
-  padding: 34px 30px;
+  padding: 24px 28px;
   box-shadow: 0 24px 48px rgba(11,27,86,0.09), 0 6px 16px rgba(11,27,86,0.05);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -412,7 +412,7 @@ body {
   border-radius: 50%;
   background: rgba(254,189,0,0.14);
   color: var(--gold);
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 .mission__icon svg {
@@ -451,7 +451,8 @@ body {
   pointer-events: none;
 }
 
-.mission__video-el {
+.mission__video-el,
+.mission__image-el {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -466,7 +467,7 @@ body {
   }
 
   .mission__cards {
-    padding: 64px 6vw 40px;
+    padding: 48px 6vw 32px;
   }
 
   .mission__video {
@@ -476,12 +477,12 @@ body {
 
 @media (max-width: 640px) {
   .mission__cards {
-    padding: 48px 6vw 32px;
-    gap: 18px;
+    padding: 38px 6vw 28px;
+    gap: 14px;
   }
 
   .mission__card {
-    padding: 26px 22px;
+    padding: 22px 20px;
   }
 
   .mission__video {
@@ -2567,6 +2568,7 @@ body {
   border-radius: 120px 28px 28px 28px;
   border: 6px solid var(--white);
   z-index: 2;
+  filter: grayscale(0) contrast(1.02);
 }
 
 .whatwedo__sparkle {
