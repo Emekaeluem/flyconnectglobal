@@ -4255,242 +4255,153 @@ body {
 }
 
 
-/* ================================================
-   About page — Our Way of Doing Things (arrow-driven card carousel)
-   ================================================ */
-.way-carousel {
-  background: #f4f5f9;
-  padding: 48px 5vw 56px;
-}
-
-.way-carousel__left {
+/* About page — our four-step journey over a soft world map */
+.way-map {
   position: relative;
-  max-width: 1300px;
-  margin: 0 auto;
-  min-height: 460px;
-  border-radius: 32px;
   overflow: hidden;
-  background: var(--navy-deep);
-  display: flex;
+  padding: clamp(72px, 7vw, 108px) 5vw 90px;
+  background: radial-gradient(circle at 50% 55%, #fff 0%, #f5faff 76%, #f0f6fc 100%);
 }
 
-.way-carousel__bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.6;
-}
-
-.way-carousel__left-content {
+.way-map__intro {
   position: relative;
-  z-index: 1;
-  width: 46%;
-  display: flex;
-  flex-direction: column;
-  padding: clamp(28px, 3.5vw, 48px);
-}
-
-.way-carousel__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  width: max-content;
-  padding: 8px 16px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.85);
-  color: var(--navy-deep);
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  font-weight: 600;
-  margin-bottom: 32px;
-}
-
-.way-carousel__badge span {
-  display: block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--gold);
-}
-
-.way-carousel__headline {
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: clamp(1.9rem, 3.4vw, 2.7rem);
-  line-height: 1.15;
-  color: var(--white);
-  flex: 1;
-}
-
-.way-carousel__nav {
-  display: flex;
-  gap: 12px;
-  margin-top: 24px;
-}
-
-.way-carousel__arrow {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255,255,255,0.18);
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.way-carousel__arrow:hover {
-  transform: translateY(-2px);
-}
-
-.way-carousel__arrow--active {
-  background: var(--white);
-  color: var(--navy-deep);
-}
-
-.way-carousel__arrow svg {
-  width: 18px;
-  height: 18px;
-}
-
-.way-carousel__right {
-  position: absolute;
-  top: 40px;
-  right: 40px;
-  bottom: 40px;
-  width: 46%;
-  z-index: 1;
-}
-
-.way-carousel__card {
-  height: 100%;
-  background: var(--white);
-  border-radius: 24px;
-  padding: clamp(28px, 3vw, 44px);
-  box-shadow: 0 30px 70px rgba(6,13,46,0.25);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  z-index: 2;
+  max-width: 740px;
+  margin: 0 auto 24px;
   text-align: center;
 }
 
-.way-carousel__line {
-  height: 3px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--navy) 0%, var(--gold) 100%);
-  margin-bottom: 28px;
-}
-
-.way-carousel__step-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 22px;
-}
-
-.way-carousel__step-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  background: rgba(254,189,0,0.14);
-  color: var(--gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 18px rgba(11,27,86,0.08);
-}
-
-.way-carousel__step-icon svg {
-  width: 19px;
-  height: 19px;
-}
-
-.way-carousel__step-label {
-  font-family: var(--sans);
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--navy-deep);
-}
-
-.way-carousel__step-title {
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: clamp(1.3rem, 2vw, 1.7rem);
-  line-height: 1.2;
-  color: var(--navy-deep);
+.way-map__eyebrow {
+  display: inline-block;
   margin-bottom: 16px;
-}
-
-.way-carousel__step-text {
   font-family: var(--sans);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: rgba(6,13,46,0.6);
-  margin-bottom: 26px;
+  color: var(--navy);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
-.way-carousel__btn {
+.way-map__intro h2 {
+  font-family: var(--display);
+  color: var(--navy-deep);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.13;
+}
+
+.way-map__scene {
+  position: relative;
+  max-width: 1360px;
+  height: 690px;
+  margin: 0 auto;
+}
+
+.way-map__world {
+  position: absolute;
+  inset: 16px 0 0;
+  width: 100%;
+  height: calc(100% - 16px);
+  object-fit: contain;
+  opacity: 0.95;
+  pointer-events: none;
+  user-select: none;
+}
+
+.way-map__pin {
+  position: absolute;
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 12px rgba(255,190,0,0.15), 0 0 0 25px rgba(255,190,0,0.07);
+}
+.way-map__pin--one { top: 39%; left: 24%; }
+.way-map__pin--two { top: 34%; right: 26%; }
+.way-map__pin--three { bottom: 25%; left: 43%; }
+.way-map__pin--four { bottom: 20%; right: 17%; }
+
+.way-map__cards { position: relative; z-index: 2; height: 100%; }
+.way-map__card {
+  position: absolute;
+  width: min(320px, 25%);
+  min-height: 218px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 26px 22px;
+  border: 1px solid rgba(221,231,240,0.9);
+  border-radius: 22px;
+  background: rgba(255,255,255,0.97);
+  box-shadow: 0 20px 50px rgba(15,38,72,0.11), 0 3px 10px rgba(15,38,72,0.04);
+}
+.way-map__card--one { top: 3%; left: 4%; }
+.way-map__card--two { top: 4%; right: 3%; }
+.way-map__card--three { bottom: 4%; left: 17%; }
+.way-map__card--four { bottom: 3%; right: 10%; }
+
+.way-map__step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--navy-deep);
+}
+.way-map__step-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  background: #fff4cd;
+  color: #a57100;
+  font-size: 0.78rem;
+}
+.way-map__card h3 {
+  margin: 16px 0 8px;
+  font-family: var(--display);
+  color: var(--navy-deep);
+  font-size: clamp(1.1rem, 1.55vw, 1.35rem);
+  line-height: 1.18;
+}
+.way-map__card p {
+  margin: 0 0 17px;
+  color: #607187;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+.way-map__card a {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  align-self: center;
+  gap: 7px;
+  width: fit-content;
+  margin-top: auto;
+  color: var(--navy);
   font-family: var(--sans);
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--white);
-  background: var(--navy-deep);
+  font-size: 0.85rem;
+  font-weight: 700;
   text-decoration: none;
-  padding: 14px 28px;
-  border-radius: 999px;
-  transition: transform 0.22s ease, background-color 0.22s ease;
 }
+.way-map__card a:hover,
+.way-map__card a:focus-visible { text-decoration: underline; }
 
-.way-carousel__btn:hover {
-  transform: translateY(-2px);
-  background: var(--navy);
+@media (max-width: 1050px) {
+  .way-map__scene { height: auto; }
+  .way-map__world { position: relative; inset: auto; display: block; height: auto; margin: 0 auto 16px; }
+  .way-map__pin { display: none; }
+  .way-map__cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .way-map__card { position: static; width: auto; min-height: 210px; }
 }
-
-/* Fade transition when the card content swaps */
-.way-carousel__card.is-swapping .way-carousel__step-header,
-.way-carousel__card.is-swapping .way-carousel__step-title,
-.way-carousel__card.is-swapping .way-carousel__step-text {
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-
-.way-carousel__step-header,
-.way-carousel__step-title,
-.way-carousel__step-text {
-  opacity: 1;
-  transition: opacity 0.25s ease;
-}
-
-@media (max-width: 900px) {
-  .way-carousel__left { flex-direction: column; min-height: 0; }
-  .way-carousel__left-content { width: 100%; padding: 32px 28px 200px; }
-  .way-carousel__right {
-    position: relative;
-    top: auto; right: auto; bottom: auto;
-    width: calc(100% - 56px);
-    margin: -170px 28px 28px;
-  }
-  .way-carousel__card { min-height: 320px; }
-}
-
-@media (max-width: 640px) {
-  .way-carousel { padding: 48px 6vw 56px; }
-  .way-carousel__left { border-radius: 24px; }
-  .way-carousel__left-content { padding: 28px 22px 220px; }
-  .way-carousel__headline { font-size: 1.6rem; }
-  .way-carousel__right { width: calc(100% - 40px); margin: -200px 20px 20px; }
-  .way-carousel__card { padding: 26px 22px; border-radius: 20px; }
+@media (max-width: 620px) {
+  .way-map { padding: 64px 6vw 72px; }
+  .way-map__intro { margin-bottom: 20px; }
+  .way-map__world { width: 115%; max-width: none; margin-left: -7.5%; }
+  .way-map__cards { grid-template-columns: 1fr; gap: 16px; }
+  .way-map__card { min-height: 0; padding: 22px; }
+  .way-map__card h3 { font-size: 1.25rem; }
 }
 
 /* ================================================
