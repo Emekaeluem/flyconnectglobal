@@ -650,36 +650,40 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Homepage package spotlight and portrait card list. */
   const lpSpotlight = document.getElementById('lpSpotlight');
   if (lpSpotlight) {
+    // Remove the previous text panel if an older homepage HTML is still deployed.
+    const legacyBody = lpSpotlight.querySelector(':scope > .live-products__spotlight-body');
+    const poster = lpSpotlight.querySelector('.live-products__spotlight-poster');
+    if (legacyBody && poster) {
+      const legacyDots = legacyBody.querySelector('#lpDots');
+      if (legacyDots) poster.appendChild(legacyDots);
+      legacyBody.remove();
+    }
     const packages = [
-      { image: 'images/Package1.jpeg', alt: 'Study in France without IELTS package poster', badge: 'Study Abroad · France', name: 'Study In France Without IELTS', desc: 'Explore bachelor’s and master’s study routes in France without IELTS. Check the entry details on the poster and let us review your profile.' },
-      { image: 'images/Package2.jpeg', alt: 'UK MRes study package poster', badge: 'Study Abroad · United Kingdom', name: 'Study In The UK With Your Dependants', desc: 'Explore the January 2027 MRes intake and the dependant route shown on this package poster. We can help you understand the academic and English language criteria.' },
-      { image: 'images/Package3.jpeg', alt: 'Finland study package poster', badge: 'Study Abroad · Finland', name: 'Study, Work & Build Your Future In Finland', desc: 'Discover bachelor’s and master’s study opportunities in Finland, with work and post-study options outlined on the poster.' },
-      { image: 'images/Package4.jpeg', alt: 'Qatar work visa package poster', badge: 'Work Abroad · Qatar', name: 'Live, Work & Earn In Qatar', desc: 'Explore a Qatar work visa route if you are ready to relocate. Review the requirements and fee shown on the poster, then speak to us about your next step.' },
-      { image: 'images/Package5.jpeg', alt: 'Morocco work visa package poster', badge: 'Work Abroad · Morocco', name: 'Live, Work & Earn In Morocco', desc: 'Explore a Morocco work visa route for skilled and unskilled applicants. See the documentation and fee details on the poster.' }
+      { image: 'images/Package1.jpeg', alt: 'Study in France without IELTS package poster' },
+      { image: 'images/Package2.jpeg', alt: 'UK MRes study package poster' },
+      { image: 'images/Package3.jpeg', alt: 'Finland study package poster' },
+      { image: 'images/Package4.jpeg', alt: 'Qatar work visa package poster' },
+      { image: 'images/Package5.jpeg', alt: 'Morocco work visa package poster' }
     ];
     const image = document.getElementById('lpImage');
-    const badge = document.getElementById('lpBadge');
-    const name = document.getElementById('lpName');
-    const desc = document.getElementById('lpDesc');
     const dots = [...document.querySelectorAll('#lpDots .live-products__spotlight-dot')];
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let current = 0;
-    let timer;
     let swapTimer;
 
     function render(index) {
       const offer = packages[index];
       image.src = offer.image;
       image.alt = offer.alt;
-      badge.textContent = offer.badge;
-      name.textContent = offer.name;
-      desc.textContent = offer.desc;
+      dots.forEach(dot => dot.classList.remove('is-active'));
       dots.forEach((dot, i) => {
-        dot.classList.toggle('is-active', i === index);
         dot.classList.toggle('is-done', i < index);
         if (i === index) dot.setAttribute('aria-current', 'true');
         else dot.removeAttribute('aria-current');
       });
+      // Restart the yellow line even when the current poster is selected again.
+      void dots[index].offsetWidth;
+      dots[index].classList.add('is-active');
     }
 
     function show(index) {
@@ -692,25 +696,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }, reduceMotion.matches ? 0 : 150);
     }
 
-    function stop() { clearInterval(timer); }
-    function start() {
-      stop();
-      if (!reduceMotion.matches && !lpSpotlight.matches(':hover, :focus-within')) {
-        timer = setInterval(() => show(current + 1), 5500);
-      }
-    }
-
-    dots.forEach((dot, index) => dot.addEventListener('click', () => {
-      show(index);
-      start();
-    }));
-    lpSpotlight.addEventListener('mouseenter', stop);
-    lpSpotlight.addEventListener('mouseleave', start);
-    lpSpotlight.addEventListener('focusin', stop);
-    lpSpotlight.addEventListener('focusout', () => setTimeout(start, 0));
-    reduceMotion.addEventListener('change', start);
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => show(index));
+      dot.querySelector('i').addEventListener('animationend', () => {
+        if (dot.classList.contains('is-active') && !reduceMotion.matches) show(current + 1);
+      });
+    });
     render(0);
-    start();
   }
 
   const lpTrack = document.getElementById('lpTrack');
@@ -730,10 +722,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (first && duplicate) {
         lpTrack.style.setProperty('--lp-scroll-distance', `${duplicate.offsetTop - first.offsetTop}px`);
       }
+      lpScroll.style.height = window.innerWidth > 900 && lpSpotlight
+        ? `${lpSpotlight.offsetHeight}px`
+        : '';
     }
     measure();
     window.addEventListener('load', measure);
     window.addEventListener('resize', measure);
+    if (window.ResizeObserver && lpSpotlight) new ResizeObserver(measure).observe(lpSpotlight);
     lpTrack.addEventListener('mouseenter', () => { lpTrack.style.animationPlayState = 'paused'; });
     lpTrack.addEventListener('mouseleave', () => { lpTrack.style.animationPlayState = 'running'; });
     lpScroll.addEventListener('focusin', () => { lpTrack.style.animationPlayState = 'paused'; });
