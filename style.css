@@ -4996,17 +4996,18 @@ body {
 }
 .live-products__spotlight {
   position: relative;
+  align-self: start;
   min-width: 0;
   border-radius: 24px;
   overflow: hidden;
-  background: var(--navy-deep);
+  background: transparent;
   box-shadow: 0 20px 55px rgba(11,27,86,.09);
 }
 .live-products__spotlight-poster {
   position: relative;
   aspect-ratio: 3 / 4;
   width: 100%;
-  background: var(--navy-deep);
+  background: #fff;
   overflow: hidden;
 }
 .live-products__spotlight-media {
@@ -5089,8 +5090,7 @@ body {
 .live-products__spotlight.is-swapping .live-products__spotlight-media { opacity: .2; }
 .live-products__scroll {
   min-width: 0;
-  height: 100%;
-  max-height: 880px;
+  height: 570px; /* Three 178px cards and two 18px gaps. */
   overflow: hidden;
   position: relative;
   -webkit-mask-image: linear-gradient(to bottom,transparent,black 3%,black 97%,transparent);
@@ -5105,15 +5105,15 @@ body {
 @keyframes liveProductsScroll { to { transform: translateY(calc(-1 * var(--lp-scroll-distance, 0px))); } }
 .live-products__item {
   flex: 0 0 auto;
+  height: 178px;
   display: flex;
-  min-height: 205px;
   background: #fff;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 15px 32px rgba(11,27,86,.065);
 }
 .live-products__item-media {
-  flex: 0 0 155px;
+  flex: 0 0 132px;
   aspect-ratio: 3 / 4;
   background: #f8f9fc;
 }
@@ -5130,7 +5130,7 @@ body {
   align-items: flex-start;
   justify-content: center;
   min-width: 0;
-  padding: 18px clamp(16px,2vw,28px);
+  padding: 12px clamp(14px,1.8vw,24px);
 }
 .live-products__item-label { margin-bottom: 7px; }
 .live-products__item-name {
@@ -5150,16 +5150,16 @@ body {
 @media (max-width: 900px) {
   .live-products__layout { grid-template-columns: minmax(0,1fr); justify-items: center; }
   .live-products__spotlight { width: min(100%,440px); }
-  .live-products__scroll { width: 100%; height: 520px; }
+  .live-products__scroll { width: 100%; }
 }
 @media (max-width: 600px) {
   .live-products { padding: 44px 0 58px; }
   .live-products__ticker { margin-bottom: 34px; }
   .live-products__inner { padding: 0 18px; }
   .live-products__spotlight { width: min(100%,420px); }
-  .live-products__scroll { height: 480px; }
-  .live-products__item { min-height: 178px; }
-  .live-products__item-media { flex-basis: 132px; }
+  .live-products__scroll { height: 606px; }
+  .live-products__item { height: 190px; }
+  .live-products__item-media { flex-basis: 142px; }
   .live-products__item-body { padding: 13px; }
   .live-products__item-desc { font-size: .76rem; margin-bottom: 8px; }
   .live-products__item-name { font-size: .96rem; }
