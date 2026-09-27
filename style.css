@@ -5378,3 +5378,133 @@ body {
 .sv-services-journey .way-map__card:nth-child(2) .way-map__card-icon { color: #1b63a5; background: linear-gradient(145deg,#e1eefc,#f5f9ff); }
 .sv-services-journey .way-map__card:nth-child(3) .way-map__card-icon { color: #b98300; background: linear-gradient(145deg,#fff1ce,#fffaf0); }
 .sv-services-journey .way-map__card:nth-child(4) .way-map__card-icon { color: #245e9c; background: linear-gradient(145deg,#e3f0fc,#f5faff); }
+
+/* Services image and responsive layout corrections */
+.services-page .sv-hero {
+  min-height: max(720px, 100svh);
+}
+.services-page .sv-hero__inner {
+  min-height: max(720px, 100svh);
+}
+.services-page .sv-hero__person {
+  bottom: 0;
+  right: 0;
+  height: min(690px, 69vh);
+  max-height: calc(100% - 24px);
+  max-width: 100%;
+  object-fit: contain;
+  object-position: bottom right;
+}
+.services-page .sv-hero__float--two { bottom: 12%; }
+.services-page .sv-why__visual {
+  width: min(100%, 520px);
+  height: auto;
+  aspect-ratio: 2 / 3;
+  margin-inline: auto;
+  background: #e5f0fb;
+}
+.services-page .sv-why__visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+.services-page .sv-expertise__visual {
+  width: min(100%, 560px);
+  margin-inline: auto;
+}
+.services-page .sv-expertise__visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1122 / 1402;
+  object-fit: contain;
+  object-position: center;
+}
+.services-page .sv-final img {
+  height: min(100%, 345px);
+  width: auto;
+  max-width: 43%;
+  bottom: 0;
+  right: 3%;
+  object-fit: contain;
+  object-position: bottom right;
+}
+@media (min-width: 1100px) {
+  .services-page .sv-hero__inner { grid-template-columns: minmax(0, 52%) minmax(0, 48%); }
+  .services-page .sv-hero__copy { max-width: 700px; }
+  .services-page .sv-hero__visual { min-width: 0; }
+}
+@media (max-width: 1099px) {
+  .services-page .sv-hero h1 { font-size: clamp(3rem, 5.8vw, 4.9rem); }
+  .services-page .sv-hero__inner { grid-template-columns: 53% 47%; }
+  .services-page .sv-hero__person { height: min(600px, 65vh); right: 0; }
+  .services-page .sv-why__grid { grid-template-columns: minmax(0, 44%) minmax(0, 1fr); gap: 6%; }
+  .services-page .sv-expertise { grid-template-columns: minmax(0, 1fr) minmax(0, 46%); gap: 6%; }
+}
+@media (max-width: 767px) {
+  .services-page .sv-hero, .services-page .sv-hero__inner {
+    min-height: max(875px, 100svh);
+  }
+  .services-page .sv-hero__inner {
+    display: block;
+    padding: 112px 6vw 390px;
+  }
+  .services-page .sv-hero__copy { max-width: 600px; padding: 0; }
+  .services-page .sv-hero h1 {
+    font-size: clamp(2.7rem, 9.5vw, 4.4rem);
+    line-height: 1.03;
+    margin: 16px 0;
+  }
+  .services-page .sv-hero__copy > p { font-size: .97rem; line-height: 1.55; }
+  .services-page .sv-hero__actions { margin-top: 22px; gap: 16px; }
+  .services-page .sv-hero__proof { margin-top: 28px; }
+  .services-page .sv-hero__visual {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 390px;
+    min-height: 0;
+  }
+  .services-page .sv-hero__person {
+    height: min(410px, 98vw);
+    max-height: 100%;
+    max-width: 94vw;
+    right: 3%;
+    bottom: 0;
+  }
+  .services-page .sv-hero__halo { width: min(380px, 98vw); right: 0; top: 0; }
+  .services-page .sv-why__grid, .services-page .sv-expertise { display: block; }
+  .services-page .sv-why__visual { max-width: 480px; }
+  .services-page .sv-why__list { margin-top: 50px; }
+  .services-page .sv-expertise__visual { max-width: 480px; margin-top: 44px; }
+  .services-page .sv-final { min-height: 630px; padding-bottom: 300px; }
+  .services-page .sv-final__copy { width: 100%; max-width: 540px; }
+  .services-page .sv-final img {
+    width: auto;
+    height: 300px;
+    max-width: min(86%, 400px);
+    bottom: 0;
+    right: 0;
+  }
+}
+@media (max-width: 480px) {
+  .services-page .sv-hero, .services-page .sv-hero__inner { min-height: 850px; }
+  .services-page .sv-hero__inner { padding: 104px 6vw 330px; }
+  .services-page .sv-hero h1 { font-size: clamp(2.45rem, 11vw, 3.35rem); }
+  .services-page .sv-hero__copy > p { font-size: .91rem; max-width: 330px; }
+  .services-page .sv-hero__actions { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .services-page .sv-hero__proof { margin-top: 24px; }
+  .services-page .sv-hero__visual { height: 330px; }
+  .services-page .sv-hero__person { height: 325px; max-width: 100%; right: 0; }
+  .services-page .sv-service-grid { grid-template-columns: 1fr; }
+  .services-page .sv-card { min-height: 0; }
+  .services-page .sv-why__visual { width: 100%; }
+  .services-page .sv-why__badge { left: 8px; right: 8px; text-align: center; }
+  .services-page .sv-expertise__visual img { width: 100%; }
+  .services-page .sv-expertise__label { left: 4%; right: 4%; white-space: normal; }
+  .services-page .sv-final { min-height: 620px; padding-top: 38px; padding-bottom: 270px; }
+  .services-page .sv-final img { height: 265px; max-width: 95%; }
+}
