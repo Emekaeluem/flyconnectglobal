@@ -722,14 +722,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (first && duplicate) {
         lpTrack.style.setProperty('--lp-scroll-distance', `${duplicate.offsetTop - first.offsetTop}px`);
       }
-      lpScroll.style.height = window.innerWidth > 900 && lpSpotlight
-        ? `${lpSpotlight.offsetHeight}px`
-        : '';
     }
     measure();
     window.addEventListener('load', measure);
     window.addEventListener('resize', measure);
-    if (window.ResizeObserver && lpSpotlight) new ResizeObserver(measure).observe(lpSpotlight);
     lpTrack.addEventListener('mouseenter', () => { lpTrack.style.animationPlayState = 'paused'; });
     lpTrack.addEventListener('mouseleave', () => { lpTrack.style.animationPlayState = 'running'; });
     lpScroll.addEventListener('focusin', () => { lpTrack.style.animationPlayState = 'paused'; });
