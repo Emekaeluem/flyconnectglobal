@@ -647,108 +647,104 @@ document.addEventListener('DOMContentLoaded', () => {
     applyScrollState();
   }
 
-  /* ---------- Homepage: Live Products spotlight — auto-advances on
-     its own, "status/stories" style, through the products below.
-     PLACEHOLDER CONTENT — edit the `products` array whenever a
-     package is added, changed, or removed; nothing else needs to
-     change. The static cards to the right are separate HTML, edited
-     directly in index.html. ---------- */
+  /* Homepage package spotlight and portrait card list. */
   const lpSpotlight = document.getElementById('lpSpotlight');
   if (lpSpotlight) {
-    const products = [
-      {
-        image: 'https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/pimage1.jpg',
-        badge: 'Package 01',
-        name: 'Package Name Here',
-        desc: "Add a short description of what this package includes, who it's for, and what makes it worth choosing — this whole card is placeholder content, ready to be swapped for a real, current offer.",
-        ctaLink: '/find-my-route'
-      },
-      {
-        image: 'https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/pimage9.jpg',
-        badge: 'Package 02',
-        name: 'Second Package Name',
-        desc: 'Replace this with the real details of your second live package — pricing, inclusions, and who it suits best.',
-        ctaLink: '/find-my-route'
-      },
-      {
-        image: 'https://raw.githubusercontent.com/Emekaeluem/flyconnectglobal/main/images/pimage6.jpg',
-        badge: 'Package 03',
-        name: 'Third Package Name',
-        desc: 'Replace this with the real details of your third live package.',
-        ctaLink: '/find-my-route'
-      }
+    const packages = [
+      { image: 'images/Package1.jpeg', alt: 'Study in France without IELTS package poster', badge: 'Study Abroad · France', name: 'Study In France Without IELTS', desc: 'Explore bachelor’s and master’s study routes in France without IELTS. Check the entry details on the poster and let us review your profile.' },
+      { image: 'images/Package2.jpeg', alt: 'UK MRes study package poster', badge: 'Study Abroad · United Kingdom', name: 'Study In The UK With Your Dependants', desc: 'Explore the January 2027 MRes intake and the dependant route shown on this package poster. We can help you understand the academic and English language criteria.' },
+      { image: 'images/Package3.jpeg', alt: 'Finland study package poster', badge: 'Study Abroad · Finland', name: 'Study, Work & Build Your Future In Finland', desc: 'Discover bachelor’s and master’s study opportunities in Finland, with work and post-study options outlined on the poster.' },
+      { image: 'images/Package4.jpeg', alt: 'Qatar work visa package poster', badge: 'Work Abroad · Qatar', name: 'Live, Work & Earn In Qatar', desc: 'Explore a Qatar work visa route if you are ready to relocate. Review the requirements and fee shown on the poster, then speak to us about your next step.' },
+      { image: 'images/Package5.jpeg', alt: 'Morocco work visa package poster', badge: 'Work Abroad · Morocco', name: 'Live, Work & Earn In Morocco', desc: 'Explore a Morocco work visa route for skilled and unskilled applicants. See the documentation and fee details on the poster.' }
     ];
+    const image = document.getElementById('lpImage');
+    const badge = document.getElementById('lpBadge');
+    const name = document.getElementById('lpName');
+    const desc = document.getElementById('lpDesc');
+    const dots = [...document.querySelectorAll('#lpDots .live-products__spotlight-dot')];
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let current = 0;
+    let timer;
+    let swapTimer;
 
-    const lpImage = document.getElementById('lpImage');
-    const lpBadge = document.getElementById('lpBadge');
-    const lpName = document.getElementById('lpName');
-    const lpDesc = document.getElementById('lpDesc');
-    const lpCta = document.getElementById('lpCta');
-    const lpDots = Array.from(document.querySelectorAll('#lpDots .live-products__spotlight-dot'));
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    let lpIndex = 0;
-    let lpTimer = null;
-    const SLIDE_DURATION = 4500;
-
-    const renderSpotlight = (index) => {
-      const p = products[index];
-      lpImage.src = p.image;
-      lpBadge.textContent = p.badge;
-      lpName.textContent = p.name;
-      lpDesc.textContent = p.desc;
-      lpCta.href = p.ctaLink;
-    };
-
-    const updateDots = (activeIndex) => {
-      lpDots.forEach((dot, i) => {
-        dot.classList.remove('is-active', 'is-done');
-        const fill = dot.querySelector('i');
-        fill.style.animation = 'none';
-        fill.style.width = '';
-        if (i < activeIndex) dot.classList.add('is-done');
-        if (i === activeIndex) dot.classList.add('is-active');
+    function render(index) {
+      const offer = packages[index];
+      image.src = offer.image;
+      image.alt = offer.alt;
+      badge.textContent = offer.badge;
+      name.textContent = offer.name;
+      desc.textContent = offer.desc;
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === index);
+        dot.classList.toggle('is-done', i < index);
+        if (i === index) dot.setAttribute('aria-current', 'true');
+        else dot.removeAttribute('aria-current');
       });
-    };
+    }
 
-    const goToSpotlight = (index) => {
-      lpIndex = (index + products.length) % products.length;
+    function show(index) {
+      current = (index + packages.length) % packages.length;
+      clearTimeout(swapTimer);
       lpSpotlight.classList.add('is-swapping');
-      setTimeout(() => {
-        renderSpotlight(lpIndex);
+      swapTimer = setTimeout(() => {
+        render(current);
         lpSpotlight.classList.remove('is-swapping');
-      }, 150);
-      updateDots(lpIndex);
-    };
+      }, reduceMotion.matches ? 0 : 150);
+    }
 
-    const startAutoAdvance = () => {
-      stopAutoAdvance();
-      if (prefersReducedMotion) return;
-      lpTimer = setInterval(() => goToSpotlight(lpIndex + 1), SLIDE_DURATION);
-    };
+    function stop() { clearInterval(timer); }
+    function start() {
+      stop();
+      if (!reduceMotion.matches && !lpSpotlight.matches(':hover, :focus-within')) {
+        timer = setInterval(() => show(current + 1), 5500);
+      }
+    }
 
-    const stopAutoAdvance = () => {
-      if (lpTimer) clearInterval(lpTimer);
-    };
-
-    lpSpotlight.addEventListener('mouseenter', stopAutoAdvance);
-    lpSpotlight.addEventListener('mouseleave', startAutoAdvance);
-
-    renderSpotlight(0);
-    updateDots(0);
-    startAutoAdvance();
+    dots.forEach((dot, index) => dot.addEventListener('click', () => {
+      show(index);
+      start();
+    }));
+    lpSpotlight.addEventListener('mouseenter', stop);
+    lpSpotlight.addEventListener('mouseleave', start);
+    lpSpotlight.addEventListener('focusin', stop);
+    lpSpotlight.addEventListener('focusout', () => setTimeout(start, 0));
+    reduceMotion.addEventListener('change', start);
+    render(0);
+    start();
   }
 
-  /* ---------- Homepage: Live Products vertical track — continuous
-     seamless loop (CSS animation). Pausing on hover is the only JS
-     needed here; the loop itself is pure CSS. ---------- */
   const lpTrack = document.getElementById('lpTrack');
   if (lpTrack) {
-    lpTrack.addEventListener('mouseenter', () => {
-      lpTrack.style.animationPlayState = 'paused';
+    const lpScroll = lpTrack.parentElement;
+    const originalCards = [...lpTrack.children];
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    originalCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.querySelectorAll('a').forEach(link => { link.tabIndex = -1; });
+      lpTrack.appendChild(clone);
     });
-    lpTrack.addEventListener('mouseleave', () => {
-      lpTrack.style.animationPlayState = 'running';
-    });
+    function measure() {
+      const first = originalCards[0];
+      const duplicate = lpTrack.children[originalCards.length];
+      if (first && duplicate) {
+        lpTrack.style.setProperty('--lp-scroll-distance', `${duplicate.offsetTop - first.offsetTop}px`);
+      }
+    }
+    measure();
+    window.addEventListener('load', measure);
+    window.addEventListener('resize', measure);
+    lpTrack.addEventListener('mouseenter', () => { lpTrack.style.animationPlayState = 'paused'; });
+    lpTrack.addEventListener('mouseleave', () => { lpTrack.style.animationPlayState = 'running'; });
+    lpScroll.addEventListener('focusin', () => { lpTrack.style.animationPlayState = 'paused'; });
+    lpScroll.addEventListener('focusout', () => { lpTrack.style.animationPlayState = 'running'; });
+    function syncMotion() {
+      lpScroll.classList.toggle('is-static', reduceMotion.matches);
+      if (reduceMotion.matches) lpTrack.style.animationPlayState = 'paused';
+      else lpTrack.style.animationPlayState = '';
+    }
+    reduceMotion.addEventListener('change', syncMotion);
+    syncMotion();
   }
+
 });
