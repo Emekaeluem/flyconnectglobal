@@ -1924,7 +1924,7 @@ body {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: rgba(11,27,86,0.06);
+  background: #FFBE00;
   color: var(--navy-deep);
   display: flex;
   align-items: center;
@@ -1933,7 +1933,7 @@ body {
 }
 
 .site-footer__social-link:hover {
-  background: var(--gold);
+  background: #e5ab00;
   color: var(--navy-deep);
 }
 
