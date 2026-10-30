@@ -4,29 +4,51 @@
 
   if (document.querySelector(".fcai-shell")) return;
 
-  const svg = (path) => `
-    <svg viewBox="0 0 24 24"
-      fill="none" stroke="currentColor"
-      stroke-width="1.8"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      aria-hidden="true">${path}</svg>
-  `;
+  // Fly Connect Global official WhatsApp number
+  const WHATSAPP_NUMBER = "2349126756454";
 
-  const icons = {
-    chat: svg('<path d="M20 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-3.9-.9L3 21l1.9-4.6A8.5 8.5 0 1 1 20 11.5Z"/>'),
-    send: svg('<path d="m21 3-7.5 18-3.5-7.5L3 10l18-7ZM21 3 10 14"/>'),
-    plus: svg('<path d="M12 5v14M5 12h14"/>'),
-    close: svg('<path d="M6 6l12 12M18 6 6 18"/>'),
-    reset: svg('<path d="M3 12a9 9 0 1 0 2.6-6.4L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/>')
-  };
+  const WHATSAPP_MESSAGE =
+    "Hello Fly Connect Global! I visited your website and would like to speak with a travel consultant about your available packages.";
 
+  const icon = (name) => ({
+    chat: `<svg viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="1.8"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 11.5a8.5 8.5 0 0 1-8.5 8.5
+      9 9 0 0 1-3.9-.9L3 21l1.9-4.6A8.5 8.5
+      0 1 1 20 11.5Z"/></svg>`,
+
+    send: `<svg viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="1.8"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="m21 3-7.5 18-3.5-7.5L3 10l18-7Z
+      M21 3 10 14"/></svg>`,
+
+    plus: `<svg viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="1.8"
+      stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/></svg>`,
+
+    history: `<svg viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="1.8"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12a9 9 0 1 0 2.6-6.4L3 8"/>
+      <path d="M3 3v5h5M12 7v5l3 2"/></svg>`,
+
+    x: `<svg viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2"
+      stroke-linecap="round">
+      <path d="M6 6l12 12M18 6 6 18"/></svg>`
+  })[name];
+
+  // Create chat interface
   const root = document.createElement("div");
   root.className = "fcai-shell";
 
   root.innerHTML = `
-    <button class="fcai-launch" type="button">
-      ${icons.chat}
+    <button type="button" class="fcai-launch"
+      aria-label="Open Fly Connect Global chat">
+      ${icon("chat")}
       <span>Chat with Us</span>
     </button>
 
@@ -36,25 +58,32 @@
       aria-hidden="true">
 
       <header class="fcai-head">
+
         <button class="fcai-head-action fcai-close"
-          type="button" aria-label="Close">
-          ${icons.close}
+          type="button" aria-label="Close chat">
+          ${icon("x")}
         </button>
 
         <div class="fcai-identity">
-          <div class="fcai-brand-avatar">
-            FC<span class="fcai-brand-dot"></span>
+          <div class="fcai-brand-avatar"
+            aria-hidden="true">
+            FC
+            <span class="fcai-brand-dot"></span>
           </div>
+
           <strong>Fly Connect Global</strong>
           <small>Travel &amp; Study Consultation</small>
+
           <div class="fcai-disclosure">
             Automated chat · Human support available
           </div>
         </div>
 
         <button class="fcai-head-action fcai-reset"
-          type="button" aria-label="New conversation">
-          ${icons.reset}
+          type="button"
+          aria-label="Start a new conversation"
+          title="Start a new conversation">
+          ${icon("history")}
         </button>
       </header>
 
@@ -65,92 +94,129 @@
         <button type="button" class="fcai-lead-toggle">
           Request consultation
         </button>
+
         <button type="button" class="fcai-whatsapp">
           Speak on WhatsApp
         </button>
       </div>
 
-      <form class="fcai-lead">
+      <form class="fcai-lead" autocomplete="on">
         <strong>Request a consultation</strong>
-        <p>Our team would love to assist you.</p>
 
-        <input name="name" placeholder="Full name"
-          maxlength="100" autocomplete="name" required>
+        <p>
+          With your permission, our team can contact you.
+        </p>
 
-        <input name="phone" type="tel"
-          placeholder="WhatsApp number"
-          maxlength="25" autocomplete="tel" required>
+        <input
+          name="name"
+          placeholder="Full name"
+          aria-label="Full name"
+          autocomplete="name"
+          maxlength="100"
+          required
+        >
 
-        <input name="email" type="email"
+        <input
+          name="email"
+          type="email"
           placeholder="Email (optional)"
-          maxlength="150" autocomplete="email">
+          aria-label="Email (optional)"
+          autocomplete="email"
+          maxlength="150"
+        >
 
-        <input name="interest"
-          placeholder="Interested in, e.g. Study in Canada"
-          maxlength="150">
+        <input
+          name="phone"
+          type="tel"
+          placeholder="WhatsApp number"
+          aria-label="WhatsApp number"
+          autocomplete="tel"
+          maxlength="25"
+          required
+        >
+
+        <input
+          name="interest"
+          placeholder="Interested in, e.g. Canada study"
+          aria-label="Interest"
+          maxlength="150"
+        >
 
         <label>
           <input type="checkbox" name="consent" required>
-          I agree that Fly Connect Global may store my
+          I agree that Fly Connect Global may store these
           details and contact me about this enquiry.
         </label>
 
-        <button type="submit">Send enquiry</button>
+        <button type="submit">
+          Send enquiry
+        </button>
       </form>
 
       <div class="fcai-composer-wrap">
+
         <form class="fcai-inputbar">
-          <button class="fcai-add" type="button"
-            aria-label="Request consultation">
-            ${icons.plus}
+          <button class="fcai-add"
+            type="button"
+            aria-label="Request a consultation"
+            title="Request a consultation">
+            ${icon("plus")}
           </button>
-          <input placeholder="Type your message..."
+
+          <input
             aria-label="Type your message"
-            maxlength="1500" required>
-          <button class="fcai-send" type="submit"
-            aria-label="Send">
-            ${icons.send}
+            maxlength="1500"
+            placeholder="Type your message..."
+            required
+          >
+
+          <button class="fcai-send"
+            type="submit"
+            aria-label="Send message">
+            ${icon("send")}
           </button>
         </form>
+
         <div class="fcai-status" role="status"></div>
+
       </div>
     </section>
   `;
 
-  document.body.appendChild(root);
+  document.body.append(root);
 
   const panel = root.querySelector(".fcai-panel");
   const log = root.querySelector(".fcai-log");
   const inputForm = root.querySelector(".fcai-inputbar");
   const input = inputForm.querySelector("input");
   const send = root.querySelector(".fcai-send");
-  const lead = root.querySelector(".fcai-lead");
   const status = root.querySelector(".fcai-status");
-  const launcher = root.querySelector(".fcai-launch");
-
+  const lead = root.querySelector(".fcai-lead");
   const history = [];
 
   const welcome =
     "Hello! 👋 Welcome to Fly Connect Global. " +
-    "How can we help you today? Are you interested " +
-    "in studying abroad, working abroad, or travel services?";
+    "How can we help you today? Are you interested in " +
+    "studying abroad, working abroad, or exploring travel options?";
 
-  function timestamp() {
-    return new Date().toLocaleTimeString([], {
+  function time() {
+    return new Intl.DateTimeFormat(undefined, {
       hour: "numeric",
       minute: "2-digit"
-    });
+    }).format(new Date());
   }
 
+  // Display chat messages safely
   function say(role, message) {
-    const row = document.createElement("div");
-    row.className = "fcai-message-row " + role;
+    const wrap = document.createElement("div");
+    wrap.className = "fcai-message-row " + role;
 
     if (role === "bot") {
       const avatar = document.createElement("span");
       avatar.className = "fcai-mini-avatar";
+      avatar.setAttribute("aria-hidden", "true");
       avatar.textContent = "FC";
-      row.appendChild(avatar);
+      wrap.append(avatar);
     }
 
     const stack = document.createElement("div");
@@ -158,29 +224,34 @@
 
     const bubble = document.createElement("div");
     bubble.className = "fcai-msg " + role;
-
-    // textContent protects the interface from injected HTML.
     bubble.textContent = message;
 
-    const time = document.createElement("time");
-    time.className = "fcai-time";
-    time.textContent = timestamp();
+    const stamp = document.createElement("time");
+    stamp.className = "fcai-time";
+    stamp.textContent = time();
 
-    stack.append(bubble, time);
-    row.appendChild(stack);
-    log.appendChild(row);
+    stack.append(bubble, stamp);
+    wrap.append(stack);
 
+    log.append(wrap);
     log.scrollTop = log.scrollHeight;
   }
 
+  say("bot", welcome);
+
+  // Open or close chat
   function toggle(open) {
     panel.classList.toggle("fcai-open", open);
     panel.setAttribute("aria-hidden", String(!open));
 
-    if (open) input.focus();
-    else launcher.focus();
+    if (open) {
+      input.focus();
+    } else {
+      root.querySelector(".fcai-launch").focus();
+    }
   }
 
+  // Consultation form
   function toggleLead() {
     lead.classList.toggle("fcai-show");
 
@@ -189,22 +260,21 @@
     }
   }
 
-  function resetChat() {
-    history.length = 0;
-    log.replaceChildren();
-    say("bot", welcome);
-    lead.classList.remove("fcai-show");
-    status.textContent = "";
-    input.focus();
-  }
-
-  launcher.addEventListener("click", () => toggle(true));
+  root.querySelector(".fcai-launch")
+    .addEventListener("click", () => toggle(true));
 
   root.querySelector(".fcai-close")
     .addEventListener("click", () => toggle(false));
 
   root.querySelector(".fcai-reset")
-    .addEventListener("click", resetChat);
+    .addEventListener("click", () => {
+      history.length = 0;
+      log.replaceChildren();
+      say("bot", welcome);
+      lead.classList.remove("fcai-show");
+      status.textContent = "";
+      input.focus();
+    });
 
   root.querySelector(".fcai-lead-toggle")
     .addEventListener("click", toggleLead);
@@ -212,34 +282,38 @@
   root.querySelector(".fcai-add")
     .addEventListener("click", toggleLead);
 
-  // Replace with the authorised company WhatsApp number,
-  // using country code and digits only.
-  const WHATSAPP_NUMBER = "";
-
+  // WHATSAPP INTEGRATION
   root.querySelector(".fcai-whatsapp")
     .addEventListener("click", () => {
-      if (!WHATSAPP_NUMBER) {
-        status.textContent =
-          "Please visit our Contact page for WhatsApp support.";
-        return;
-      }
 
-      const text =
-        "Hello Fly Connect Global, I would like " +
-        "to speak with a travel consultant.";
+      const whatsappURL =
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        encodeURIComponent(WHATSAPP_MESSAGE);
 
-      window.open(
-        "https://wa.me/" + WHATSAPP_NUMBER +
-        "?text=" + encodeURIComponent(text),
+      const opened = window.open(
+        whatsappURL,
         "_blank",
         "noopener,noreferrer"
       );
+
+      // A fallback for browsers that block new tabs.
+      // The button remains usable as an external link.
+      status.textContent = "Opening WhatsApp...";
+      setTimeout(() => {
+        if (status.textContent === "Opening WhatsApp...") {
+          status.textContent = "";
+        }
+      }, 3000);
     });
 
-  inputForm.addEventListener("submit", async event => {
-    event.preventDefault();
+  // GEMINI CHAT CONNECTION
+  inputForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
     const message = input.value.trim();
+
     if (!message || send.disabled) return;
 
     input.value = "";
@@ -256,48 +330,38 @@
         },
         body: JSON.stringify({
           message,
-          history: history.slice(-8)
+          history: history.slice(-10)
         })
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        console.warn(
-          "FlyConnect chat status:",
-          response.status,
-          data.code || "UNKNOWN"
-        );
-
-        if (response.status === 429) {
-          throw new Error("BUSY");
-        }
-
-        throw new Error("UNAVAILABLE");
+        throw new Error(data.error || "Chat unavailable");
       }
 
-      if (typeof data.reply !== "string") {
-        throw new Error("UNAVAILABLE");
-      }
+      const reply =
+        typeof data.reply === "string"
+          ? data.reply
+          : "Please try again.";
 
-      say("bot", data.reply);
+      say("bot", reply);
 
       history.push(
         { role: "user", content: message },
-        { role: "assistant", content: data.reply }
+        { role: "assistant", content: reply }
       );
 
-      if (history.length > 16) {
-        history.splice(0, history.length - 16);
+      if (history.length > 20) {
+        history.splice(0, history.length - 20);
       }
 
-    } catch (error) {
-      const fallback = error.message === "BUSY"
-        ? "We're receiving a lot of enquiries right now. Please try again shortly."
-        : "We're unable to respond right now. Please try again or request a consultation.";
-
-      say("bot", fallback);
-
+    } catch (err) {
+      say(
+        "bot",
+        "Our chat service is temporarily unavailable. " +
+        "Please try again or request a consultation."
+      );
     } finally {
       send.disabled = false;
       status.textContent = "";
@@ -305,21 +369,22 @@
     }
   });
 
-  lead.addEventListener("submit", async event => {
-    event.preventDefault();
+  // SUPABASE LEAD CAPTURE
+  lead.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    const button = lead.querySelector(
+    const btn = lead.querySelector(
       'button[type="submit"]'
     );
 
-    if (button.disabled) return;
+    if (btn.disabled) return;
 
     const form = new FormData(lead);
 
     if (!form.get("consent")) return;
 
-    button.disabled = true;
-    status.textContent = "Sending your enquiry...";
+    btn.disabled = true;
+    status.textContent = "Sending enquiry...";
 
     try {
       const response = await fetch("/api/ai-lead", {
@@ -332,45 +397,46 @@
           phone: form.get("phone"),
           email: form.get("email"),
           interest: form.get("interest"),
-          consent: true
+          consent: true,
+          conversation: []
         })
       });
 
       const data = await response.json();
 
-      if (!response.ok || !data.ok) {
-        throw new Error("Submission failed");
+      if (!response.ok || data.ok === false) {
+        throw new Error(
+          data.error || "Submission failed"
+        );
       }
 
       say(
         "bot",
-        "Thank you! Your consultation request has been " +
-        "received. Our team can contact you using " +
-        "the details you provided."
+        "Thanks! Your enquiry has been received. " +
+        "Our team can follow up using the contact " +
+        "details you provided."
       );
 
       lead.reset();
       lead.classList.remove("fcai-show");
       status.textContent = "";
 
-    } catch (error) {
+    } catch (err) {
       status.textContent =
-        "We couldn't submit your request. " +
-        "Please try again or contact our team.";
+        "Could not send your enquiry. Please try again.";
 
     } finally {
-      button.disabled = false;
+      btn.disabled = false;
     }
   });
 
-  document.addEventListener("keydown", event => {
+  document.addEventListener("keydown", (e) => {
     if (
-      event.key === "Escape" &&
+      e.key === "Escape" &&
       panel.classList.contains("fcai-open")
     ) {
       toggle(false);
     }
   });
 
-  say("bot", welcome);
 })();
